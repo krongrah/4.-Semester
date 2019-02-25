@@ -1,9 +1,3 @@
 # 4.-Semester
 
-* Semester project
-
-![](http://i.imgur.com/OUkLi.gif)
-
-![](http://i.imgur.com/Ssfp7.gif)
-
-![](http://i.imgur.com/60bts.gif)
+https://i.gifer.com/UF47.gif
