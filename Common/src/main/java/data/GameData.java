@@ -142,8 +142,11 @@ public class GameData {
         return focusX;
     }
 
-    public void setFocusX(float focusX, float focusY) {
+    public void setFocusX(float focusX) {
         this.focusX = focusX;
+    }
+
+    public void setFocusY(float focusY) {
         this.focusY = focusY;
     }
 
