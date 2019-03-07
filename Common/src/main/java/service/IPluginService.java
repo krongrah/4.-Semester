@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.common;
+package service;
+
+import data.GameData;
+import data.World;
 
 /**
  *
  * @author ahmadhamid
  */
-public interface EntityPart {
-    void process(GameData gameData, Entity entity);
+public interface IPluginService {
+
+    void start(GameData gameData, World world);
+
+    void stop(GameData gameData, World world);
 }

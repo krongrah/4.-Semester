@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.common;
+package data;
 
+import common.Event;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -14,6 +15,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @author ahmadhamid
  */
 public class GameData {
+
     private float delta;
     private int displayWidth;
     private int displayHeight;

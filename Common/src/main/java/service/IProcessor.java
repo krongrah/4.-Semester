@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.common;
+package service;
+
+import data.GameData;
+import data.World;
 
 /**
  *
  * @author ahmadhamid
  */
-public interface IGamePluginService {
-    void start(GameData gameData, World world);
+public interface IProcessor {
 
-    void stop(GameData gameData, World world);
+    void process(GameData gameData, World world);
 }

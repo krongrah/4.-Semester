@@ -1,23 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package game.common;
+package entityparts;
+
+import common.Entity;
+import data.GameData;
 
 /**
  *
  * @author ahmadhamid
  */
 public class PositionPart implements EntityPart {
+
     private float x;
     private float y;
-    private float radians;
 
-    public PositionPart(float x, float y, float radians) {
+    public PositionPart(float x, float y) {
         this.x = x;
         this.y = y;
-        this.radians = radians;
     }
 
     public float getX() {
@@ -28,14 +25,11 @@ public class PositionPart implements EntityPart {
         return y;
     }
 
-    public float getRadians() {
-        return radians;
-    }
-    
+
     public void setX(float newX) {
         this.x = newX;
     }
-    
+
     public void setY(float newY) {
         this.y = newY;
     }
@@ -45,9 +39,6 @@ public class PositionPart implements EntityPart {
         this.y = newY;
     }
 
-    public void setRadians(float radians) {
-        this.radians = radians;
-    }
 
     @Override
     public void process(GameData gameData, Entity entity) {

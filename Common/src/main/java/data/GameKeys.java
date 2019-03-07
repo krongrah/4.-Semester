@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.common;
+package data;
 
 /**
  *
  * @author ahmadhamid
  */
 public class GameKeys {
+
     private static boolean[] keys;
     private static boolean[] pkeys;
 

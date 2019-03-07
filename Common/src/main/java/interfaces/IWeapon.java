@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.common;
+package interfaces;
+
+import entityparts.PositionPart;
 
 /**
  *
- * @author ahmadhamid
+ * @author Krongrah
  */
-public interface IEntityProcessingService {
-    void process(GameData gameData, World world);
+public interface IWeapon {
+    public void attack(PositionPart pos);
 }

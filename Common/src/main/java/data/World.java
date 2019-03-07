@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.common;
+package data;
 
+import common.Entity;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author ahmadhamid
  */
 public class World {
+
     private final Map<String, Entity> entityMap = new ConcurrentHashMap<>();
 
     public String addEntity(Entity entity) {
@@ -23,14 +25,10 @@ public class World {
         return entity.getID();
     }
 
-    public void removeEntity(String entityID) {
-        entityMap.remove(entityID);
-    }
-
     public void removeEntity(Entity entity) {
         entityMap.remove(entity.getID());
     }
-    
+
     public Collection<Entity> getEntities() {
         return entityMap.values();
     }
@@ -47,7 +45,4 @@ public class World {
         return r;
     }
 
-    public Entity getEntity(String ID) {
-        return entityMap.get(ID);
-    }
 }

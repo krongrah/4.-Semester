@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.common;
+package service;
+
+import data.GameData;
+import data.World;
 
 /**
  *
  * @author ahmadhamid
  */
-public interface IPostEntityProcessingService {
+public interface IPostProcessor {
+
     void process(GameData gameData, World world);
 }

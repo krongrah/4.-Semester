@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.common;
+package common;
 
 import java.io.Serializable;
 
@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author ahmadhamid
  */
 public class Event implements Serializable {
+
     private final Entity source;
 
     public Event(Entity source) {
