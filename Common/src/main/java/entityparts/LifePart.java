@@ -29,11 +29,10 @@ public class LifePart implements EntityPart {
         this.life = life;
     }
 
-    /**
-     * decreases life by the given amount. negative numbers heal instead.
-     *
-     * @param life
-     */
+    public void increaseLife(int life) {
+        this.life += life;
+    }
+    
     public void decreaseLife(int life) {
         this.life -= life;
     }

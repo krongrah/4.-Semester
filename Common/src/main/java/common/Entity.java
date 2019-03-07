@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import sprites.Sprites;
 
 /**
  *
@@ -19,12 +20,11 @@ public class Entity implements Serializable {
 
     private final UUID ID = UUID.randomUUID();
 
-    private float radius;
+    
     private Map<Class, EntityPart> parts;
 
-    public Entity(float r) {
+    public Entity(Sprites sprite) {
         parts = new ConcurrentHashMap<>();
-        this.radius = r;
     }
 
     public void add(EntityPart part) {
@@ -39,9 +39,6 @@ public class Entity implements Serializable {
         return (E) parts.get(partClass);
     }
 
-    public float getRadius() {
-        return radius;
-    }
 
     public String getID() {
         return ID.toString();

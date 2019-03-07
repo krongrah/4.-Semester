@@ -22,18 +22,25 @@ public class GameInputProcessor extends InputAdapter {
         this.gameData = gameData;
     }
 
+    @Override
     public boolean keyDown(int k) {
-        if (k == Input.Keys.UP) {
-            gameData.getKeys().setKey(GameKeys.UP, true);
+        if (k == Input.Keys.W || k == Input.Keys.UP) {
+            gameData.getKeys().setKey(GameKeys.W, true);
         }
-        if (k == Input.Keys.LEFT) {
-            gameData.getKeys().setKey(GameKeys.LEFT, true);
+        if (k == Input.Keys.A || k == Input.Keys.LEFT) {
+            gameData.getKeys().setKey(GameKeys.A, true);
         }
-        if (k == Input.Keys.DOWN) {
-            gameData.getKeys().setKey(GameKeys.DOWN, true);
+        if (k == Input.Keys.S || k == Input.Keys.DOWN) {
+            gameData.getKeys().setKey(GameKeys.S, true);
         }
-        if (k == Input.Keys.RIGHT) {
-            gameData.getKeys().setKey(GameKeys.RIGHT, true);
+        if (k == Input.Keys.D || k == Input.Keys.RIGHT) {
+            gameData.getKeys().setKey(GameKeys.D, true);
+        }
+        if (k == Input.Keys.Q) {
+            gameData.getKeys().setKey(GameKeys.Q, true);
+        }
+        if (k == Input.Keys.E) {
+            gameData.getKeys().setKey(GameKeys.E, true);
         }
         if (k == Input.Keys.ENTER) {
             gameData.getKeys().setKey(GameKeys.ENTER, true);
@@ -52,16 +59,16 @@ public class GameInputProcessor extends InputAdapter {
 
     public boolean keyUp(int k) {
         if (k == Input.Keys.UP) {
-            gameData.getKeys().setKey(GameKeys.UP, false);
+            gameData.getKeys().setKey(GameKeys.W, false);
         }
         if (k == Input.Keys.LEFT) {
-            gameData.getKeys().setKey(GameKeys.LEFT, false);
+            gameData.getKeys().setKey(GameKeys.A, false);
         }
         if (k == Input.Keys.DOWN) {
-            gameData.getKeys().setKey(GameKeys.DOWN, false);
+            gameData.getKeys().setKey(GameKeys.S, false);
         }
         if (k == Input.Keys.RIGHT) {
-            gameData.getKeys().setKey(GameKeys.RIGHT, false);
+            gameData.getKeys().setKey(GameKeys.D, false);
         }
         if (k == Input.Keys.ENTER) {
             gameData.getKeys().setKey(GameKeys.ENTER, false);

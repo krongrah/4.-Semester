@@ -7,9 +7,6 @@ package entityparts;
 
 import common.Entity;
 import data.GameData;
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
-import static java.lang.Math.sqrt;
 
 /**
  *
@@ -17,16 +14,15 @@ import static java.lang.Math.sqrt;
  */
 public class MovingPart implements EntityPart {
 
-    private float dx, dy;
+    private float dx;
     private float deceleration, acceleration;
-    private float maxSpeed, rotationSpeed;
-    private boolean left, right, up;
+    private float maxSpeed;
+    private boolean left, right;
 
-    public MovingPart(float deceleration, float acceleration, float maxSpeed, float rotationSpeed) {
+    public MovingPart(float deceleration, float acceleration, float maxSpeed) {
         this.deceleration = deceleration;
         this.acceleration = acceleration;
         this.maxSpeed = maxSpeed;
-        this.rotationSpeed = rotationSpeed;
     }
 
     public void setLeft(boolean left) {
