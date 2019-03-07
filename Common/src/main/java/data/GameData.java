@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Class is ued to hold general and common Data of the game
+ * Class is used to hold general and common Data of the game
  *
  * @author Ahmad Hamid
  * @author Mikkel Brinchs Larsen
@@ -25,6 +25,8 @@ public class GameData {
     private float delta;
     private int displayWidth;
     private int displayHeight;
+    private float focusX;
+    private float focusY;
     private final GameKeys keys = new GameKeys();
     private List<Event> events = new CopyOnWriteArrayList<>();
 
@@ -134,5 +136,18 @@ public class GameData {
         }
 
         return r;
+    }
+
+    public float getFocusX() {
+        return focusX;
+    }
+
+    public void setFocusX(float focusX, float focusY) {
+        this.focusX = focusX;
+        this.focusY = focusY;
+    }
+
+    public float getFocusY() {
+        return focusY;
     }
 }
