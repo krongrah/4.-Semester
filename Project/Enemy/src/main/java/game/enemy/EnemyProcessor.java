@@ -9,7 +9,7 @@ import common.Entity;
 import data.GameData;
 import data.World;
 import entityparts.MovingPart;
-import service.IProcessor;
+import services.IProcessor;
 
 /**
  *

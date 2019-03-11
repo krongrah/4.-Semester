@@ -10,7 +10,7 @@ import data.World;
 import entityparts.LifePart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
-import service.IPluginService;
+import services.IPluginService;
 import sprites.Sprites;
 
 /**

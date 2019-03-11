@@ -11,7 +11,7 @@ import data.World;
 import static data.GameKeys.A;
 import static data.GameKeys.D;
 import entityparts.MovingPart;
-import service.IProcessor;
+import services.IProcessor;
 
 /**
  *

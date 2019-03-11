@@ -244,3 +244,5 @@ $RECYCLE.BIN/
 /Core/target/
 /test/target/
 /Map/target/
+/Project/Enemy/target/
+/Project/Player/target/
