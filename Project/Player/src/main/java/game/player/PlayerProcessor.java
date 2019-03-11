@@ -11,6 +11,7 @@ import data.World;
 import static data.GameKeys.A;
 import static data.GameKeys.D;
 import entityparts.MovingPart;
+import entityparts.PositionPart;
 import services.IProcessor;
 
 /**
@@ -25,6 +26,7 @@ public class PlayerProcessor implements IProcessor {
         for (Entity player : world.getEntities(Player.class)) {
 
             //Gets the parts of the player
+            PositionPart pp = player.getPart(PositionPart.class);
             MovingPart mp = player.getPart(MovingPart.class);
 
             //Sets whether the player is going left or right
@@ -33,6 +35,9 @@ public class PlayerProcessor implements IProcessor {
 
             //Now processes the movement of the player based on the keys
             mp.process(gameData, player);
+            
+            gameData.setFocusX(pp.getX());
+            gameData.setFocusY(pp.getY());
             
         }
 

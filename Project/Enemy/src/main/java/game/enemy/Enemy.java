@@ -6,7 +6,6 @@
 package game.enemy;
 
 import common.Entity;
-import sprites.Sprites;
 
 /**
  *
@@ -14,8 +13,8 @@ import sprites.Sprites;
  */
 public class Enemy extends Entity {
     
-    public Enemy(Sprites sprite) {
-        super(sprite);
+    public Enemy() {
+
     }
     
 }
