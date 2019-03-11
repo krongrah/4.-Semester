@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
         LwjglApplicationConfiguration cfg
                 = new LwjglApplicationConfiguration();
-        cfg.title = "Asteroids";
+        cfg.title = "Star Wars - Fall of the Empire";
         cfg.width = 500;
         cfg.height = 400;
         cfg.useGL30 = false;
