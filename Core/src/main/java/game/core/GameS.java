@@ -24,17 +24,17 @@ import entityparts.PositionPart;
  */
 public class GameS extends ApplicationAdapter {
 
-    Texture img;
-    TiledMap tiledMap;
-    OrthographicCamera camera;
-    TiledMapRenderer tiledMapRenderer;
+    private Texture img;
+    private TiledMap tiledMap;
+    private OrthographicCamera camera;
+    private TiledMapRenderer tiledMapRenderer;
     private Entity focusEntity;
     private Color backgroundColor;
 
     @Override
     public void create() {
-        float w = Gdx.graphics.getWidth()*4;
-        float h = Gdx.graphics.getHeight()*4;
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, w, h);
@@ -45,27 +45,29 @@ public class GameS extends ApplicationAdapter {
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
+        Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a); //Gets the RGBA values of the backgound Color
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
-        
-        //Player x & y coordinates needed:
-            //Moves the camera by playerspeed left or right:
+
         PositionPart entityPos = focusEntity.getPart(PositionPart.class);
         float entityX = entityPos.getX();
         float entityY = entityPos.getY();
-        camera.position.set(entityX, entityY, 0);
+        camera.position.set(entityX, entityY, 0); //X, Y, Z coordinates
         //camera.translate(entityX - camera.position.x, camera.position.y - entityY); //takes the difference between the players position and the cameras position.
     }
-    
-    public void setFocusEntity(Entity entity){
+
+    public void setFocusEntity(Entity entity) {
         this.focusEntity = entity;
     }
-    
-    public void setBackgroudColor(Color color){
+
+    public void setBackgroudColor(Color color) {
         this.backgroundColor = color;
+    }
+
+    public void injectMap(String url) {
+        tiledMap = new TmxMapLoader().load("gameart2d-desert.tmx");
     }
 }
