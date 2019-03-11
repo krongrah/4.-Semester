@@ -7,6 +7,9 @@ package entityparts;
 
 import common.Entity;
 import data.GameData;
+import data.GameKeys;
+import static data.GameKeys.A;
+import static data.GameKeys.D;
 
 /**
  * Class is used for Entities to able In order to be able to move
@@ -69,10 +72,10 @@ public class MovingPart implements EntityPart {
         float dt = gameData.getDelta();
 
         // accelerating            
-        if (left) {
+        if (gameData.getKeys().isDown(A)) {
             dx -= acceleration * dt;
         }
-        if (right) {
+        if (gameData.getKeys().isDown(D)) {
             dx += acceleration * dt;
         }
 

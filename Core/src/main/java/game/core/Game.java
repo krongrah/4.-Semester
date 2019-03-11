@@ -14,9 +14,12 @@ import common.Entity;
 import data.GameData;
 import data.World;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import service.IProcessor;
-import service.IPluginService;
+import services.IProcessor;
+import services.IPluginService;
+import services.IPostProcessor;
+import util.SPILocator;
 
 /**
  *
@@ -29,7 +32,7 @@ public class Game implements ApplicationListener {
 
     private final GameData gameData = new GameData();
     private List<IProcessor> entityProcessors = new ArrayList<>();
-    private List<IPluginService> entityPlugins = new ArrayList<>();
+//    private List<IPluginService> entityPlugins = new ArrayList<>();
     private World world = new World();
 
     @Override
@@ -53,7 +56,8 @@ public class Game implements ApplicationListener {
 //        entityPlugins.add(playerPlugin);
 //        entityProcessors.add(playerProcess);
         // Lookup all Game Plugins using ServiceLoader
-        for (IPluginService iGamePlugin : entityPlugins) {
+        
+        for (IPluginService iGamePlugin : getPluginServices()) {
             iGamePlugin.start(gameData, world);
         }
     }
@@ -72,11 +76,14 @@ public class Game implements ApplicationListener {
         draw();
 
         gameData.getKeys().update();
+        
+
+        
     }
 
     private void update() {
         // Update
-        for (IProcessor entityProcessorService : entityProcessors) {
+        for (IProcessor entityProcessorService : getEntityProcessingServices()) {
             entityProcessorService.process(gameData, world);
         }
     }
@@ -84,9 +91,6 @@ public class Game implements ApplicationListener {
     private void draw() {
         for (Entity entity : world.getEntities()) {
 
-            
-            
-            
         }
     }
 
@@ -105,4 +109,17 @@ public class Game implements ApplicationListener {
     @Override
     public void dispose() {
     }
+    
+    private Collection<? extends IPluginService> getPluginServices() {
+        return SPILocator.locateAll(IPluginService.class);
+    }
+
+    private Collection<? extends IProcessor> getEntityProcessingServices() {
+        return SPILocator.locateAll(IProcessor.class);
+    }
+    
+//    private Collection<? extends IPostProcessor> getEntityPostProcessingServices() {
+//        return SPILocator.locateAll(IPostProcessor.class);
+//    }
+    
 }
