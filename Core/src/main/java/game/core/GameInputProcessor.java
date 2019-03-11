@@ -57,18 +57,25 @@ public class GameInputProcessor extends InputAdapter {
         return true;
     }
 
+    @Override
     public boolean keyUp(int k) {
-        if (k == Input.Keys.UP) {
+       if (k == Input.Keys.W || k == Input.Keys.UP) {
             gameData.getKeys().setKey(GameKeys.W, false);
         }
-        if (k == Input.Keys.LEFT) {
+        if (k == Input.Keys.A || k == Input.Keys.LEFT) {
             gameData.getKeys().setKey(GameKeys.A, false);
         }
-        if (k == Input.Keys.DOWN) {
+        if (k == Input.Keys.S || k == Input.Keys.DOWN) {
             gameData.getKeys().setKey(GameKeys.S, false);
         }
-        if (k == Input.Keys.RIGHT) {
+        if (k == Input.Keys.D || k == Input.Keys.RIGHT) {
             gameData.getKeys().setKey(GameKeys.D, false);
+        }
+        if (k == Input.Keys.Q) {
+            gameData.getKeys().setKey(GameKeys.Q, false);
+        }
+        if (k == Input.Keys.E) {
+            gameData.getKeys().setKey(GameKeys.E, false);
         }
         if (k == Input.Keys.ENTER) {
             gameData.getKeys().setKey(GameKeys.ENTER, false);

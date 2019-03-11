@@ -74,9 +74,11 @@ public class MovingPart implements EntityPart {
         // accelerating            
         if (gameData.getKeys().isDown(A)) {
             dx -= acceleration * dt;
+            System.out.println("derp");
         }
         if (gameData.getKeys().isDown(D)) {
             dx += acceleration * dt;
+            System.out.println("kian");
         }
 
         // deccelerating
