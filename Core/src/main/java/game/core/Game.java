@@ -10,25 +10,26 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import game.common.Entity;
-import game.common.GameData;
-import game.common.IEntityProcessingService;
-import game.common.IGamePluginService;
-import game.common.World;
+import common.Entity;
+import data.GameData;
+import data.World;
 import java.util.ArrayList;
 import java.util.List;
+import service.IProcessor;
+import service.IPluginService;
 
 /**
  *
  * @author ahmadhamid
  */
 public class Game implements ApplicationListener {
+
     private static OrthographicCamera cam;
     private ShapeRenderer sr;
 
     private final GameData gameData = new GameData();
-    private List<IEntityProcessingService> entityProcessors = new ArrayList<>();
-    private List<IGamePluginService> entityPlugins = new ArrayList<>();
+    private List<IProcessor> entityProcessors = new ArrayList<>();
+    private List<IPluginService> entityPlugins = new ArrayList<>();
     private World world = new World();
 
     @Override
@@ -52,7 +53,7 @@ public class Game implements ApplicationListener {
 //        entityPlugins.add(playerPlugin);
 //        entityProcessors.add(playerProcess);
         // Lookup all Game Plugins using ServiceLoader
-        for (IGamePluginService iGamePlugin : entityPlugins) {
+        for (IPluginService iGamePlugin : entityPlugins) {
             iGamePlugin.start(gameData, world);
         }
     }
@@ -75,7 +76,7 @@ public class Game implements ApplicationListener {
 
     private void update() {
         // Update
-        for (IEntityProcessingService entityProcessorService : entityProcessors) {
+        for (IProcessor entityProcessorService : entityProcessors) {
             entityProcessorService.process(gameData, world);
         }
     }
@@ -83,21 +84,9 @@ public class Game implements ApplicationListener {
     private void draw() {
         for (Entity entity : world.getEntities()) {
 
-            sr.setColor(1, 1, 1, 1);
-
-            sr.begin(ShapeRenderer.ShapeType.Line);
-
-            float[] shapex = entity.getShapeX();
-            float[] shapey = entity.getShapeY();
-
-            for (int i = 0, j = shapex.length - 1;
-                    i < shapex.length;
-                    j = i++) {
-
-                sr.line(shapex[i], shapey[i], shapex[j], shapey[j]);
-            }
-
-            sr.end();
+            
+            
+            
         }
     }
 
