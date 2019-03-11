@@ -15,20 +15,19 @@ import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import data.GameData;
+import data.World;
 
 /**
  *
  * @author ahmadhamid
  */
-public class Renderer extends ApplicationAdapter {
+public class Renderer {
 
     private TiledMap tiledMap;
     private OrthographicCamera camera;
     private TiledMapRenderer tiledMapRenderer;
     private Color backgroundColor;
-    private GameData gameData;
 
-    @Override
     public void create() {
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
@@ -40,8 +39,7 @@ public class Renderer extends ApplicationAdapter {
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
     }
 
-    @Override
-    public void render() {
+    public void render(World world, GameData gameData) {
         Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a); //Gets the RGBA values of the backgound Color
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -49,16 +47,10 @@ public class Renderer extends ApplicationAdapter {
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
 
-        float focusX = gameData.getFocusX();
-        float focusY = gameData.getFocusY();
-        camera.position.set(focusX, focusY, 0); //X, Y, Z coordinates
+        camera.position.set(gameData.getFocusX(), gameData.getFocusY(), 0); //X, Y, Z coordinates
     }
 
     public void setBackgroudColor(Color color) {
         this.backgroundColor = color;
-    }
-
-    private void injectMap() {
-        tiledMap = new TmxMapLoader().load("gameart2d-desert.tmx");
     }
 }
