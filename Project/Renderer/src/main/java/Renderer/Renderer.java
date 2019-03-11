@@ -26,7 +26,7 @@ public class Renderer implements IRenderer{
     private TiledMapRenderer tiledMapRenderer;
     private Color backgroundColor;
 
-    public void create() {
+    public Renderer() {
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
 

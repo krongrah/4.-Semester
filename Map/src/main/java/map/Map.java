@@ -20,7 +20,7 @@ public class Map {
 
     private Map() {
         mapLoader = new TmxMapLoader();
-        loadNewMap("map");
+        loadNewMap("testmap");
     }
 
     public static Map getInstance() {
