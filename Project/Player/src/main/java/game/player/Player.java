@@ -14,8 +14,8 @@ import sprites.Sprites;
  */
 public class Player extends Entity {
     
-    public Player(Sprites sprite) {
-        super(sprite);
+    public Player() {
+
     }
     
 }

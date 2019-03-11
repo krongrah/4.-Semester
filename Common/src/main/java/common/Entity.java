@@ -10,7 +10,6 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import sprites.Sprites;
 
 /**
  *
@@ -23,7 +22,7 @@ public class Entity implements Serializable {
     
     private Map<Class, EntityPart> parts;
 
-    public Entity(Sprites sprite) {
+    public Entity() {
         parts = new ConcurrentHashMap<>();
     }
 
