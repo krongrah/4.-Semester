@@ -3,33 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.core;
+package renderer;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import common.Entity;
-import entityparts.PositionPart;
+import data.GameData;
 
 /**
  *
  * @author ahmadhamid
  */
-public class GameS extends ApplicationAdapter {
+public class Renderer extends ApplicationAdapter {
 
-    private Texture img;
     private TiledMap tiledMap;
     private OrthographicCamera camera;
     private TiledMapRenderer tiledMapRenderer;
-    private Entity focusEntity;
     private Color backgroundColor;
+    private GameData gameData;
 
     @Override
     public void create() {
@@ -52,22 +49,16 @@ public class GameS extends ApplicationAdapter {
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
 
-        PositionPart entityPos = focusEntity.getPart(PositionPart.class);
-        float entityX = entityPos.getX();
-        float entityY = entityPos.getY();
-        camera.position.set(entityX, entityY, 0); //X, Y, Z coordinates
-        //camera.translate(entityX - camera.position.x, camera.position.y - entityY); //takes the difference between the players position and the cameras position.
-    }
-
-    public void setFocusEntity(Entity entity) {
-        this.focusEntity = entity;
+        float focusX = gameData.getFocusX();
+        float focusY = gameData.getFocusY();
+        camera.position.set(focusX, focusY, 0); //X, Y, Z coordinates
     }
 
     public void setBackgroudColor(Color color) {
         this.backgroundColor = color;
     }
 
-    public void injectMap(String url) {
+    private void injectMap() {
         tiledMap = new TmxMapLoader().load("gameart2d-desert.tmx");
     }
 }

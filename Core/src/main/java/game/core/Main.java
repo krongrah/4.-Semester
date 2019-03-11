@@ -24,7 +24,7 @@ public class Main {
         cfg.resizable = false;
 
         //new LwjglApplication(new Game(), cfg);
-        new LwjglApplication(new GameS(), cfg);
+        new LwjglApplication(new Game(), cfg);
     }
 
 }
