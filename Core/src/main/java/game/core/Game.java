@@ -18,7 +18,6 @@ import java.util.Collection;
 import java.util.List;
 import services.IProcessor;
 import services.IPluginService;
-import services.IPostProcessor;
 import util.SPILocator;
 
 /**
