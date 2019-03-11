@@ -20,7 +20,7 @@ public class Map {
 
     private Map() {
         mapLoader = new TmxMapLoader();
-        loadNewMap("testmap");
+        loadNewMap("tatooine");
     }
 
     public static Map getInstance() {
