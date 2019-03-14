@@ -35,8 +35,6 @@ public class Map {
     }
 
     public void loadNewMap(String name) {
-        if (mapLoader != null) {
-            currentMap = mapLoader.load("resources/maps/" + name + ".tmx");
-        }
+        currentMap = mapLoader.load("resources/maps/" + name + ".tmx");
     }
 }
