@@ -8,6 +8,7 @@
     <modules>
         <module>../Core</module>
         <module>../Common</module>
+        <module>Renderer</module>
         <module>Player</module>
         <module>Enemy</module>
         <module>../Map</module>

@@ -16,9 +16,10 @@ import data.World;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import renderer.Renderer;
 import services.IProcessor;
 import services.IPluginService;
-import services.IPostProcessor;
+import services.IRenderer;
 import util.SPILocator;
 
 /**
@@ -29,6 +30,7 @@ public class Game implements ApplicationListener {
 
     private static OrthographicCamera cam;
     private ShapeRenderer sr;
+    private IRenderer renderer;
 
     private final GameData gameData = new GameData();
     private List<IProcessor> entityProcessors = new ArrayList<>();
@@ -38,6 +40,8 @@ public class Game implements ApplicationListener {
     @Override
     public void create() {
 
+        renderer = new Renderer();
+        
         gameData.setDisplayWidth(Gdx.graphics.getWidth());
         gameData.setDisplayHeight(Gdx.graphics.getHeight());
 
@@ -76,7 +80,8 @@ public class Game implements ApplicationListener {
         draw();
 
         gameData.getKeys().update();
-        
+        renderer.setBackgroudColor(1, 1, 1, 1);
+        renderer.render(world, gameData);
 
         
     }
