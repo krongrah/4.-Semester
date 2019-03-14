@@ -33,7 +33,6 @@ public class Renderer implements IRenderer{
         camera = new OrthographicCamera();
         camera.setToOrtho(false, w, h);
         camera.update();
-        //tiledMap = new TmxMapLoader().load("gameart2d-desert.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(Map.getInstance().getMap()); //must get the map from the map component here
     }
 
