@@ -5,7 +5,7 @@
  */
 package Renderer;
 
-import assetmanagement.Assets;
+import SpriteHandling.SpriteFinder;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -13,27 +13,27 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import common.Entity;
 import data.GameData;
 import data.World;
 import map.Map;
 import services.IRenderer;
-import sprites.Sprites;
 
 /**
  *
  * @author ahmadhamid
  */
-public class Renderer implements IRenderer{
+public class Renderer implements IRenderer {
 
     private OrthographicCamera camera;
     private TiledMapRenderer tiledMapRenderer;
     private Color backgroundColor;
-    private Assets assetmanager;
+    private SpriteFinder spriteFinder;
     private SpriteBatch batch;
 
     public Renderer() {
-        assetmanager=new Assets();
-        batch=new SpriteBatch();
+        spriteFinder = new SpriteFinder();
+        batch = new SpriteBatch();
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
 
@@ -53,23 +53,23 @@ public class Renderer implements IRenderer{
         tiledMapRenderer.render();
 
         camera.position.set(gameData.getFocusX(), gameData.getFocusY(), 0); //X, Y, Z coordinates
-        draw();
-        
-    
+
+        for (Entity entity : world.getEntities()) {
+            draw(entity);
+        }
+
     }
 
     @Override
     public void setBackgroudColor(float r, float g, float b, float a) {
-        this.backgroundColor = new Color(r,g,b,a);
+        this.backgroundColor = new Color(r, g, b, a);
     }
-    
-    private void draw(){
-    batch.begin();
-    
-    assetmanager.getSprite(Sprites.LUKE).draw(batch);
-    
-    batch.end();
+
+    private void draw(Entity entity) {
+        batch.begin();
+
+        spriteFinder.getSprite(entity).draw(batch);
+        batch.end();
     }
-    
-    
+
 }
