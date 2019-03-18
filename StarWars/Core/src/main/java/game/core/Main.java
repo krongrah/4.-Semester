@@ -1,0 +1,30 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package game.core;
+
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+
+/**
+ *
+ * @author Krongrah
+ */
+public class Main {
+
+    public static void main(String[] args) {
+        LwjglApplicationConfiguration cfg
+                = new LwjglApplicationConfiguration();
+        cfg.title = "Star Wars - Fall of the Empire";
+        cfg.width = 720;
+        cfg.height = 480;
+        cfg.useGL30 = false;
+        cfg.resizable = true;
+
+        //new LwjglApplication(new Game(), cfg);
+        new LwjglApplication(new Game(), cfg);
+    }
+
+}
