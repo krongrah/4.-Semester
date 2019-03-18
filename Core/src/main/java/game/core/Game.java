@@ -16,7 +16,7 @@ import data.World;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import renderer.Renderer;
+import Renderer.Renderer;
 import services.IProcessor;
 import services.IPluginService;
 import services.IRenderer;
@@ -39,9 +39,8 @@ public class Game implements ApplicationListener {
 
     @Override
     public void create() {
-
         renderer = new Renderer();
-        
+
         gameData.setDisplayWidth(Gdx.graphics.getWidth());
         gameData.setDisplayHeight(Gdx.graphics.getHeight());
 
@@ -60,7 +59,6 @@ public class Game implements ApplicationListener {
 //        entityPlugins.add(playerPlugin);
 //        entityProcessors.add(playerProcess);
         // Lookup all Game Plugins using ServiceLoader
-        
         for (IPluginService iGamePlugin : getPluginServices()) {
             iGamePlugin.start(gameData, world);
         }
@@ -77,13 +75,11 @@ public class Game implements ApplicationListener {
 
         update();
 
-        draw();
-
         gameData.getKeys().update();
         renderer.setBackgroudColor(1, 1, 1, 1);
         renderer.render(world, gameData);
+        draw();
 
-        
     }
 
     private void update() {
@@ -114,7 +110,7 @@ public class Game implements ApplicationListener {
     @Override
     public void dispose() {
     }
-    
+
     private Collection<? extends IPluginService> getPluginServices() {
         return SPILocator.locateAll(IPluginService.class);
     }
@@ -122,9 +118,8 @@ public class Game implements ApplicationListener {
     private Collection<? extends IProcessor> getEntityProcessingServices() {
         return SPILocator.locateAll(IProcessor.class);
     }
-    
+
 //    private Collection<? extends IPostProcessor> getEntityPostProcessingServices() {
 //        return SPILocator.locateAll(IPostProcessor.class);
 //    }
-    
 }
