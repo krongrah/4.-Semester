@@ -6,6 +6,7 @@
 package SpriteHandling;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import common.Entity;
@@ -23,8 +24,8 @@ public class SpriteFinder {
 
     //tmx map loader
     public SpriteFinder() {
-        atlas = new TextureAtlas(Gdx.files.internal("resources/TatooineSprites.txt"));
-        sprite = new Sprite(atlas.findRegion("Luke"));
+//        atlas = new TextureAtlas(Gdx.files.internal("resources/TatooineSprites.txt"));
+        sprite = new Sprite(new Texture(Gdx.files.internal("resources/sprites/Luke.png")));
 
     }
 
@@ -32,9 +33,9 @@ public class SpriteFinder {
         PropertiesPart prop = entity.getPart(PropertiesPart.class);
         PositionPart pos = entity.getPart(PositionPart.class);
 
-        sprite.setRegion(atlas.findRegion(prop.getSprite().name()));
+        //sprite.setRegion(atlas.findRegion(prop.getSprite().name()));
 
-        sprite.setPosition(pos.getX() - sprite.getWidth() / 2, pos.getY() - sprite.getHeight() / 2);
+        sprite.setPosition(pos.getX() + sprite.getWidth() / 2,16);
 
         return sprite;
     }
