@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="game.Core">
+    <module_version install_time="1553079909615" last="true" origin="installer" specification_version="1.0">
+        <file crc="2414294266" name="config/Modules/game-Core.xml"/>
+        <file crc="3022794013" name="modules/ext/game.Core/com-badlogicgames-gdx/gdx-backend-lwjgl.jar"/>
+        <file crc="3883210602" name="modules/ext/game.Core/com-badlogicgames-gdx/gdx.jar"/>
+        <file crc="1146210713" name="modules/ext/game.Core/com-badlogicgames-jlayer/jlayer.jar"/>
+        <file crc="426864957" name="modules/ext/game.Core/net-java-jinput/jinput.jar"/>
+        <file crc="1529865491" name="modules/ext/game.Core/net-java-jutils/jutils.jar"/>
+        <file crc="2846045197" name="modules/ext/game.Core/org-jcraft/jorbis.jar"/>
+        <file crc="3651848685" name="modules/ext/game.Core/org-lwjgl-lwjgl/lwjgl-platform-natives-linux.jar"/>
+        <file crc="892697031" name="modules/ext/game.Core/org-lwjgl-lwjgl/lwjgl-platform-natives-osx.jar"/>
+        <file crc="2303095678" name="modules/ext/game.Core/org-lwjgl-lwjgl/lwjgl-platform-natives-windows.jar"/>
+        <file crc="2615574348" name="modules/ext/game.Core/org-lwjgl-lwjgl/lwjgl.jar"/>
+        <file crc="2012419266" name="modules/ext/game.Core/org-lwjgl-lwjgl/lwjgl_util.jar"/>
+        <file crc="3076389746" name="modules/game-Core.jar"/>
+    </module_version>
+</module>
