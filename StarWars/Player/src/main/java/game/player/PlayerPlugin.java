@@ -15,8 +15,6 @@ import entityparts.PropertiesPart;
 import services.IPluginService;
 import sprites.Sprites;
 
-
-
 /**
  *
  * @author andreasmolgaard-andersen

@@ -16,9 +16,6 @@
                 <extensions>true</extensions>
                 <configuration>
                     <useOSGiDependencies>true</useOSGiDependencies>
-                    <publicPackages>
-                        <publicPackage>game.enemy</publicPackage>
-                    </publicPackages>
                 </configuration>
             </plugin>
             <plugin>

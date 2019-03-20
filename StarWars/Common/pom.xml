@@ -16,15 +16,6 @@
                 <extensions>true</extensions>
                 <configuration>
                     <useOSGiDependencies>true</useOSGiDependencies>
-                    <publicPackages>
-                        <publicPackage>common</publicPackage>
-                        <publicPackage>data</publicPackage>
-                        <publicPackage>entityparts</publicPackage>
-                        <publicPackage>interfaces</publicPackage>
-                        <publicPackage>services</publicPackage>
-                        <publicPackage>sprites</publicPackage>
-                        <publicPackage>util</publicPackage>
-                    </publicPackages>
                 </configuration>
             </plugin>
             <plugin>
