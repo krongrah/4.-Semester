@@ -5,14 +5,18 @@
  */
 package game.renderer;
 
+import assetmanagement.AssetManagerClass;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import common.Entity;
 import data.GameData;
 import data.World;
+import entityparts.AnimationPart;
 import game.map.Map;
 import services.IRenderer;
 
@@ -24,11 +28,16 @@ public class Renderer implements IRenderer {
 
     private OrthographicCamera camera;
     private TiledMapRenderer tiledMapRenderer;
-    private Color backgroundColor = new Color();
+    private Color backgroundColor;
+    private SpriteBatch batch;
+    private AssetManagerClass am;
 
     public Renderer() {
-        float w = (float) (Gdx.graphics.getWidth() / 2);
-        float h = (float) (Gdx.graphics.getHeight() / 2);
+        am = new AssetManagerClass();
+        batch = new SpriteBatch();
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
+        Gdx.graphics.setVSync(true);
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, w, h);
@@ -44,11 +53,30 @@ public class Renderer implements IRenderer {
         camera.update();
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
+
         camera.position.set(gameData.getFocusX(), gameData.getFocusY(), 0); //X, Y, Z coordinates
+
+        for (Entity entity : world.getEntities()) {
+            draw(entity);
+        }
+
     }
 
     @Override
     public void setBackgroudColor(float r, float g, float b, float a) {
-        this.backgroundColor = new Color(r / 255, g / 255, b / 255, a);
+        this.backgroundColor = new Color(r, g, b, a);
     }
+
+    private void draw(Entity entity) {
+        AnimationPart part = entity.getPart(AnimationPart.class);
+        batch.begin();
+        am.getSprite(part.getCurrentAnimation(), part.getSpriteSheetPath()).draw(batch);
+        batch.end();
+    }
+
+    //@Override
+    public void loadTexture(String path) {
+        am.Load(path);
+    }
+
 }

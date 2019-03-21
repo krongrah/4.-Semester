@@ -8,6 +8,7 @@ package game.player;
 import common.Entity;
 import data.GameData;
 import data.World;
+import entityparts.AnimationPart;
 import entityparts.LifePart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
@@ -34,13 +35,19 @@ public class PlayerPlugin implements IPluginService {
         player.add(new LifePart(3));
         player.add(new PositionPart(18 * 32, 9 * 32));
         player.add(new MovingPart(10, 175, 250));
-
+        player.add(new AnimationPart("Saber", 0, getPath()));
+        
         world.addEntity(player);
     }
 
     @Override
     public void stop(GameData gameData, World world) {
         world.removeEntity(player);
+    }
+
+    @Override
+    public String getPath() {
+        return PlayerPlugin.class.getResource("/sprites/test.txt").getPath();
     }
 
 }

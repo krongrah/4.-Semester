@@ -36,4 +36,8 @@ public interface IPluginService {
      * @param world Is used to remove the Entity from the world
      */
     void stop(GameData gameData, World world);
+    
+        String getPath();
+
+    
 }
