@@ -248,3 +248,12 @@ $RECYCLE.BIN/
 /Project/Enemy/target/
 /Project/Player/target/
 
+/StarWars/application/target/
+/StarWars/branding/target/
+/StarWars/Common/target/
+/StarWars/Map/target/
+/StarWars/Renderer/target/
+/StarWars/Player/target/
+/StarWars/Enemy/target/
+/StarWars/SilentUpdate/target/
+/StarWars/LibGDX/target/
