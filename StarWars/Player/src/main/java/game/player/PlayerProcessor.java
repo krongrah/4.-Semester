@@ -12,7 +12,10 @@ import static data.GameKeys.A;
 import static data.GameKeys.D;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
+import org.openide.util.lookup.ServiceProvider;
 import services.IProcessor;
+
+@ServiceProvider(service = IProcessor.class)
 
 /**
  *

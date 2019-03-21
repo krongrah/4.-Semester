@@ -9,7 +9,11 @@ import common.Entity;
 import data.GameData;
 import data.World;
 import entityparts.MovingPart;
+import org.openide.util.lookup.ServiceProvider;
+import services.IPluginService;
 import services.IProcessor;
+
+@ServiceProvider(service = IProcessor.class)
 
 /**
  *

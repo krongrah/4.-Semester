@@ -11,8 +11,11 @@ import entityparts.LifePart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
+import org.openide.util.lookup.ServiceProvider;
 import services.IPluginService;
 import sprites.Sprites;
+
+@ServiceProvider(service = IPluginService.class)
 
 /**
  *
