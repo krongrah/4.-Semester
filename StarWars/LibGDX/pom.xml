@@ -17,7 +17,8 @@
                 <configuration>
                     <useOSGiDependencies>false</useOSGiDependencies>
                     <publicPackages>
-                        <publicPackage>game.libgdx</publicPackage>
+                        <publicPackage>com.badlogic.gdx.*</publicPackage>
+                        <publicPackage>com.badlogicgames.gdx.*</publicPackage>
                     </publicPackages>
                 </configuration>
             </plugin>
