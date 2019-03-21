@@ -44,18 +44,6 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.badlogicgames.gdx</groupId>
-            <artifactId>gdx</artifactId>
-            <version>1.7.2</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.badlogicgames.gdx</groupId>
-            <artifactId>gdx-backend-lwjgl</artifactId>
-            <version>1.7.2</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Renderer</artifactId>
             <version>${project.version}</version>
@@ -75,6 +63,11 @@
             <artifactId>org-openide-util-lookup</artifactId>
             <version>RELEASE82</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>LibGDX</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -86,7 +79,7 @@
                 <artifactId>nbm-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <useOSGiDependencies>true</useOSGiDependencies>
+                    <useOSGiDependencies>false</useOSGiDependencies>
                 </configuration>
             </plugin>
             <plugin>

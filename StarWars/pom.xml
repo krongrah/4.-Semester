@@ -34,7 +34,7 @@
                     <configuration>
                         <brandingToken>${brandingToken}</brandingToken>
                         <cluster>${brandingToken}</cluster>
-                        <useOSGiDependencies>true</useOSGiDependencies>
+                        <useOSGiDependencies>false</useOSGiDependencies>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -66,6 +66,7 @@
         <module>Map</module>
         <module>Renderer</module>
         <module>SilentUpdate</module>
+        <module>LibGDX</module>
     </modules>
 
     <properties>

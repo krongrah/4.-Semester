@@ -15,7 +15,7 @@
                 <artifactId>nbm-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <useOSGiDependencies>true</useOSGiDependencies>
+                    <useOSGiDependencies>false</useOSGiDependencies>
                     <publicPackages>
                         <publicPackage>game.renderer</publicPackage>
                     </publicPackages>
@@ -42,12 +42,6 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.badlogicgames.gdx</groupId>
-            <artifactId>gdx</artifactId>
-            <version>1.7.2</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Map</artifactId>
             <version>${project.version}</version>
@@ -57,6 +51,11 @@
             <artifactId>org-openide-util-lookup</artifactId>
             <version>RELEASE82</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>LibGDX</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <properties>
