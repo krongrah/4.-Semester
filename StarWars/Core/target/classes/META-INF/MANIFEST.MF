@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 OpenIDE-Module-Localizing-Bundle: game/core/Bundle.properties
 OpenIDE-Module-Specification-Version: 1.0
-OpenIDE-Module-Implementation-Version: 1.0-20190320
-OpenIDE-Module-Build-Version: 201903201147
+OpenIDE-Module-Implementation-Version: 1.0-20190321
+OpenIDE-Module-Build-Version: 201903211034
 OpenIDE-Module: game.Core
 OpenIDE-Module-Public-Packages: -
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
@@ -29,5 +29,5 @@ Maven-Class-Path: com.badlogicgames.gdx:gdx:1.7.2 com.badlogicgames.gd
 OpenIDE-Module-Module-Dependencies: org.netbeans.api.annotations.commo
  n/1 > 1.27.1, game.Common > 1.0, game.Renderer > 1.0, org.openide.mod
  ules > 7.48.1, org.openide.util > 9.7.1, org.openide.util.lookup > 8.
- 33.1, org.mockito.mockito_core > 2.25.1
+ 33.1
 

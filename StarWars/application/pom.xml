@@ -52,18 +52,6 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-netbeans-core-netigso</artifactId>
-            <version>${netbeans.version}</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-netbeans-modules-netbinox</artifactId>
-            <version>${netbeans.version}</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Core</artifactId>
             <version>${project.version}</version>
@@ -129,9 +117,7 @@
                                 <id>extra</id>
                                 <goals>
                                     <goal>autoupdate</goal>
-                                    <goal>webstart-app</goal>
-                                    <goal>build-installers</goal>
-                                </goals>
+                                 </goals>
                             </execution>
                         </executions>
                     </plugin>
