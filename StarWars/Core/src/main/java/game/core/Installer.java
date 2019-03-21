@@ -7,24 +7,27 @@ package game.core;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import org.openide.modules.ModuleInstall;
 
-/**
- *
- * @author Krongrah
- */
-public class Main {
+public class Installer extends ModuleInstall {
 
-    public static void main(String[] args) {
+    private static Game g;
+    
+    @Override
+    public void restored() {
+        
+        g = new Game();
+        
         LwjglApplicationConfiguration cfg
                 = new LwjglApplicationConfiguration();
         cfg.title = "Star Wars - Fall of the Empire";
         cfg.width = 720;
         cfg.height = 480;
         cfg.useGL30 = false;
-        cfg.resizable = true;
+        cfg.resizable = false;
 
         //new LwjglApplication(new Game(), cfg);
-        new LwjglApplication(new Game(), cfg);
+        LwjglApplication lwjglApplication = new LwjglApplication(g, cfg);
     }
 
 }
