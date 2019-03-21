@@ -20,7 +20,7 @@ public class Map {
 
     private Map() {
         mapLoader = new TmxMapLoader();
-        loadNewMap("untitled");
+        loadNewMap("Tatooine/untitled");
     }
 
     public static Map getInstance() {
@@ -35,6 +35,7 @@ public class Map {
     }
 
     public void loadNewMap(String name) {
-        currentMap = mapLoader.load("resources/maps/" + name + ".tmx");
+        currentMap = mapLoader.load("../Map/resources/maps/" + name + ".tmx");
+//        currentMap = mapLoader.load(name + ".tmx");
     }
 }
