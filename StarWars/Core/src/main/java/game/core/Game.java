@@ -24,6 +24,7 @@ import org.openide.util.LookupEvent;
 import services.IProcessor;
 import services.IPluginService;
 import services.IRenderer;
+import game.renderer.Renderer;
 
 /**
  *
@@ -76,6 +77,7 @@ public class Game implements ApplicationListener {
         for (IPluginService iGamePlugin : result.allInstances()) {
             iGamePlugin.start(gameData, world);
             gamePlugins.add(iGamePlugin);
+            renderer.loadTexture(iGamePlugin.getPath());
         }
     }
 
