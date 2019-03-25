@@ -56,6 +56,7 @@ public class Game implements ApplicationListener {
 
         cam = new OrthographicCamera(gameData.getDisplayWidth(), gameData.getDisplayHeight());
         cam.translate(gameData.getDisplayWidth(), gameData.getDisplayHeight());
+        cam.zoom = 2;
         cam.update();
 
         sr = new ShapeRenderer();
