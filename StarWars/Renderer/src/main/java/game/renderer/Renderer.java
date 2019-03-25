@@ -72,7 +72,7 @@ public class Renderer implements IRenderer {
 
     @Override
     public void setBackgroudColor(float r, float g, float b, float a) {
-        this.backgroundColor = new Color(r, g, b, a);
+        this.backgroundColor = new Color(r / 255, g / 255, b / 255, a / 255);
     }
 
     private void draw(Entity entity) {
