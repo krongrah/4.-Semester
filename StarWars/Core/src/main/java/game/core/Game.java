@@ -16,7 +16,6 @@ import data.World;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import game.renderer.Renderer;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.openide.util.Lookup;
 import org.openide.util.LookupListener;
