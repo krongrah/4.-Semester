@@ -32,7 +32,6 @@ public class AssetManagerClass {
     }
 
     public Sprite getSprite(String animation, String filePath) {
-
         return new Sprite(((TextureAtlas) (am.get(filePath, TextureAtlas.class))).findRegion(animation));
     }
 
