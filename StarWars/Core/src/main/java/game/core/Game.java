@@ -49,13 +49,13 @@ public class Game implements ApplicationListener {
     public void create() {
 
         renderer = new Renderer();
-        renderer.setBackgroudColor(125, 190, 225, 1);
+        renderer.setBackgroudColor((float) 0.125, (float) 0.190, (float) 0.225, 1);
         
-        gameData.setDisplayWidth(Gdx.graphics.getWidth());
-        gameData.setDisplayHeight(Gdx.graphics.getHeight());
+        gameData.setDisplayWidth(Gdx.graphics.getWidth()*2);
+        gameData.setDisplayHeight(Gdx.graphics.getHeight()*2);
 
         cam = new OrthographicCamera(gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        cam.translate(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
+        cam.translate(gameData.getDisplayWidth(), gameData.getDisplayHeight());
         cam.update();
 
         sr = new ShapeRenderer();
