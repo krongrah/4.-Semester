@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE module_updates PUBLIC "-//NetBeans//DTD Autoupdate Catalog 2.5//EN" "http://www.netbeans.org/dtds/autoupdate-catalog-2_5.dtd">
-<module_updates timestamp="20/13/14/21/03/2019">
+<module_updates timestamp="02/09/10/25/03/2019">
 
 
 
@@ -20,8 +20,8 @@
     
 </module>
 
-<module codenamebase="game.Common" distribution="Common-1.0-SNAPSHOT.nbm" downloadsize="15050" license="4FF26B14" needsrestart="false" releasedate="2019/03/21" targetcluster="starwars">
-    <manifest OpenIDE-Module="game.Common" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190321" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, org.openide.util.lookup &gt; 8.33.1, org.openide.util.ui &gt; 9.6.1, org.openide.modules &gt; 7.48.1" OpenIDE-Module-Name="Common" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="game.Common" distribution="Common-1.0-SNAPSHOT.nbm" downloadsize="15776" license="4FF26B14" needsrestart="false" releasedate="2019/03/25" targetcluster="starwars">
+    <manifest OpenIDE-Module="game.Common" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190325" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, org.openide.util.lookup &gt; 8.33.1, org.openide.util.ui &gt; 9.6.1, org.openide.modules &gt; 7.48.1" OpenIDE-Module-Name="Common" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
@@ -30,13 +30,13 @@
     
 </module>
 
-<module codenamebase="game.Core" distribution="Core-1.0-SNAPSHOT.nbm" downloadsize="9130" license="4FF26B14" needsrestart="false" releasedate="2019/03/21" targetcluster="starwars">
-    <manifest OpenIDE-Module="game.Core" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190321" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, game.Common &gt; 1.0, game.Renderer &gt; 1.0, org.openide.modules &gt; 7.48.1, org.openide.util &gt; 9.7.1, org.openide.util.lookup &gt; 8.33.1, game.LibGDX &gt; 1.0, org.openide.util.ui &gt; 9.6.1" OpenIDE-Module-Name="Core" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="game.Core" distribution="Core-1.0-SNAPSHOT.nbm" downloadsize="9193" license="4FF26B14" needsrestart="false" releasedate="2019/03/25" targetcluster="starwars">
+    <manifest OpenIDE-Module="game.Core" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190325" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, game.Common &gt; 1.0, game.Renderer &gt; 1.0, org.openide.modules &gt; 7.48.1, org.openide.util &gt; 9.7.1, org.openide.util.lookup &gt; 8.33.1, game.LibGDX &gt; 1.0, org.openide.util.ui &gt; 9.6.1" OpenIDE-Module-Name="Core" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
-<module codenamebase="game.Enemy" distribution="Enemy-1.0-SNAPSHOT.nbm" downloadsize="5950" license="4FF26B14" needsrestart="false" releasedate="2019/03/21" targetcluster="starwars">
-    <manifest OpenIDE-Module="game.Enemy" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190321" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, game.Common &gt; 1.0, org.openide.util.lookup &gt; 8.33.1" OpenIDE-Module-Name="Enemy" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="game.Enemy" distribution="Enemy-1.0-SNAPSHOT.nbm" downloadsize="6052" license="4FF26B14" needsrestart="false" releasedate="2019/03/25" targetcluster="starwars">
+    <manifest OpenIDE-Module="game.Enemy" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190325" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, game.Common &gt; 1.0, org.openide.util.lookup &gt; 8.33.1" OpenIDE-Module-Name="Enemy" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
@@ -60,8 +60,8 @@
     
 </module>
 
-<module codenamebase="game.LibGDX" distribution="LibGDX-1.0-SNAPSHOT.nbm" downloadsize="9299413" license="4FF26B14" needsrestart="false" releasedate="2019/03/21" targetcluster="starwars">
-    <manifest OpenIDE-Module="game.LibGDX" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190321" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1" OpenIDE-Module-Name="LibGDX" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="game.LibGDX" distribution="LibGDX-1.0-SNAPSHOT.nbm" downloadsize="9299372" license="4FF26B14" needsrestart="false" releasedate="2019/03/25" targetcluster="starwars">
+    <manifest OpenIDE-Module="game.LibGDX" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190325" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1" OpenIDE-Module-Name="LibGDX" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
@@ -70,8 +70,8 @@
     
 </module>
 
-<module codenamebase="game.Map" distribution="Map-1.0-SNAPSHOT.nbm" downloadsize="4944" license="4FF26B14" needsrestart="false" releasedate="2019/03/21" targetcluster="starwars">
-    <manifest OpenIDE-Module="game.Map" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190321" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, game.Common &gt; 1.0, org.openide.util.lookup &gt; 8.33.1, game.LibGDX &gt; 1.0" OpenIDE-Module-Name="Map" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="game.Map" distribution="Map-1.0-SNAPSHOT.nbm" downloadsize="4866" license="4FF26B14" needsrestart="false" releasedate="2019/03/25" targetcluster="starwars">
+    <manifest OpenIDE-Module="game.Map" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190325" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, game.Common &gt; 1.0, org.openide.util.lookup &gt; 8.33.1, game.LibGDX &gt; 1.0" OpenIDE-Module-Name="Map" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
@@ -85,8 +85,8 @@
     
 </module>
 
-<module codenamebase="game.Player" distribution="Player-1.0-SNAPSHOT.nbm" downloadsize="6235" license="4FF26B14" needsrestart="false" releasedate="2019/03/21" targetcluster="starwars">
-    <manifest OpenIDE-Module="game.Player" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190321" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, game.Common &gt; 1.0, org.openide.util.lookup &gt; 8.33.1" OpenIDE-Module-Name="Player" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="game.Player" distribution="Player-1.0-SNAPSHOT.nbm" downloadsize="7446" license="4FF26B14" needsrestart="false" releasedate="2019/03/25" targetcluster="starwars">
+    <manifest OpenIDE-Module="game.Player" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190325" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, game.Common &gt; 1.0, org.openide.util.lookup &gt; 8.33.1" OpenIDE-Module-Name="Player" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
@@ -100,13 +100,13 @@
     
 </module>
 
-<module codenamebase="game.Renderer" distribution="Renderer-1.0-SNAPSHOT.nbm" downloadsize="5465" license="4FF26B14" needsrestart="false" releasedate="2019/03/21" targetcluster="starwars">
-    <manifest OpenIDE-Module="game.Renderer" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190321" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, game.Common &gt; 1.0, game.Map &gt; 1.0, org.openide.util.lookup &gt; 8.33.1, game.LibGDX &gt; 1.0" OpenIDE-Module-Name="Renderer" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="game.Renderer" distribution="Renderer-1.0-SNAPSHOT.nbm" downloadsize="8546" license="4FF26B14" needsrestart="false" releasedate="2019/03/25" targetcluster="starwars">
+    <manifest OpenIDE-Module="game.Renderer" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190325" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, game.Common &gt; 1.0, game.Map &gt; 1.0, org.openide.util.lookup &gt; 8.33.1, game.LibGDX &gt; 1.0" OpenIDE-Module-Name="Renderer" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
-<module codenamebase="game.SilentUpdate" distribution="SilentUpdate-1.0-SNAPSHOT.nbm" downloadsize="11557" license="4FF26B14" needsrestart="false" releasedate="2019/03/21" targetcluster="starwars">
-    <manifest OpenIDE-Module="game.SilentUpdate" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="1.0-20190321" OpenIDE-Module-Long-Description="A service installing updates of your NetBeans Platform Application with as few as possible user's interactions." OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, org.openide.modules &gt; 7.48.1, org.netbeans.modules.autoupdate.services &gt; 1.52.1, org.openide.io &gt; 1.49.1, org.openide.util &gt; 9.7.1" OpenIDE-Module-Name="Silent Update" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Silent Update of Application" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="game.SilentUpdate" distribution="SilentUpdate-1.0-SNAPSHOT.nbm" downloadsize="11502" license="4FF26B14" needsrestart="false" releasedate="2019/03/25" targetcluster="starwars">
+    <manifest OpenIDE-Module="game.SilentUpdate" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="1.0-20190325" OpenIDE-Module-Long-Description="A service installing updates of your NetBeans Platform Application with as few as possible user's interactions." OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1, org.openide.modules &gt; 7.48.1, org.netbeans.modules.autoupdate.services &gt; 1.52.1, org.openide.io &gt; 1.49.1, org.openide.util &gt; 9.7.1" OpenIDE-Module-Name="Silent Update" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Silent Update of Application" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
@@ -120,8 +120,8 @@
     
 </module>
 
-<module codenamebase="game.StarWars.branding" distribution="StarWars-branding-1.0-SNAPSHOT.nbm" downloadsize="6454" license="4FF26B14" needsrestart="false" releasedate="2019/03/21" targetcluster="starwars">
-    <manifest AutoUpdate-Essential-Module="true" OpenIDE-Module="game.StarWars.branding" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190321" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1" OpenIDE-Module-Name="StarWars-branding" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="game.StarWars.branding" distribution="StarWars-branding-1.0-SNAPSHOT.nbm" downloadsize="4259" license="4FF26B14" needsrestart="false" releasedate="2019/03/25" targetcluster="starwars">
+    <manifest AutoUpdate-Essential-Module="true" OpenIDE-Module="game.StarWars.branding" OpenIDE-Module-Display-Category="game" OpenIDE-Module-Implementation-Version="1.0-20190325" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.27.1" OpenIDE-Module-Name="StarWars-branding" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
