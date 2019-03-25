@@ -17,7 +17,7 @@ import services.IPostProcessor;
 /**
  *
  * @author Sebas
- */
+ */@ServiceProvider(service = IPostProcessor.class)
 public class Collision implements IPostProcessor {
     
     /**
