@@ -10,6 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -17,7 +18,7 @@ import common.Entity;
 import data.GameData;
 import data.World;
 import entityparts.AnimationPart;
-import entityparts.MovingPart;
+import entityparts.PositionPart;
 import game.map.Map;
 import services.IRenderer;
 
@@ -32,6 +33,7 @@ public class Renderer implements IRenderer {
     private Color backgroundColor;
     private SpriteBatch batch;
     private AssetManagerClass am;
+    private Sprite sprite;
 
     public Renderer() {
         am = new AssetManagerClass();
@@ -55,12 +57,17 @@ public class Renderer implements IRenderer {
         Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a); //Gets the RGBA values of the backgound Color
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.update();
-        tiledMapRenderer.setView(camera);
+        
+        //tiledMapRenderer.setView(camera);
+        
+        tiledMapRenderer.setView(camera.combined, gameData.getFocusX() - gameData.getDisplayWidth() / 2, gameData.getFocusY() - gameData.getDisplayHeight() / 2, gameData.getDisplayWidth(), gameData.getDisplayHeight());
+        
         tiledMapRenderer.render();
 
         camera.position.set(gameData.getFocusX(), gameData.getFocusY(), 0); //X, Y, Z coordinates
-
+        
+        camera.update();
+        
         for (Entity entity : world.getEntities()) {
             draw(entity);
         }
@@ -76,10 +83,15 @@ public class Renderer implements IRenderer {
         batch = new SpriteBatch();
 
         AnimationPart part = entity.getPart(AnimationPart.class);
+        PositionPart posPart = entity.getPart((PositionPart.class));
         batch.begin();
 
-        am.getSprite(part.getCurrentAnimation(), part.getSpriteSheetPath()).draw(batch);
-
+        sprite = am.getSprite(part.getCurrentAnimation(), part.getSpriteSheetPath());
+        
+        sprite.setPosition((camera.viewportWidth / 2) - (sprite.getWidth() / 2),(camera.viewportHeight / 2) - (sprite.getHeight() / 2));      
+        
+        sprite.draw(batch);
+        
         batch.end();
     }
 
