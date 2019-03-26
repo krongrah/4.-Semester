@@ -33,7 +33,7 @@ public class PlayerPlugin implements IPluginService {
 
         player.add(new PropertiesPart(32, 32, Sprites.LUKE, true));
         player.add(new LifePart(3));
-        player.add(new PositionPart(18 * 32, 9 * 32));
+        player.add(new PositionPart(18 * 32, 39 * 32));
         player.add(new MovingPart(10, 175, 250));
         player.add(new AnimationPart("Saber", 0, getPath()));
         

@@ -19,6 +19,7 @@
                     <publicPackages>
                         <publicPackage>common</publicPackage>
                         <publicPackage>data</publicPackage>
+                        <publicPackage>enums</publicPackage>
                         <publicPackage>entityparts</publicPackage>
                         <publicPackage>interfaces</publicPackage>
                         <publicPackage>services</publicPackage>

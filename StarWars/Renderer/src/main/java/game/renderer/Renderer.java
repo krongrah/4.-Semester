@@ -17,6 +17,7 @@ import common.Entity;
 import data.GameData;
 import data.World;
 import entityparts.AnimationPart;
+import entityparts.MovingPart;
 import game.map.Map;
 import services.IRenderer;
 
@@ -34,13 +35,17 @@ public class Renderer implements IRenderer {
 
     public Renderer() {
         am = new AssetManagerClass();
-        batch = new SpriteBatch();
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
         Gdx.graphics.setVSync(true);
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, w, h);
+
+        camera.viewportHeight = h;
+        camera.viewportWidth = w;
+        //camera.viewportHeight = h / 2;
+        //camera.viewportWidth = w / 2;
         camera.update();
         tiledMapRenderer = new OrthogonalTiledMapRenderer(Map.getInstance().getMap()); //must get the map from the map component here
     }
@@ -68,9 +73,13 @@ public class Renderer implements IRenderer {
     }
 
     private void draw(Entity entity) {
+        batch = new SpriteBatch();
+
         AnimationPart part = entity.getPart(AnimationPart.class);
         batch.begin();
+
         am.getSprite(part.getCurrentAnimation(), part.getSpriteSheetPath()).draw(batch);
+
         batch.end();
     }
 

@@ -63,7 +63,7 @@ public class LifePart implements EntityPart {
      *
      * @return isHit
      */
-    public boolean isIsHit() {
+    public boolean isHit() {
         return isHit;
     }
 
@@ -85,6 +85,6 @@ public class LifePart implements EntityPart {
      */
     @Override
     public void process(GameData gameData, Entity entity) {
-
+        
     }
 }

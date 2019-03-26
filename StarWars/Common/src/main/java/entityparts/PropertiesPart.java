@@ -14,12 +14,21 @@ public class PropertiesPart implements EntityPart {
     private float width;
     private Sprites sprite;
     private boolean solid;
+    private boolean obstacle;
 
     public PropertiesPart(float height, float width, Sprites sprite, boolean solid) {
         this.height = height;
         this.width = width;
         this.sprite = sprite;
         this.solid = solid;
+    }
+
+    public void setObstacle(boolean obstacle) {
+        this.obstacle = obstacle;
+    }
+
+    public boolean isObstacle() {
+        return obstacle;
     }
 
     public float getHeight() {
