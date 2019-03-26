@@ -12,7 +12,7 @@ package sprites;
 public enum Sprites {
 
     LUKE("Luke"), STORMTROOPER("Stormtrooper"), SNOWTROOPER("Snowtrooper"), DARTHVADER("Darthvader"),
-    TUSKENRAIDER("Tuskenraider"), ATST("Atst");
+    TUSKENRAIDER("Tuskenraider"), ATST("Atst"), BULLET("Bullet");
    
     private String name;
 

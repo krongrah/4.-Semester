@@ -62,7 +62,7 @@ public class Collision implements IPostProcessor {
         LifePart objLife = object.getPart(LifePart.class);
         PropertiesPart tarProp = target.getPart(PropertiesPart.class);
 
-        if (tarProp.isSolid()) {
+        if (tarProp.isObstacle()) {
             object.setCollision(CollisionTypes.SOLIDOBJECT);
         } else {
             //Colliding with enemy, player or bullet:

@@ -73,6 +73,7 @@
         <module>SilentUpdate</module>
         <module>LibGDX</module>
         <module>Collision</module>
+        <module>Weapon</module>
     </modules>
 
     <properties>

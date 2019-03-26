@@ -7,7 +7,6 @@ package entityparts;
 
 import common.Entity;
 import data.GameData;
-import data.GameKeys;
 import static data.GameKeys.A;
 import static data.GameKeys.D;
 
@@ -26,7 +25,8 @@ public class MovingPart implements EntityPart {
     private float dx;
     private float deceleration, acceleration;
     private float maxSpeed;
-    private boolean left, right;
+    private boolean left, right = false;
+    private float lastPos;
 
     /**
      * Is the constructor of the MovingPart
@@ -41,6 +41,14 @@ public class MovingPart implements EntityPart {
         this.maxSpeed = maxSpeed;
     }
 
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }    
+    
     /**
      * Used to set the Entity left
      *
@@ -70,15 +78,15 @@ public class MovingPart implements EntityPart {
         PositionPart positionPart = entity.getPart(PositionPart.class);
         float x = positionPart.getX();
         float dt = gameData.getDelta();
-
+        
         // accelerating            
-        if (gameData.getKeys().isDown(A)) {
+        if (isLeft()) {
             dx -= acceleration * dt;
         }
-        if (gameData.getKeys().isDown(D)) {
+        if (isRight()) {
             dx += acceleration * dt;
         }
-
+        
         
         // deccelerating
         if (dx > 0) {
@@ -96,9 +104,20 @@ public class MovingPart implements EntityPart {
             dx = -maxSpeed;
         }
 
-         
         // set position
         x += dx * dt * 10;
+//        
+//        if(x > lastPos){
+//            //Going Right:
+//            setRight(true);
+//            setLeft(false);
+//        }if(x < lastPos){
+//            //Going Left:
+//            setLeft(true);
+//            setRight(false);
+//        }
+        
+        lastPos = x;
         positionPart.setX(x);
     }
 }
