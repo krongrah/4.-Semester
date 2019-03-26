@@ -20,6 +20,7 @@ import data.World;
 import entityparts.AnimationPart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
+import entityparts.PropertiesPart;
 import game.map.Map;
 import services.IRenderer;
 
@@ -36,7 +37,7 @@ public class Renderer implements IRenderer {
     private AssetManagerClass am;
     private Sprite sprite;
 
-    public Renderer() {
+    public Renderer(World world) {
         am = new AssetManagerClass();
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
@@ -50,7 +51,7 @@ public class Renderer implements IRenderer {
         camera.viewportHeight = h / 2;
         camera.viewportWidth = w / 2;
         camera.update();
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(Map.getInstance().getMap()); //must get the map from the map component here
+        tiledMapRenderer = new OrthogonalTiledMapRenderer(Map.getInstance(world).getMap()); //must get the map from the map component here
     }
 
     @Override
@@ -58,19 +59,21 @@ public class Renderer implements IRenderer {
         Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a); //Gets the RGBA values of the backgound Color
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        
+
         //tiledMapRenderer.setView(camera);
-        
         tiledMapRenderer.setView(camera.combined, gameData.getFocusX() - gameData.getDisplayWidth() / 2, gameData.getFocusY() - gameData.getDisplayHeight() / 2, gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        
+
         tiledMapRenderer.render();
 
         camera.position.set(gameData.getFocusX(), gameData.getFocusY(), 0); //X, Y, Z coordinates
-        
+
         camera.update();
-        
+
         for (Entity entity : world.getEntities()) {
-            draw(entity);
+            PropertiesPart prop = entity.getPart(PropertiesPart.class);
+            if (!prop.isObstacle()) {
+                draw(entity);
+            }
         }
 
     }
@@ -88,14 +91,14 @@ public class Renderer implements IRenderer {
         batch.begin();
 
         sprite = am.getSprite(part.getCurrentAnimation(), part.getSpriteSheetPath());
-        
-        sprite.setPosition((camera.viewportWidth) - (sprite.getWidth() / 2),(camera.viewportHeight) - (sprite.getHeight() / 2));      
-        
+
+        sprite.setPosition((camera.viewportWidth) - (sprite.getWidth() / 2), (camera.viewportHeight) - (sprite.getHeight() / 2));
+
         sprite.flip(!mov.isRight(), false);
-        
+
         sprite.scale(camera.zoom);
         sprite.draw(batch);
-        
+
         batch.end();
     }
 

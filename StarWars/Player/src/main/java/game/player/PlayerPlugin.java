@@ -31,9 +31,9 @@ public class PlayerPlugin implements IPluginService {
     public void start(GameData gameData, World world) {
         player = new Player();
 
-        player.add(new PropertiesPart(32, 32, Sprites.LUKE, true));
+        player.add(new PropertiesPart(32, 32, Sprites.LUKE, false));
         player.add(new LifePart(3));
-        player.add(new PositionPart(18 * 32, 38 * 32));
+        player.add(new PositionPart(18 * 32, (38 * 32)+1));
         player.add(new MovingPart(10, 175, 250));
         player.add(new AnimationPart("Saber", 0, getPath()));
         

@@ -26,10 +26,6 @@ public class PlayerPostProcessor implements IPostProcessor {
                 LifePart lp = player.getPart(LifePart.class);
                 lp.decreaseLife(1);
             }
-            if (player.getCollisionType() == CollisionTypes.SOLIDOBJECT) {
-                //Walked into wall
-            }
         }
     }
-
 }

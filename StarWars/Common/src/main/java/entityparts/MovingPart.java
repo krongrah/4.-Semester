@@ -7,6 +7,8 @@ package entityparts;
 
 import common.Entity;
 import data.GameData;
+import enums.CollisionTypes;
+import enums.Directions;
 
 /**
  * Class is used for Entities to able In order to be able to move
@@ -45,8 +47,8 @@ public class MovingPart implements EntityPart {
 
     public boolean isRight() {
         return right;
-    }    
-    
+    }
+
     /**
      * Used to set the Entity left
      *
@@ -76,16 +78,15 @@ public class MovingPart implements EntityPart {
         PositionPart positionPart = entity.getPart(PositionPart.class);
         float x = positionPart.getX();
         float dt = gameData.getDelta();
-        
+
         // accelerating            
-        if (isLeft()) {
+        if (isLeft() && entity.getCollisionDirection()!= Directions.LEFT) {
             dx -= acceleration * dt;
         }
-        if (isRight()) {
+        if (isRight() && entity.getCollisionDirection()!= Directions.RIGHT) {
             dx += acceleration * dt;
         }
-        
-        
+
         // deccelerating
         if (dx > 0) {
             dx -= dx * deceleration * dt;
@@ -93,29 +94,30 @@ public class MovingPart implements EntityPart {
         if (dx < 0) {
             dx -= dx * deceleration * dt;
         }
-        
+
         if (dx > maxSpeed) {
             dx = maxSpeed;
         }
-        
+
         if (dx < -maxSpeed) {
             dx = -maxSpeed;
         }
 
         // set position
         x += dx * dt * 10;
-        
-        if(x > lastPos){
-            //Going Right:
-            setRight(true);
-            setLeft(false);
-        }if(x < lastPos){
-            //Going Left:
-            setLeft(true);
-            setRight(false);
-        }
-        
-        lastPos = x;
+
+//        if (x > lastPos) {
+//            //Going Right:
+//            setRight(true);
+//            setLeft(false);
+//        }
+//        if (x < lastPos) {
+//            //Going Left:
+//            setLeft(true);
+//            setRight(false);
+//        }
+//
+//        lastPos = x;
         positionPart.setX(x);
     }
 }

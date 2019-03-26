@@ -7,6 +7,7 @@ package common;
 
 import entityparts.EntityPart;
 import enums.CollisionTypes;
+import enums.Directions;
 import interfaces.ICollision;
 import java.io.Serializable;
 import java.util.Map;
@@ -21,7 +22,16 @@ public class Entity implements Serializable, ICollision {
 
     private final UUID ID = UUID.randomUUID();
     private CollisionTypes colType;
-    
+    private Directions collisionDirection;
+
+    public void setCollisionDirection(Directions collisionDirection) {
+        this.collisionDirection = collisionDirection;
+    }
+
+    public Directions getCollisionDirection() {
+        return collisionDirection;
+    }
+
     private Map<Class, EntityPart> parts;
 
     public Entity() {
@@ -39,7 +49,6 @@ public class Entity implements Serializable, ICollision {
     public <E extends EntityPart> E getPart(Class partClass) {
         return (E) parts.get(partClass);
     }
-
 
     public String getID() {
         return ID.toString();
