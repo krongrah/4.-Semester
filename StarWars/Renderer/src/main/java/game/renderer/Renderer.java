@@ -18,6 +18,7 @@ import common.Entity;
 import data.GameData;
 import data.World;
 import entityparts.AnimationPart;
+import entityparts.MovingPart;
 import entityparts.PositionPart;
 import game.map.Map;
 import services.IRenderer;
@@ -44,10 +45,10 @@ public class Renderer implements IRenderer {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, w, h);
 
-        camera.viewportHeight = h;
-        camera.viewportWidth = w;
-        //camera.viewportHeight = h / 2;
-        //camera.viewportWidth = w / 2;
+        //camera.viewportHeight = h;
+        //camera.viewportWidth = w;
+        camera.viewportHeight = h / 2;
+        camera.viewportWidth = w / 2;
         camera.update();
         tiledMapRenderer = new OrthogonalTiledMapRenderer(Map.getInstance().getMap()); //must get the map from the map component here
     }
@@ -83,13 +84,16 @@ public class Renderer implements IRenderer {
         batch = new SpriteBatch();
 
         AnimationPart part = entity.getPart(AnimationPart.class);
-        PositionPart posPart = entity.getPart((PositionPart.class));
+        MovingPart mov = entity.getPart((MovingPart.class));
         batch.begin();
 
         sprite = am.getSprite(part.getCurrentAnimation(), part.getSpriteSheetPath());
         
-        sprite.setPosition((camera.viewportWidth / 2) - (sprite.getWidth() / 2),(camera.viewportHeight / 2) - (sprite.getHeight() / 2));      
+        sprite.setPosition((camera.viewportWidth) - (sprite.getWidth() / 2),(camera.viewportHeight) - (sprite.getHeight() / 2));      
         
+        sprite.flip(!mov.isRight(), false);
+        
+        sprite.scale(camera.zoom);
         sprite.draw(batch);
         
         batch.end();

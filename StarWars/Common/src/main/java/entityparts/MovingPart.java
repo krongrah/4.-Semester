@@ -7,8 +7,6 @@ package entityparts;
 
 import common.Entity;
 import data.GameData;
-import static data.GameKeys.A;
-import static data.GameKeys.D;
 
 /**
  * Class is used for Entities to able In order to be able to move
@@ -106,16 +104,16 @@ public class MovingPart implements EntityPart {
 
         // set position
         x += dx * dt * 10;
-//        
-//        if(x > lastPos){
-//            //Going Right:
-//            setRight(true);
-//            setLeft(false);
-//        }if(x < lastPos){
-//            //Going Left:
-//            setLeft(true);
-//            setRight(false);
-//        }
+        
+        if(x > lastPos){
+            //Going Right:
+            setRight(true);
+            setLeft(false);
+        }if(x < lastPos){
+            //Going Left:
+            setLeft(true);
+            setRight(false);
+        }
         
         lastPos = x;
         positionPart.setX(x);

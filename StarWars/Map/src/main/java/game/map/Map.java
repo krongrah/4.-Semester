@@ -20,7 +20,7 @@ public class Map {
 
     private Map() {
         mapLoader = new TmxMapLoader();
-        loadNewMap("gameart2d-desert");
+        loadNewMap("untitled");
     }
 
     public static Map getInstance() {
@@ -36,7 +36,7 @@ public class Map {
 
     public void loadNewMap(String name) {
         //Map.class.getResource("/Tatooine/" + name + ".tmx").getPath();
-        currentMap = mapLoader.load(Map.class.getResource("/maps/test/" + name + ".tmx").getPath());
+        currentMap = mapLoader.load(Map.class.getResource("/maps/Tatooine/" + name + ".tmx").getPath());
 //        currentMap = mapLoader.load(name + ".tmx");
     }
 }

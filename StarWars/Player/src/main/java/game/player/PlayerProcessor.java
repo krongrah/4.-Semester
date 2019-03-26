@@ -38,10 +38,10 @@ public class PlayerProcessor implements IProcessor {
 
             //Now processes the movement of the player based on the keys
             mp.process(gameData, player);
-            
+
             gameData.setFocusX(pp.getX());
-            gameData.setFocusY(pp.getY());
-            
+            gameData.setFocusY(pp.getY() + 50);
+
         }
 
     }
