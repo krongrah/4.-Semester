@@ -38,16 +38,28 @@ public class Collision implements IPostProcessor {
             PropertiesPart objProp = object.getPart(PropertiesPart.class);
 
             if (!objProp.isObstacle()) {
-                //If object is not ground or wall:
                 for (Entity target : world.getEntities()) {
                     PositionPart tarPos = target.getPart(PositionPart.class);
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
                     if (object != target && tarProp.isSolid()) {
 
-                        if ((objPos.getX() + objProp.getWidth()) <= (tarPos.getX() + tarProp.getWidth())) {
-                            if ((objPos.getY() + objProp.getHeight()) <= (tarPos.getY() + tarProp.getHeight())) {
-                                setCollision(object, target);
-                            }
+                        System.out.println("Coordinates:");
+                        System.out.println("Object: (" + objPos.getX() + ", " + objPos.getY() + ")");
+                        System.out.println("Target: (" + tarPos.getX() + ", " + tarPos.getY() + ")");
+
+                        System.out.println("\nHeight x Width:");
+                        System.out.println("Object: " + objProp.getHeight() + " x " + objProp.getWidth());
+                        System.out.println("Target: " + tarProp.getHeight() + " x " + tarProp.getWidth());
+                        System.out.println("\n\n");
+
+                        if ((objPos.getX() + objProp.getWidth()) > (tarPos.getX() + tarProp.getWidth())) {
+                            setXAxisCollision(object, target);
+                        } else {
+                            resetEntityCollision(object);
+                        }
+                        if ((objPos.getY() + objProp.getHeight()) > (tarPos.getY() + tarProp.getHeight())) {
+                            //setYAxisCollision(object, target);
+
                         }
                     }
                 }
@@ -56,32 +68,58 @@ public class Collision implements IPostProcessor {
     }
 
     /**
-     * Sets the entities to currently be hit
+     * Sets a specific collision for the object only in regards to the y-axis
      *
-     * @param target
-     * @param object
+     * @param object : Any Entity that moves
+     * @param target : Any obstacle
      */
-    private void setCollision(Entity object, Entity target) {
-        LifePart tarLife = target.getPart(LifePart.class);
-        LifePart objLife = object.getPart(LifePart.class);
+    private void setYAxisCollision(Entity object, Entity target) {
         PropertiesPart tarProp = target.getPart(PropertiesPart.class);
-        MovingPart objMov = object.getPart(MovingPart.class);
+        PositionPart objPos = object.getPart(PositionPart.class);
+        PositionPart tarPos = target.getPart(PositionPart.class);
 
+        object.setCollision(CollisionTypes.SOLIDOBJECT);
         if (tarProp.isObstacle()) {
-            //Left collision:
-            object.setCollision(CollisionTypes.SOLIDOBJECT);
-            if (objMov.isLeft()) {
+            //Entity has bumped into obstacle on the y-axis:
+            if (tarPos.getY() < objPos.getY()) {
+                //Roof collision:
+                object.setCollisionDirection(Directions.UP);
+            } else {
+                //Floor collision:
+                object.setCollisionDirection(Directions.DOWN);
+            }
+
+        }
+    }
+
+    /**
+     * Sets a specific collision for the object only in regards to the x-axis
+     *
+     * @param object : Any Entity that moves
+     * @param target : Any obstacle
+     */
+    private void setXAxisCollision(Entity object, Entity target) {
+        PropertiesPart tarProp = target.getPart(PropertiesPart.class);
+        PositionPart objPos = object.getPart(PositionPart.class);
+        PositionPart tarPos = target.getPart(PositionPart.class);
+
+        object.setCollision(CollisionTypes.SOLIDOBJECT);
+        if (tarProp.isObstacle()) {
+            //Entity has bumped into obstacle on the x-axis:
+            if (tarPos.getX() < objPos.getX()) {
+                //Right collision:
+                object.setCollisionDirection(Directions.RIGHT);
+            } else {
+                //Left collision:
                 object.setCollisionDirection(Directions.LEFT);
             }
-            if (objMov.isRight()) {
-                object.setCollisionDirection(Directions.RIGHT);
 
-            }
-            System.out.println("Colling");
-        } else {
-            //Colliding with enemy, player or bullet:
-            tarLife.setIsHit(true);
-            objLife.setIsHit(true);
         }
+    }
+
+    private void resetEntityCollision(Entity object) {
+        System.out.println("Resetting Collision");
+        object.setCollision(CollisionTypes.NO_EFFECT);
+        object.setCollisionDirection(null);
     }
 }

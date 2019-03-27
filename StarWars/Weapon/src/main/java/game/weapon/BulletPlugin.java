@@ -37,7 +37,7 @@ public class BulletPlugin implements IPluginService {
         mp.setRight(true); 
         bullet.add(new AnimationPart("Bullet", 0, getPath()));
         
-        world.addEntity(bullet);
+        //world.addEntity(bullet);
     }
 
     @Override

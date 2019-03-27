@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" backgroundcolor="#7dbeff" nextlayerid="3" nextobjectid="18">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" backgroundcolor="#7dbeff" nextlayerid="3" nextobjectid="30">
  <tileset firstgid="1" source="tatooine_tileset.tsx"/>
  <layer id="1" name="Tile Layer 1" width="50" height="50">
   <data encoding="csv">
@@ -56,23 +56,13 @@
 </data>
  </layer>
  <objectgroup id="2" name="Object Layer 1">
-  <object id="5" name="Ground" type="Dirt" x="640" y="352" width="32" height="255.818"/>
-  <object id="6" name="Ground" type="Dirt" x="448.091" y="352" width="191.909" height="32"/>
-  <object id="9" name="SpawnPoint" type="Spawn" x="592.64" y="352">
+  <object id="9" name="SpawnPoint" type="Spawn" x="592.64" y="352" visible="0">
    <point/>
   </object>
-  <object id="10" name="EnemySpawn" type="Spawn" x="882.727" y="383.455">
+  <object id="10" name="EnemySpawn" type="Spawn" x="882.727" y="383.455" visible="0">
    <point/>
   </object>
-  <object id="11" name="Ground" type="Dirt" x="448" y="224" width="32" height="128">
-   <properties>
-    <property name="x" type="float" value="0"/>
-    <property name="y" type="float" value="0"/>
-   </properties>
-  </object>
-  <object id="12" name="Ground" type="Dirt" x="736" y="192.727" width="127.82" height="127.273"/>
-  <object id="13" name="Ground" type="Dirt" x="672" y="384" width="32" height="224"/>
-  <object id="15" name="Ground" type="Dirt" x="704" y="384" width="32" height="32"/>
-  <object id="17" name="Ground" type="Dirt" x="608.364" y="480" width="32" height="32"/>
+  <object id="28" name="Ground" type="Dirt" x="480" y="320" width="32" height="32"/>
+  <object id="29" name="Ground" type="Dirt" x="640" y="320" width="32" height="32"/>
  </objectgroup>
 </map>
