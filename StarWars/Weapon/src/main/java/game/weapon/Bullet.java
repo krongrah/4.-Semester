@@ -12,5 +12,5 @@ import common.Entity;
  * @author Sebas
  */
 public class Bullet extends Entity {
-    
+
 }

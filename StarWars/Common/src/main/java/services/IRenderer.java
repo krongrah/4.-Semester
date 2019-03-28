@@ -16,7 +16,7 @@ public interface IRenderer {
 
     public void render(World world, GameData gameData);
 
-    public void setBackgroudColor(float r, float g, float b, float a);
+    public void setBackgroundColor(float r, float g, float b, float a);
 
     public void loadTexture(String path);
 }

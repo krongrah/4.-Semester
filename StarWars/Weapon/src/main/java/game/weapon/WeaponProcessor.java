@@ -7,9 +7,6 @@ package game.weapon;
 
 import common.Entity;
 import data.GameData;
-import static data.GameKeys.A;
-import static data.GameKeys.S;
-import static data.GameKeys.W;
 import data.World;
 import entityparts.AnimationPart;
 import entityparts.LifePart;
@@ -58,8 +55,8 @@ public class WeaponProcessor implements IProcessor {
         if (weapon.getCooldown() <= 0 && weapon.isAttacking()) {
             weapon.setCooldown(3);
             Bullet b = new Bullet();
-            b.add(new PositionPart(pos.getX() + prop.getWidth() / 2, pos.getY() + prop.getHeight() / 2));
-            b.add(new MovingPart(0, 100, 50));
+            b.add(new PositionPart(pos.getX() + prop.getWidth() / 2, pos.getY()));
+            b.add(new MovingPart(0, 1000, 50));
             b.add(new LifePart(1));
             b.add(new PropertiesPart(5, 3, true));
             b.add(new AnimationPart("bullet", 0, getPath()));

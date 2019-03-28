@@ -34,7 +34,7 @@ public class PlayerPlugin implements IPluginService {
 
         player.add(new PropertiesPart(32, 32, false));
         player.add(new LifePart(3));
-        player.add(new PositionPart(360, 240));
+        player.add(new PositionPart(480, 336));
         player.add(new MovingPart(10, 175, 250));
         player.add(new WeaponPart());
         player.add(new AnimationPart("Lukeidle0", 0, getPath()));
