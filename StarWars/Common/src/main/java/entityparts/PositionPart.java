@@ -2,6 +2,7 @@ package entityparts;
 
 import common.Entity;
 import data.GameData;
+import enums.Directions;
 
 /**
  * Class is used for Entities To be able to hold a position
@@ -17,6 +18,7 @@ public class PositionPart implements EntityPart {
 
     private float x;
     private float y;
+    private Directions direction;
 
     /**
      * Constructor for PositionPart
@@ -27,6 +29,7 @@ public class PositionPart implements EntityPart {
     public PositionPart(float x, float y) {
         this.x = x;
         this.y = y;
+        direction = Directions.RIGHT;
     }
 
     /**
@@ -74,6 +77,14 @@ public class PositionPart implements EntityPart {
         this.y = newY;
     }
 
+    public void setDirection(Directions dir) {
+        this.direction = dir;
+    }
+    
+    public Directions getDirection() {
+        return direction;
+    }
+    
     /**
      * Processes the position part eg. updates the position
      *
@@ -82,5 +93,7 @@ public class PositionPart implements EntityPart {
      */
     @Override
     public void process(GameData gameData, Entity entity) {
+        
+        
     }
 }

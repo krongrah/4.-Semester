@@ -10,6 +10,7 @@ import data.GameData;
 import data.World;
 import static data.GameKeys.A;
 import static data.GameKeys.D;
+import entityparts.AnimationPart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
 import org.openide.util.lookup.ServiceProvider;
@@ -31,7 +32,8 @@ public class PlayerProcessor implements IProcessor {
             //Gets the parts of the player
             PositionPart pp = player.getPart(PositionPart.class);
             MovingPart mp = player.getPart(MovingPart.class);
-
+            AnimationPart ap = player.getPart(AnimationPart.class);
+            
             //Sets whether the player is going left or right
             mp.setLeft(gameData.getKeys().isDown(A));
             mp.setRight(gameData.getKeys().isDown(D));
@@ -39,9 +41,15 @@ public class PlayerProcessor implements IProcessor {
             //Now processes the movement of the player based on the keys
             mp.process(gameData, player);
 
+            
             gameData.setFocusX(pp.getX());
             gameData.setFocusY(pp.getY() + 50);
 
+            System.out.println("Before +1 : " + ap.getFramesInCurrentAnimation());
+            ap.setFramesInCurrentAnimation(ap.getFramesInCurrentAnimation() + 1);
+            System.out.println("After +1 : " + ap.getFramesInCurrentAnimation());
+            ap.process(gameData, player);
+            
         }
 
     }

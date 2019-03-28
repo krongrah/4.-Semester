@@ -18,9 +18,9 @@ import common.Entity;
 import data.GameData;
 import data.World;
 import entityparts.AnimationPart;
-import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
+import enums.Directions;
 import game.map.Map;
 import services.IRenderer;
 
@@ -75,7 +75,6 @@ public class Renderer implements IRenderer {
                 draw(entity);
             }
         }
-
     }
 
     @Override
@@ -87,15 +86,26 @@ public class Renderer implements IRenderer {
         batch = new SpriteBatch();
 
         AnimationPart part = entity.getPart(AnimationPart.class);
-        MovingPart mov = entity.getPart((MovingPart.class));
+        PositionPart pp = entity.getPart(PositionPart.class);
         batch.begin();
-
+        
         sprite = am.getSprite(part.getCurrentAnimation(), part.getSpriteSheetPath());
-
+        
         sprite.setPosition((camera.viewportWidth) - (sprite.getWidth() / 2), (camera.viewportHeight) - (sprite.getHeight() / 2));
 
-        sprite.flip(!mov.isRight(), false);
+        
+        
+        if (pp.getDirection() == Directions.LEFT) {
+            sprite.flip(true, false);
+        }
+        
+        
+        
+//        sprite.flip(!mov.isRight(), false);
 
+        
+        
+        
         sprite.scale(camera.zoom);
         sprite.draw(batch);
 

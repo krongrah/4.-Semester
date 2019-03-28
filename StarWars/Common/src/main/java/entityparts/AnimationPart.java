@@ -7,6 +7,7 @@ package entityparts;
 
 import common.Entity;
 import data.GameData;
+import enums.PlayerStates;
 
 /**
  *
@@ -17,6 +18,8 @@ public class AnimationPart implements EntityPart {
     private String currentAnimation;
     private int framesInCurrentAnimation;
     private String SpriteSheetPath;
+    private PlayerStates ps;
+    private int currentSprite;
 
     public AnimationPart(String currentAnimation, int framesInCurrentAnimation, String SpriteSheetPath) {
         this.currentAnimation = currentAnimation;
@@ -47,10 +50,34 @@ public class AnimationPart implements EntityPart {
     public void setFramesInCurrentAnimation(int framesInCurrentAnimation) {
         this.framesInCurrentAnimation = framesInCurrentAnimation;
     }
+    
+    public void setState(PlayerStates state) {
+        this.ps = state;
+    }
 
     @Override
     public void process(GameData gameData, Entity entity) {
 
+        System.out.println("Animation Part Process");
+        
+        if (ps == PlayerStates.IDLE) {
+            System.out.println("Animation IDLE");
+            if (framesInCurrentAnimation > 4) {
+                currentSprite++;
+                currentSprite = currentSprite % 5;
+                currentAnimation = "Lukeidle" + currentSprite;
+                framesInCurrentAnimation = framesInCurrentAnimation % 5;
+            }
+        } else if (ps == PlayerStates.WALKING) {
+            System.out.println("Animation Walking");
+            if (framesInCurrentAnimation > 6) {
+                currentSprite++;
+                currentSprite = currentSprite % 7;
+                currentAnimation = "Lukewalking" + currentSprite;
+                framesInCurrentAnimation = framesInCurrentAnimation % 7;
+            }
+        }
+        
     }
 
 }
