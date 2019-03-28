@@ -34,10 +34,10 @@ public class PlayerPlugin implements IPluginService {
 
         player.add(new PropertiesPart(32, 32, false));
         player.add(new LifePart(3));
-        player.add(new PositionPart(18 * 32, (38 * 32)+1));
+        player.add(new PositionPart(360, 240));
         player.add(new MovingPart(10, 175, 250));
-        player.add(new AnimationPart("Saber", 0, getPath()));
         player.add(new WeaponPart());
+        player.add(new AnimationPart("Lukeidle0", 0, getPath()));
         
         world.addEntity(player);
     }
@@ -49,7 +49,7 @@ public class PlayerPlugin implements IPluginService {
 
     @Override
     public String getPath() {
-        return PlayerPlugin.class.getResource("/sprites/test.txt").getPath();
+        return PlayerPlugin.class.getResource("/sprites/Luke.txt").getPath();
     }
 
 }

@@ -8,8 +8,6 @@ package game.collision;
 import common.Entity;
 import data.GameData;
 import data.World;
-import entityparts.LifePart;
-import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
 import enums.CollisionTypes;
@@ -113,7 +111,6 @@ public class Collision implements IPostProcessor {
                 //Left collision:
                 object.setCollisionDirection(Directions.LEFT);
             }
-
         }
     }
 

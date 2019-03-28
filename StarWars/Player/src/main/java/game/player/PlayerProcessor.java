@@ -11,6 +11,7 @@ import data.World;
 import static data.GameKeys.A;
 import static data.GameKeys.D;
 import static data.GameKeys.SPACE;
+import entityparts.AnimationPart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.WeaponPart;
@@ -34,8 +35,8 @@ public class PlayerProcessor implements IProcessor {
             PositionPart pp = player.getPart(PositionPart.class);
             MovingPart mp = player.getPart(MovingPart.class);
             WeaponPart wp = player.getPart(WeaponPart.class);
+            AnimationPart ap = player.getPart(AnimationPart.class);
             
-
             //Sets whether the player is going left or right
             mp.setLeft(gameData.getKeys().isDown(A));
             mp.setRight(gameData.getKeys().isDown(D));
@@ -45,9 +46,13 @@ public class PlayerProcessor implements IProcessor {
             //Now processes the movement of the player based on the keys
             mp.process(gameData, player);
 
+            
             gameData.setFocusX(pp.getX());
-            gameData.setFocusY(pp.getY() + 50);
+            gameData.setFocusY(pp.getY());
 
+            ap.setFramesInCurrentAnimation(ap.getFramesInCurrentAnimation() + 1);
+            ap.process(gameData, player);
+            
         }
 
     }
