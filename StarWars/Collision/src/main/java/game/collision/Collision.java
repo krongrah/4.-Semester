@@ -43,8 +43,8 @@ public class Collision implements IPostProcessor {
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
                     if (object != target && tarProp.isSolid()) {
 
-                        float xRightDistance = Math.abs((objPos.getX()-5 - tarPos.getX()) + (objProp.getWidth()/2 + tarProp.getWidth()/2));
-                        float xLeftDistance = Math.abs((objPos.getX()-5 - tarPos.getX()));
+                        float xRightDistance = Math.abs((objPos.getX()-5 - tarPos.getX()) - (objProp.getWidth()/2 + tarProp.getWidth()/2));
+                        float xLeftDistance = Math.abs((objPos.getX()-5 - tarPos.getX()) + (objProp.getWidth()/2 - tarProp.getWidth()/2));
                         System.out.println("Coordinates:");
                         System.out.println("Object: (" + objPos.getX() + ", " + objPos.getY() + ")");
                         System.out.println("Target: (" + tarPos.getX() + ", " + tarPos.getY() + ")");
