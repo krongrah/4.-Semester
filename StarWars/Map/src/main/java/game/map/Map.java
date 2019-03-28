@@ -54,7 +54,7 @@ public class Map {
                     //Ground object
                     Entity ground = new Entity();
                     ground.add(new PositionPart(recObj.getRectangle().x, recObj.getRectangle().y));
-                    PropertiesPart prop = new PropertiesPart(recObj.getRectangle().height, recObj.getRectangle().width, null, true);
+                    PropertiesPart prop = new PropertiesPart(recObj.getRectangle().width, recObj.getRectangle().height, true);
                     prop.setObstacle(true);
                     ground.add(prop);
                     world.addEntity(ground);

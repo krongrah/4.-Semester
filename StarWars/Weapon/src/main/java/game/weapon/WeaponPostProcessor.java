@@ -8,24 +8,27 @@ package game.weapon;
 import common.Entity;
 import data.GameData;
 import data.World;
-import entityparts.MovingPart;
+import entityparts.LifePart;
 import org.openide.util.lookup.ServiceProvider;
-import services.IProcessor;
+import services.IPostProcessor;
 
 /**
  *
  * @author Sebas
  */
-@ServiceProvider(service = IProcessor.class)
 
-public class BulletProcessor implements IProcessor {
+@ServiceProvider(service = IPostProcessor.class)
+
+public class WeaponPostProcessor implements IPostProcessor {
 
     @Override
     public void process(GameData gameData, World world) {
         for (Entity bullet : world.getEntities(Bullet.class)) {
-            MovingPart mp = bullet.getPart(MovingPart.class);
-                        
-            mp.process(gameData, bullet);
+            LifePart lp = bullet.getPart(LifePart.class);
+
+            if(lp.isHit()){
+                world.removeEntity(bullet);
+            }
         }
     }
 

@@ -10,8 +10,10 @@ import data.GameData;
 import data.World;
 import static data.GameKeys.A;
 import static data.GameKeys.D;
+import static data.GameKeys.SPACE;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
+import entityparts.WeaponPart;
 import org.openide.util.lookup.ServiceProvider;
 import services.IProcessor;
 
@@ -31,10 +33,14 @@ public class PlayerProcessor implements IProcessor {
             //Gets the parts of the player
             PositionPart pp = player.getPart(PositionPart.class);
             MovingPart mp = player.getPart(MovingPart.class);
+            WeaponPart wp = player.getPart(WeaponPart.class);
+            
 
             //Sets whether the player is going left or right
             mp.setLeft(gameData.getKeys().isDown(A));
             mp.setRight(gameData.getKeys().isDown(D));
+            wp.setAttacking(gameData.getKeys().isDown(SPACE));
+            
 
             //Now processes the movement of the player based on the keys
             mp.process(gameData, player);

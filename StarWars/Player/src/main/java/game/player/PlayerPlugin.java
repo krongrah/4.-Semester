@@ -13,6 +13,7 @@ import entityparts.LifePart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
+import entityparts.WeaponPart;
 import org.openide.util.lookup.ServiceProvider;
 import services.IPluginService;
 import sprites.Sprites;
@@ -31,11 +32,12 @@ public class PlayerPlugin implements IPluginService {
     public void start(GameData gameData, World world) {
         player = new Player();
 
-        player.add(new PropertiesPart(32, 32, Sprites.LUKE, false));
+        player.add(new PropertiesPart(32, 32, false));
         player.add(new LifePart(3));
         player.add(new PositionPart(18 * 32, (38 * 32)+1));
         player.add(new MovingPart(10, 175, 250));
         player.add(new AnimationPart("Saber", 0, getPath()));
+        player.add(new WeaponPart());
         
         world.addEntity(player);
     }

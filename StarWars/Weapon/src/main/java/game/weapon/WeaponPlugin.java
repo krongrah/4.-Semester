@@ -24,30 +24,30 @@ import sprites.Sprites;
 @ServiceProvider(service = IPluginService.class)
 
 
-public class BulletPlugin implements IPluginService {
+public class WeaponPlugin implements IPluginService {
 
     @Override
     public void start(GameData gameData, World world) {
-        Bullet bullet = new Bullet();
-        bullet.add(new PropertiesPart(5, 3, Sprites.BULLET, false));
-        bullet.add(new LifePart(1));
-        bullet.add(new PositionPart(19 * 32, 39 + 16 * 32));
-        bullet.add(new MovingPart(10, 25, 50));
-        MovingPart mp = bullet.getPart(MovingPart.class);
-        mp.setRight(true); 
-        bullet.add(new AnimationPart("Bullet", 0, getPath()));
+//        Bullet bullet = new Bullet();
+//        bullet.add(new PropertiesPart(5, 3, Sprites.BULLET, false));
+//        bullet.add(new LifePart(1));
+//        bullet.add(new PositionPart(19 * 32, 39 + 16 * 32));
+//        bullet.add(new MovingPart(10, 25, 50));
+//        MovingPart mp = bullet.getPart(MovingPart.class);
+//        mp.setRight(true); 
+//        bullet.add(new AnimationPart("Bullet", 0, getPath()));
         
         //world.addEntity(bullet);
     }
 
     @Override
     public void stop(GameData gameData, World world) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
     public String getPath() {
-        return BulletPlugin.class.getResource("/sprites/bullet.txt").getPath();
+        return WeaponPlugin.class.getResource("/sprites/bullet.txt").getPath();
     }
     
 }
