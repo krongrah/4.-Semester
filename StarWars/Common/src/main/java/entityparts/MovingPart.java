@@ -7,9 +7,9 @@ package entityparts;
 
 import common.Entity;
 import data.GameData;
-import data.GameKeys;
-import static data.GameKeys.A;
-import static data.GameKeys.D;
+import enums.CollisionTypes;
+import enums.Directions;
+import enums.PlayerStates;
 
 /**
  * Class is used for Entities to able In order to be able to move
@@ -26,7 +26,10 @@ public class MovingPart implements EntityPart {
     private float dx;
     private float deceleration, acceleration;
     private float maxSpeed;
-    private boolean left, right;
+    private boolean left, right = false;
+    private float lastPos;
+    private PlayerStates lastState;
+    private PlayerStates currentState;
 
     /**
      * Is the constructor of the MovingPart
@@ -39,6 +42,14 @@ public class MovingPart implements EntityPart {
         this.deceleration = deceleration;
         this.acceleration = acceleration;
         this.maxSpeed = maxSpeed;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
     }
 
     /**
@@ -68,18 +79,18 @@ public class MovingPart implements EntityPart {
     @Override
     public void process(GameData gameData, Entity entity) {
         PositionPart positionPart = entity.getPart(PositionPart.class);
+        AnimationPart ap = entity.getPart(AnimationPart.class);
         float x = positionPart.getX();
         float dt = gameData.getDelta();
 
         // accelerating            
-        if (gameData.getKeys().isDown(A)) {
+        if (isLeft() && entity.getCollisionDirection() != Directions.LEFT) {
             dx -= acceleration * dt;
         }
-        if (gameData.getKeys().isDown(D)) {
+        if (isRight() && entity.getCollisionDirection() != Directions.RIGHT) {
             dx += acceleration * dt;
         }
 
-        
         // deccelerating
         if (dx > 0) {
             dx -= dx * deceleration * dt;
@@ -87,18 +98,43 @@ public class MovingPart implements EntityPart {
         if (dx < 0) {
             dx -= dx * deceleration * dt;
         }
-        
+
         if (dx > maxSpeed) {
             dx = maxSpeed;
         }
-        
+
         if (dx < -maxSpeed) {
             dx = -maxSpeed;
         }
 
-         
         // set position
         x += dx * dt * 10;
+
+        //An attempt at correcting the players location according to collision 
+        //(works with only one obstacle)
+        if (entity.getCollisionType() == CollisionTypes.SOLIDOBJECT) {
+            PropertiesPart p = entity.getPart(PropertiesPart.class);
+            x -= (x % p.getWidth());
+        }
+        
+        
+        
+        if (x > lastPos) {
+            //Going Right:
+            positionPart.setDirection(Directions.RIGHT);
+            ap.setState(PlayerStates.WALKING);
+        }
+        if (x < lastPos) {
+            //Going left
+            positionPart.setDirection(Directions.LEFT);
+            ap.setState(PlayerStates.WALKING);
+            
+        }
+        if (x == lastPos) {
+            ap.setState(PlayerStates.IDLE);
+        }
+        
+        lastPos = x;
         positionPart.setX(x);
     }
 }

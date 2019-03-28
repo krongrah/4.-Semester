@@ -13,18 +13,18 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import common.Entity;
 import data.GameData;
 import data.World;
+import game.renderer.Renderer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import game.renderer.Renderer;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.openide.util.Lookup;
 import org.openide.util.LookupListener;
 import org.openide.util.LookupEvent;
 import services.IProcessor;
 import services.IPluginService;
+import services.IPostProcessor;
 import services.IRenderer;
-import game.renderer.Renderer;
 
 /**
  *
@@ -39,27 +39,29 @@ public class Game implements ApplicationListener {
     private final GameData gameData = new GameData();
     private final Lookup lookup = Lookup.getDefault();
     private Lookup.Result<IPluginService> result;
+    private Lookup.Result<IPostProcessor> postProcessorResults;
     private List<IPluginService> gamePlugins = new CopyOnWriteArrayList<>();
-    
+    private List<IPostProcessor> postProcessors = new ArrayList<>();
     private List<IProcessor> entityProcessors = new ArrayList<>();
 //    private List<IPluginService> entityPlugins = new ArrayList<>();
-    private World world = new World();
+    private World world;
 
     @Override
     public void create() {
 
-        renderer = new Renderer();
-        renderer.setBackgroudColor(125, 190, 225, 1);
-        
-        gameData.setDisplayWidth(Gdx.graphics.getWidth());
-        gameData.setDisplayHeight(Gdx.graphics.getHeight());
+        world = new World();
+        renderer = new Renderer(world);
+        renderer.setBackgroundColor(125, 190, 225, 1);
+
+        gameData.setDisplayWidth(Gdx.graphics.getWidth() * 2);
+        gameData.setDisplayHeight(Gdx.graphics.getHeight() * 2);
 
         cam = new OrthographicCamera(gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        cam.translate(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
+        cam.translate(gameData.getDisplayWidth(), gameData.getDisplayHeight());
         cam.update();
 
         sr = new ShapeRenderer();
-        
+
         result = lookup.lookupResult(IPluginService.class);
         result.addLookupListener(lookupListener);
         result.allItems();
@@ -73,11 +75,17 @@ public class Game implements ApplicationListener {
 //        entityPlugins.add(playerPlugin);
 //        entityProcessors.add(playerProcess);
         // Lookup all Game Plugins using ServiceLoader
-        
         for (IPluginService iGamePlugin : result.allInstances()) {
             iGamePlugin.start(gameData, world);
             gamePlugins.add(iGamePlugin);
             renderer.loadTexture(iGamePlugin.getPath());
+        }
+
+        postProcessorResults = lookup.lookupResult(IPostProcessor.class);
+        postProcessorResults.addLookupListener(lookupListener);
+        postProcessorResults.allItems();
+        for (IPostProcessor pp : postProcessorResults.allInstances()) {
+            postProcessors.add(pp);
         }
     }
 
@@ -97,13 +105,16 @@ public class Game implements ApplicationListener {
         gameData.getKeys().update();
         renderer.render(world, gameData);
 
-        
     }
 
     private void update() {
         // Update
         for (IProcessor entityProcessorService : getEntityProcessingServices()) {
             entityProcessorService.process(gameData, world);
+        }
+        
+        for (IPostProcessor postProcessor : postProcessors) {
+            postProcessor.process(gameData, world);
         }
     }
 
@@ -133,11 +144,10 @@ public class Game implements ApplicationListener {
         return lookup.lookupAll(IProcessor.class);
 //        return SPILocator.locateAll(IProcessor.class);
     }
-    
+
 //    private Collection<? extends IPostProcessor> getEntityPostProcessingServices() {
 //        return SPILocator.locateAll(IPostProcessor.class);
 //    }
-    
     private final LookupListener lookupListener = new LookupListener() {
         @Override
         public void resultChanged(LookupEvent le) {
@@ -162,5 +172,5 @@ public class Game implements ApplicationListener {
         }
 
     };
-    
+
 }
