@@ -33,38 +33,38 @@ public class Collision implements IPostProcessor {
      */
     @Override
     public void process(GameData gameData, World world) {
-        for (Entity object : world.getEntities()) {
-            PositionPart objPos = object.getPart(PositionPart.class);
-            PropertiesPart objProp = object.getPart(PropertiesPart.class);
-
-            if (!objProp.isObstacle()) {
-                for (Entity target : world.getEntities()) {
-                    PositionPart tarPos = target.getPart(PositionPart.class);
-                    PropertiesPart tarProp = target.getPart(PropertiesPart.class);
-                    if (object != target && tarProp.isSolid()) {
-
-                        System.out.println("Coordinates:");
-                        System.out.println("Object: (" + objPos.getX() + ", " + objPos.getY() + ")");
-                        System.out.println("Target: (" + tarPos.getX() + ", " + tarPos.getY() + ")");
-
-                        System.out.println("\nHeight x Width:");
-                        System.out.println("Object: " + objProp.getHeight() + " x " + objProp.getWidth());
-                        System.out.println("Target: " + tarProp.getHeight() + " x " + tarProp.getWidth());
-                        System.out.println("\n\n");
-
-                        if ((objPos.getX() + objProp.getWidth()) > (tarPos.getX() + tarProp.getWidth())) {
-                            setXAxisCollision(object, target);
-                        } else {
-                            resetEntityCollision(object);
-                        }
-                        if ((objPos.getY() + objProp.getHeight()) > (tarPos.getY() + tarProp.getHeight())) {
-                            //setYAxisCollision(object, target);
-
-                        }
-                    }
-                }
-            }
-        }
+//        for (Entity object : world.getEntities()) {
+//            PositionPart objPos = object.getPart(PositionPart.class);
+//            PropertiesPart objProp = object.getPart(PropertiesPart.class);
+//
+//            if (!objProp.isObstacle()) {
+//                for (Entity target : world.getEntities()) {
+//                    PositionPart tarPos = target.getPart(PositionPart.class);
+//                    PropertiesPart tarProp = target.getPart(PropertiesPart.class);
+//                    if (object != target && tarProp.isSolid()) {
+//
+////                        System.out.println("Coordinates:");
+////                        System.out.println("Object: (" + objPos.getX() + ", " + objPos.getY() + ")");
+////                        System.out.println("Target: (" + tarPos.getX() + ", " + tarPos.getY() + ")");
+////
+////                        System.out.println("\nHeight x Width:");
+////                        System.out.println("Object: " + objProp.getHeight() + " x " + objProp.getWidth());
+////                        System.out.println("Target: " + tarProp.getHeight() + " x " + tarProp.getWidth());
+////                        System.out.println("\n\n");
+//
+//                        if ((objPos.getX() + objProp.getWidth()) > (tarPos.getX() + tarProp.getWidth())) {
+//                            setXAxisCollision(object, target);
+//                        } else {
+//                            resetEntityCollision(object);
+//                        }
+//                        if ((objPos.getY() + objProp.getHeight()) > (tarPos.getY() + tarProp.getHeight())) {
+//                            //setYAxisCollision(object, target);
+//
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 
     /**

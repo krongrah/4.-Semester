@@ -68,7 +68,6 @@ public class Renderer implements IRenderer {
         camera.position.set(gameData.getFocusX(), gameData.getFocusY(), 0); //X, Y, Z coordinates
 
         camera.update();
-
         for (Entity entity : world.getEntities()) {
             PropertiesPart prop = entity.getPart(PropertiesPart.class);
             if (!prop.isObstacle()) {

@@ -7,6 +7,9 @@ package game.weapon;
 
 import common.Entity;
 import data.GameData;
+import static data.GameKeys.A;
+import static data.GameKeys.S;
+import static data.GameKeys.W;
 import data.World;
 import entityparts.AnimationPart;
 import entityparts.LifePart;
@@ -27,45 +30,45 @@ public class WeaponProcessor implements IProcessor {
 
     @Override
     public void process(GameData gameData, World world) {
-        
+
         //resolves all attacks
         for (Entity entity : world.getEntities()) {
             if (entity.hasPart(WeaponPart.class)) {
                 attack(entity, gameData, world);
-            }}
-        
+            }
+        }
+
         //processes bullets
         for (Entity bullet : world.getEntities(Bullet.class)) {
             MovingPart mp = bullet.getPart(MovingPart.class);
-            mp.setLeft(true);
+            mp.setRight(true);
+            mp.setLeft(false);
             mp.process(gameData, bullet);
         }
     }
 
-    
-    
-    
     private void attack(Entity entity, GameData gameData, World world) {
-        WeaponPart weapon=entity.getPart(WeaponPart.class);
-        PositionPart pos=entity.getPart(PositionPart.class);
-        PropertiesPart prop=entity.getPart(PropertiesPart.class);
-        
-        if (weapon.getCooldown()>0) {
-            weapon.setCooldown(weapon.getCooldown()-gameData.getDelta());
+        WeaponPart weapon = entity.getPart(WeaponPart.class);
+        PositionPart pos = entity.getPart(PositionPart.class);
+        PropertiesPart prop = entity.getPart(PropertiesPart.class);
+
+        if (weapon.getCooldown() > 0) {
+            weapon.setCooldown(weapon.getCooldown() - gameData.getDelta());
         }
-        if (weapon.getCooldown()<=0 && weapon.isAttacking()) {
+        if (weapon.getCooldown() <= 0 && weapon.isAttacking()) {
+            weapon.setCooldown(3);
             Bullet b = new Bullet();
-            b.add(new PositionPart(pos.getX()+prop.getWidth()/2,pos.getY()+prop.getHeight()/2));
-            b.add(new MovingPart(0,25,50));
+            b.add(new PositionPart(pos.getX() + prop.getWidth() / 2, pos.getY() + prop.getHeight() / 2));
+            b.add(new MovingPart(0, 100, 50));
             b.add(new LifePart(1));
-            b.add(new PropertiesPart(5,3,true));
+            b.add(new PropertiesPart(5, 3, true));
             b.add(new AnimationPart("bullet", 0, getPath()));
-            
+
             world.addEntity(b);
         }
-        
+
     }
-    
+
     private String getPath() {
         return WeaponPlugin.class.getResource("/sprites/bullet.txt").getPath();
     }
