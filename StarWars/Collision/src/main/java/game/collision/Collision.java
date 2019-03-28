@@ -43,16 +43,16 @@ public class Collision implements IPostProcessor {
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
                     if (object != target && tarProp.isSolid()) {
 
-                        float xRightDistance = Math.abs((objPos.getX()-5 - tarPos.getX()) - (objProp.getWidth()/2 + tarProp.getWidth()/2));
-                        float xLeftDistance = Math.abs((objPos.getX()-5 - tarPos.getX()) + (objProp.getWidth()/2 - tarProp.getWidth()/2));
-                        System.out.println("Coordinates:");
-                        System.out.println("Object: (" + objPos.getX() + ", " + objPos.getY() + ")");
-                        System.out.println("Target: (" + tarPos.getX() + ", " + tarPos.getY() + ")");
+                        float xLeftDistance = (objPos.getX() - 5 - tarPos.getX()) - (objProp.getWidth() / 2 - tarProp.getWidth() / 2);
+                        float xRightDistance = (objPos.getX() - tarPos.getX()) - (objProp.getWidth() + tarProp.getWidth());
+//                        System.out.println("Coordinates:");
+//                        System.out.println("Object: (" + objPos.getX() + ", " + objPos.getY() + ")");
+//                        System.out.println("Target: (" + tarPos.getX() + ", " + tarPos.getY() + ")");
                         System.out.println("X-Distance, Right: " + xRightDistance + " Left: " + xLeftDistance);
-                        System.out.println("\nHeight x Width:");
-                        System.out.println("Object: " + objProp.getHeight() + " x " + objProp.getWidth());
-                        System.out.println("Target: " + tarProp.getHeight() + " x " + tarProp.getWidth());
-                        System.out.println("\n\n");
+//                        System.out.println("\nHeight x Width:");
+//                        System.out.println("Object: " + objProp.getHeight() + " x " + objProp.getWidth());
+//                        System.out.println("Target: " + tarProp.getHeight() + " x " + tarProp.getWidth());
+//                        System.out.println("\n\n");
 
                         if (xRightDistance <= 1 || xLeftDistance <= 1) {
                             setXAxisCollision(object, target);
@@ -106,6 +106,10 @@ public class Collision implements IPostProcessor {
         PositionPart tarPos = target.getPart(PositionPart.class);
 
         object.setCollision(CollisionTypes.SOLIDOBJECT);
+
+        System.out.println("Coordinates:");
+        System.out.println("Player: (" + objPos.getX() + ", " + objPos.getY() + ")");
+        System.out.println("Player: (" + tarPos.getX() + ", " + tarPos.getY() + ")\n\n");
         if (tarProp.isObstacle()) {
             //Entity has bumped into obstacle on the x-axis:
             if (tarPos.getX() < objPos.getX()) {
@@ -113,6 +117,7 @@ public class Collision implements IPostProcessor {
                 object.setCollisionDirection(Directions.RIGHT);
             } else {
                 //Left collision:
+                System.out.println("Left Collision");
                 object.setCollisionDirection(Directions.LEFT);
             }
 
@@ -120,7 +125,6 @@ public class Collision implements IPostProcessor {
     }
 
     private void resetEntityCollision(Entity object) {
-        System.out.println("Resetting Collision");
         object.setCollision(CollisionTypes.NO_EFFECT);
         object.setCollisionDirection(null);
     }

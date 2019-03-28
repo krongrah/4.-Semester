@@ -102,16 +102,15 @@ public class MovingPart implements EntityPart {
         if (dx < -maxSpeed) {
             dx = -maxSpeed;
         }
-
         // set position
         x += dx * dt * 10;
-
-        //An attempt at correcting the players location according to collision 
-        //(works with only one obstacle)
-        if (entity.getCollisionType() == CollisionTypes.SOLIDOBJECT) {
-            PropertiesPart p = entity.getPart(PropertiesPart.class);
-            x -= (x % p.getWidth());
-        }
+//
+//        if (entity.getCollisionType() != CollisionTypes.SOLIDOBJECT) {
+//            //An attempt at correcting the players location according to collision 
+//            //(works with only one obstacle)
+//            PropertiesPart p = entity.getPart(PropertiesPart.class);
+//            x -= (x % p.getWidth());
+//        }
 //        if (x > lastPos) {
 //            //Going Right:
 //            setRight(true);
