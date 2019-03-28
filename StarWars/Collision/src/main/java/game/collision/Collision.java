@@ -43,16 +43,18 @@ public class Collision implements IPostProcessor {
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
                     if (object != target && tarProp.isSolid()) {
 
+                        float xRightDistance = Math.abs((objPos.getX()-5 - tarPos.getX()) + (objProp.getWidth()/2 + tarProp.getWidth()/2));
+                        float xLeftDistance = Math.abs((objPos.getX()-5 - tarPos.getX()));
                         System.out.println("Coordinates:");
                         System.out.println("Object: (" + objPos.getX() + ", " + objPos.getY() + ")");
                         System.out.println("Target: (" + tarPos.getX() + ", " + tarPos.getY() + ")");
-
+                        System.out.println("X-Distance, Right: " + xRightDistance + " Left: " + xLeftDistance);
                         System.out.println("\nHeight x Width:");
                         System.out.println("Object: " + objProp.getHeight() + " x " + objProp.getWidth());
                         System.out.println("Target: " + tarProp.getHeight() + " x " + tarProp.getWidth());
                         System.out.println("\n\n");
 
-                        if ((objPos.getX() + objProp.getWidth()) > (tarPos.getX() + tarProp.getWidth())) {
+                        if (xRightDistance <= 1 || xLeftDistance <= 1) {
                             setXAxisCollision(object, target);
                         } else {
                             resetEntityCollision(object);

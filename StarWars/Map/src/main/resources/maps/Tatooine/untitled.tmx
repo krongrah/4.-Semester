@@ -62,7 +62,6 @@
   <object id="10" name="EnemySpawn" type="Spawn" x="882.727" y="383.455" visible="0">
    <point/>
   </object>
-  <object id="28" name="Ground" type="Dirt" x="480" y="320" width="32" height="32"/>
-  <object id="29" name="Ground" type="Dirt" x="640" y="320" width="32" height="32"/>
+  <object id="29" name="Ground" type="Dirt" x="480" y="320" width="32" height="32"/>
  </objectgroup>
 </map>
