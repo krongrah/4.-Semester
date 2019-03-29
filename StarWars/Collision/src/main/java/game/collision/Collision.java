@@ -43,18 +43,19 @@ public class Collision implements IPostProcessor {
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
                     if (object != target && tarProp.isSolid()) {
 
-                        float xLeftDistance = (objPos.getX() - 5 - tarPos.getX()) - (objProp.getWidth() / 2 - tarProp.getWidth() / 2);
-                        float xRightDistance = (objPos.getX() - tarPos.getX()) - (objProp.getWidth() + tarProp.getWidth());
+                        float dxL = ((objPos.getX() - tarPos.getX()) + (objProp.getWidth() + tarProp.getWidth()));
+                        float dxR = ((tarPos.getX() - objPos.getX()) + ((tarProp.getWidth() / 2) - (objProp.getWidth() / 2)));
 //                        System.out.println("Coordinates:");
 //                        System.out.println("Object: (" + objPos.getX() + ", " + objPos.getY() + ")");
 //                        System.out.println("Target: (" + tarPos.getX() + ", " + tarPos.getY() + ")");
-                        System.out.println("X-Distance, Right: " + xRightDistance + " Left: " + xLeftDistance);
+                        System.out.println("X-Distance, Right: " + dxR + " Left: " + dxL);
 //                        System.out.println("\nHeight x Width:");
 //                        System.out.println("Object: " + objProp.getHeight() + " x " + objProp.getWidth());
 //                        System.out.println("Target: " + tarProp.getHeight() + " x " + tarProp.getWidth());
 //                        System.out.println("\n\n");
 
-                        if (xRightDistance <= 1 || xLeftDistance <= 1) {
+                        if (dxR <= 1 ) {
+                            System.out.println("Right collision by " + dxR);
                             setXAxisCollision(object, target);
                         } else {
                             resetEntityCollision(object);
@@ -102,23 +103,24 @@ public class Collision implements IPostProcessor {
      */
     private void setXAxisCollision(Entity object, Entity target) {
         PropertiesPart tarProp = target.getPart(PropertiesPart.class);
+        PropertiesPart objProp = object.getPart(PropertiesPart.class);
         PositionPart objPos = object.getPart(PositionPart.class);
         PositionPart tarPos = target.getPart(PositionPart.class);
 
         object.setCollision(CollisionTypes.SOLIDOBJECT);
 
-        System.out.println("Coordinates:");
-        System.out.println("Player: (" + objPos.getX() + ", " + objPos.getY() + ")");
-        System.out.println("Player: (" + tarPos.getX() + ", " + tarPos.getY() + ")\n\n");
+//        System.out.println("Coordinates:");
+//        System.out.println("Player: (" + objPos.getX() + ", " + objPos.getY() + ")");
+//        System.out.println("Player: (" + tarPos.getX() + ", " + tarPos.getY() + ")\n\n");
         if (tarProp.isObstacle()) {
             //Entity has bumped into obstacle on the x-axis:
-            if (tarPos.getX() < objPos.getX()) {
+            if ((objPos.getX() + objProp.getWidth() / 2) - (tarPos.getX() + tarProp.getWidth() / 2) <= 1) {
                 //Right collision:
                 object.setCollisionDirection(Directions.RIGHT);
-            } else {
+            }
+            if ((tarPos.getX() + tarProp.getWidth() / 2) < (objPos.getX() + objProp.getWidth() / 2)) {
                 //Left collision:
-                System.out.println("Left Collision");
-                object.setCollisionDirection(Directions.LEFT);
+                //object.setCollisionDirection(Directions.LEFT);
             }
 
         }
