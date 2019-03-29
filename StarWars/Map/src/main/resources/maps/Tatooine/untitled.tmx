@@ -63,6 +63,6 @@
    <point/>
   </object>
   <object id="30" name="Ground" type="Dirt" x="448" y="320" width="32" height="32"/>
-  <object id="31" name="Ground" type="Dirt" x="640" y="320" width="32" height="32"/>
+  <object id="31" name="Ground" type="Dirt" x="992" y="320" width="32" height="32"/>
  </objectgroup>
 </map>

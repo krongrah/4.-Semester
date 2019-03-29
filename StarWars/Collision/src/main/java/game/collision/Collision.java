@@ -42,30 +42,27 @@ public class Collision implements IPostProcessor {
                     PositionPart tarPos = target.getPart(PositionPart.class);
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
                     if (object != target && tarProp.isSolid()) {
+                        float dxR = Math.abs((tarPos.getX() - objPos.getX()) + ((tarProp.getWidth() / 2) - (objProp.getWidth() / 2)));
+                        float dxL = Math.abs((objPos.getX() - tarPos.getX()) - ((objProp.getWidth() / 2) + tarProp.getWidth() / 2));
 
                         //System.out.println("X-Distance, Right: " + dxR + " Left: " + dxL);
                         if (objPos.getX() <= tarPos.getX()) {
                             //Check for right side collision exclusively                        
-                            float dxR = Math.abs((tarPos.getX() - objPos.getX()) + ((tarProp.getWidth() / 2) - (objProp.getWidth() / 2)));
 
-                            if (dxR < objProp.getWidth()/2) {
+                            if (dxR < objProp.getWidth() / 2) {
                                 //Collision detected:
                                 object.setCollisionDirection(Directions.RIGHT);
                                 object.setCollision(CollisionTypes.SOLIDOBJECT);
-
                             }
                         }
-                        else if (objPos.getX() >= tarPos.getX()) {
-                            float dxL = Math.abs((objPos.getX() - tarPos.getX()) - ((objProp.getWidth() / 2) + tarProp.getWidth() / 2));
+                        if (objPos.getX() >= tarPos.getX()) {
 
                             //Check for left side collision exclusively
-                            if (dxL <= objProp.getWidth()/2) {
+                            if (dxL <= objProp.getWidth() / 2) {
                                 //Collision detected:
                                 object.setCollisionDirection(Directions.LEFT);
                                 object.setCollision(CollisionTypes.SOLIDOBJECT);
                             }
-                        }else {
-                            resetEntityCollision(object);
                         }
 
 //                        if ((objPos.getY() + objProp.getHeight()) > (tarPos.getY() + tarProp.getHeight())) {
@@ -76,11 +73,5 @@ public class Collision implements IPostProcessor {
                 }
             }
         }
-    }
-
-
-    private void resetEntityCollision(Entity object) {
-        object.setCollision(CollisionTypes.NO_EFFECT);
-        object.setCollisionDirection(null);
     }
 }

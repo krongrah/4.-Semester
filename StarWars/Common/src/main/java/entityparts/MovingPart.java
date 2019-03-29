@@ -123,6 +123,8 @@ public class MovingPart implements EntityPart {
 //        }
 //
 //        lastPos = x;
+        entity.setCollision(CollisionTypes.NO_EFFECT);
+        entity.setCollisionDirection(null);
         positionPart.setX(x);
     }
 }
