@@ -42,12 +42,11 @@ public class Collision implements IPostProcessor {
                     PositionPart tarPos = target.getPart(PositionPart.class);
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
                     if (object != target && tarProp.isSolid()) {
-                        float dxR = Math.abs((tarPos.getX() - objPos.getX()) + ((tarProp.getWidth() / 2) - (objProp.getWidth() / 2)));
-                        float dxL = Math.abs((objPos.getX() - tarPos.getX()) - ((objProp.getWidth() / 2) + tarProp.getWidth() / 2));
 
                         //System.out.println("X-Distance, Right: " + dxR + " Left: " + dxL);
                         if (objPos.getX() <= tarPos.getX()) {
                             //Check for right side collision exclusively                        
+                            float dxR = Math.abs((tarPos.getX() - objPos.getX()) + ((tarProp.getWidth() / 2) - (objProp.getWidth() / 2)));
 
                             if (dxR < objProp.getWidth() / 2) {
                                 //Collision detected:
@@ -56,6 +55,7 @@ public class Collision implements IPostProcessor {
                             }
                         }
                         if (objPos.getX() >= tarPos.getX()) {
+                            float dxL = Math.abs((objPos.getX() - tarPos.getX()) - ((objProp.getWidth() / 2) + tarProp.getWidth() / 2));
 
                             //Check for left side collision exclusively
                             if (dxL <= objProp.getWidth() / 2) {
