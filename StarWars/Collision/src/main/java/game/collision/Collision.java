@@ -48,7 +48,7 @@ public class Collision implements IPostProcessor {
                             //Check for right side collision exclusively                        
                             float dxR = Math.abs((tarPos.getX() - objPos.getX()) + ((tarProp.getWidth() / 2) - (objProp.getWidth() / 2)));
 
-                            if (dxR < objProp.getWidth() / 2) {
+                            if (dxR < objProp.getWidth()) {
                                 //Collision detected:
                                 object.setCollisionDirection(Directions.RIGHT);
                                 object.setCollision(CollisionTypes.SOLIDOBJECT);
@@ -58,7 +58,7 @@ public class Collision implements IPostProcessor {
                             float dxL = Math.abs((objPos.getX() - tarPos.getX()) - ((objProp.getWidth() / 2) + tarProp.getWidth() / 2));
 
                             //Check for left side collision exclusively
-                            if (dxL <= objProp.getWidth() / 2) {
+                            if (dxL <= objProp.getWidth()) {
                                 //Collision detected:
                                 object.setCollisionDirection(Directions.LEFT);
                                 object.setCollision(CollisionTypes.SOLIDOBJECT);
