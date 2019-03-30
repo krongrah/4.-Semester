@@ -8,7 +8,6 @@ package game.collision;
 import common.Entity;
 import data.GameData;
 import data.World;
-import entityparts.LifePart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
 import enums.Directions;
