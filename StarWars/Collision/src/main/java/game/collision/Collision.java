@@ -9,10 +9,8 @@ import common.Entity;
 import data.GameData;
 import data.World;
 import entityparts.LifePart;
-import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
-import enums.CollisionTypes;
 import enums.Directions;
 import org.openide.util.lookup.ServiceProvider;
 import services.IPostProcessor;
@@ -49,9 +47,17 @@ public class Collision implements IPostProcessor {
                             float dxR = Math.abs((tarPos.getX() - objPos.getX()) + ((tarProp.getWidth() / 2) - (objProp.getWidth() / 2)));
 
                             if (dxR < objProp.getWidth()) {
+                                if (!tarProp.isObstacle()) {
+                                    //Hit by bullet or run into enemy:
+                                    LifePart oLife = object.getPart(LifePart.class);
+                                    LifePart tLife = target.getPart(LifePart.class);
+
+                                    oLife.setIsHit(true);
+                                    tLife.setIsHit(true);
+                                }
                                 //Collision detected:
                                 object.setCollisionDirection(Directions.RIGHT);
-                                object.setCollision(tarProp.getCollisionType());
+                                object.setCollision(tarProp.getCollisionType());//NO_EFFECT or DAMAGE
                             }
                         }
                         if (objPos.getX() >= tarPos.getX()) {
@@ -59,9 +65,17 @@ public class Collision implements IPostProcessor {
 
                             //Check for left side collision exclusively
                             if (dxL <= objProp.getWidth()) {
+                                if (!tarProp.isObstacle()) {
+                                    //Hit by bullet or run into enemy:
+                                    LifePart oLife = object.getPart(LifePart.class);
+                                    LifePart tLife = target.getPart(LifePart.class);
+
+                                    oLife.setIsHit(true);
+                                    tLife.setIsHit(true);
+                                }
                                 //Collision detected:
                                 object.setCollisionDirection(Directions.LEFT);
-                                object.setCollision(tarProp.getCollisionType());
+                                object.setCollision(tarProp.getCollisionType()); //NO_EFFECT or DAMAGE
                             }
                         }
 
