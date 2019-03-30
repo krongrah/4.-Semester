@@ -51,7 +51,7 @@ public class Collision implements IPostProcessor {
                             if (dxR < objProp.getWidth()) {
                                 //Collision detected:
                                 object.setCollisionDirection(Directions.RIGHT);
-                                object.setCollision(CollisionTypes.SOLIDOBJECT);
+                                object.setCollision(tarProp.getCollisionType());
                             }
                         }
                         if (objPos.getX() >= tarPos.getX()) {
@@ -61,7 +61,7 @@ public class Collision implements IPostProcessor {
                             if (dxL <= objProp.getWidth()) {
                                 //Collision detected:
                                 object.setCollisionDirection(Directions.LEFT);
-                                object.setCollision(CollisionTypes.SOLIDOBJECT);
+                                object.setCollision(tarProp.getCollisionType());
                             }
                         }
 

@@ -13,6 +13,7 @@ import common.Entity;
 import data.World;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
+import enums.CollisionTypes;
 
 /**
  *
@@ -56,6 +57,7 @@ public class Map {
                     ground.add(new PositionPart(recObj.getRectangle().x, recObj.getRectangle().y));
                     PropertiesPart prop = new PropertiesPart(recObj.getRectangle().height, recObj.getRectangle().width, null, true);
                     prop.setObstacle(true);
+                    prop.setCollisionType(CollisionTypes.SOLIDOBJECT);
                     ground.add(prop);
                     world.addEntity(ground);
 
