@@ -37,6 +37,4 @@ public class WeaponPart implements EntityPart {
         return attacking;
     }
 
-    
-    
 }

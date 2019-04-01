@@ -38,7 +38,7 @@ public class PlayerPlugin implements IPluginService {
         player.add(new MovingPart(10, 175, 250));
         player.add(new WeaponPart());
         player.add(new AnimationPart("Lukeidle", 5, getPath()));
-        
+
         world.addEntity(player);
     }
 

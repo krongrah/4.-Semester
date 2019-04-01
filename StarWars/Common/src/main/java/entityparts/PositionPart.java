@@ -80,11 +80,11 @@ public class PositionPart implements EntityPart {
     public void setDirection(Directions dir) {
         this.direction = dir;
     }
-    
+
     public Directions getDirection() {
         return direction;
     }
-    
+
     /**
      * Processes the position part eg. updates the position
      *
@@ -93,7 +93,6 @@ public class PositionPart implements EntityPart {
      */
     @Override
     public void process(GameData gameData, Entity entity) {
-        
-        
+
     }
 }

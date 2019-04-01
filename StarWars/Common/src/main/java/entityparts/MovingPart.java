@@ -26,7 +26,7 @@ public class MovingPart implements EntityPart {
     private float maxSpeed;
     private boolean left, right = false;
     private float lastPos;
-    private boolean moving=false;
+    private boolean moving = false;
 
     /**
      * Is the constructor of the MovingPart
@@ -70,7 +70,7 @@ public class MovingPart implements EntityPart {
     public boolean isMoving() {
         return moving;
     }
-    
+
     /**
      * Processes the MovingPart by updating the PositionPart and accelleration
      *
@@ -79,8 +79,7 @@ public class MovingPart implements EntityPart {
      */
     @Override
     public void process(GameData gameData, Entity entity) {
-        
-        
+
         PositionPart positionPart = entity.getPart(PositionPart.class);
         AnimationPart ap = entity.getPart(AnimationPart.class);
         float x = positionPart.getX();
@@ -111,7 +110,7 @@ public class MovingPart implements EntityPart {
         }
 
         // set position
-        x += dx * dt*10;
+        x += dx * dt * 10;
 
         if (x > lastPos) {
             //Going Right:
@@ -120,23 +119,22 @@ public class MovingPart implements EntityPart {
         if (x < lastPos) {
             //Going left
             positionPart.setDirection(Directions.LEFT);
-            
+
         }
-        
+
         //option B
 //        if (x == lastPos) {
 //            moving=false;
 //        }else{
 //        moving=true;
 //        }
-        
         //option A 
-        if (left||right) {
-            moving=true;
-        }else{
-        moving=false;
+        if (left || right) {
+            moving = true;
+        } else {
+            moving = false;
         }
-        
+
         lastPos = x;
         positionPart.setX(x);
     }

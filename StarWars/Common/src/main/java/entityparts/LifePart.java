@@ -53,7 +53,7 @@ public class LifePart implements EntityPart {
     public void increaseLife(int life) {
         this.life += life;
     }
-    
+
     public void decreaseLife(int life) {
         this.life -= life;
     }
@@ -85,6 +85,6 @@ public class LifePart implements EntityPart {
      */
     @Override
     public void process(GameData gameData, Entity entity) {
-        
+
     }
 }
