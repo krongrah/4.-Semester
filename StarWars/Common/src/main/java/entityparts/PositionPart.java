@@ -24,7 +24,7 @@ public class PositionPart implements EntityPart {
      * Constructor for PositionPart
      *
      * @param x Is the x value of the PositionPart
-     * @param y Is the y value of the Positionpart
+     * @param y Is the y value of the PositionPart
      */
     public PositionPart(float x, float y) {
         this.x = x;

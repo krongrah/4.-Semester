@@ -7,7 +7,6 @@ package entityparts;
 
 import common.Entity;
 import data.GameData;
-import enums.CollisionTypes;
 import enums.Directions;
 
 /**
@@ -27,6 +26,7 @@ public class MovingPart implements EntityPart {
     private float maxSpeed;
     private boolean left, right = false;
     private float lastPos;
+    private boolean moving=false;
 
     /**
      * Is the constructor of the MovingPart
@@ -67,6 +67,10 @@ public class MovingPart implements EntityPart {
         this.right = right;
     }
 
+    public boolean isMoving() {
+        return moving;
+    }
+    
     /**
      * Processes the MovingPart by updating the PositionPart and accelleration
      *
@@ -75,16 +79,18 @@ public class MovingPart implements EntityPart {
      */
     @Override
     public void process(GameData gameData, Entity entity) {
+        
+        
         PositionPart positionPart = entity.getPart(PositionPart.class);
         AnimationPart ap = entity.getPart(AnimationPart.class);
         float x = positionPart.getX();
         float dt = gameData.getDelta();
 
         // accelerating            
-        if (isLeft() && entity.getCollisionDirection() != Directions.LEFT) {
+        if (isLeft()) {
             dx -= acceleration * dt;
         }
-        if (isRight() && entity.getCollisionDirection() != Directions.RIGHT) {
+        if (isRight()) {
             dx += acceleration * dt;
         }
 
@@ -105,17 +111,8 @@ public class MovingPart implements EntityPart {
         }
 
         // set position
-        x += dx * dt * 10;
+        x += dx * dt*10;
 
-        //An attempt at correcting the players location according to collision 
-        //(works with only one obstacle)
-        if (entity.getCollisionType() == CollisionTypes.SOLIDOBJECT) {
-            PropertiesPart p = entity.getPart(PropertiesPart.class);
-            x -= (x % p.getWidth());
-        }
-        
-        
-        
         if (x > lastPos) {
             //Going Right:
             positionPart.setDirection(Directions.RIGHT);
@@ -125,7 +122,19 @@ public class MovingPart implements EntityPart {
             positionPart.setDirection(Directions.LEFT);
             
         }
-        if (x == lastPos) {
+        
+        //option B
+//        if (x == lastPos) {
+//            moving=false;
+//        }else{
+//        moving=true;
+//        }
+        
+        //option A 
+        if (left||right) {
+            moving=true;
+        }else{
+        moving=false;
         }
         
         lastPos = x;

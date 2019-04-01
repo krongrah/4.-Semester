@@ -7,7 +7,6 @@ package entityparts;
 
 import common.Entity;
 import data.GameData;
-import enums.PlayerStates;
 
 /**
  *
@@ -15,16 +14,27 @@ import enums.PlayerStates;
  */
 public class AnimationPart implements EntityPart {
 
+    private String SpriteSheetPath;
     private String currentAnimation;
     private int framesInCurrentAnimation;
-    private String SpriteSheetPath;
-    private PlayerStates ps;
-    private int currentSprite;
+    private int currentFrame;
+    private float timeInAnimation = 0;
+    private final float durationOfEachAnimation = 0.2f;
 
     public AnimationPart(String currentAnimation, int framesInCurrentAnimation, String SpriteSheetPath) {
         this.currentAnimation = currentAnimation;
         this.framesInCurrentAnimation = framesInCurrentAnimation;
         this.SpriteSheetPath = SpriteSheetPath;
+        currentFrame = 0;
+    }
+
+    public void changeAnimation(String currentAnimation, int framesInCurrentAnimation) {
+        if (!currentAnimation.equals(this.currentAnimation)) {
+            this.currentAnimation = currentAnimation;
+            this.framesInCurrentAnimation = framesInCurrentAnimation;
+            currentFrame = 0;
+            timeInAnimation = 0;
+        }
     }
 
     public String getSpriteSheetPath() {
@@ -32,37 +42,14 @@ public class AnimationPart implements EntityPart {
     }
 
     public String getCurrentAnimation() {
-        return currentAnimation;
-    }
-
-    public int getFramesInCurrentAnimation() {
-        return framesInCurrentAnimation;
-    }
-
-    public void setState(PlayerStates state) {
-        this.ps = state;
+        return currentAnimation + currentFrame;
     }
 
     @Override
     public void process(GameData gameData, Entity entity) {
+        timeInAnimation += gameData.getDelta();
+        currentFrame = (int) (timeInAnimation / durationOfEachAnimation % framesInCurrentAnimation);
 
-        
-        if (ps == PlayerStates.IDLE) {
-            if (framesInCurrentAnimation > 4) {
-                currentSprite++;
-                currentSprite = currentSprite % 5;
-                currentAnimation = "Lukeidle" + currentSprite;
-                framesInCurrentAnimation = framesInCurrentAnimation % 5;
-            }
-        } else if (ps == PlayerStates.WALKING) {
-            if (framesInCurrentAnimation > 6) {
-                currentSprite++;
-                currentSprite = currentSprite % 7;
-                currentAnimation = "Lukewalking" + currentSprite;
-                framesInCurrentAnimation = framesInCurrentAnimation % 7;
-            }
-        }
-        
     }
 
 }
