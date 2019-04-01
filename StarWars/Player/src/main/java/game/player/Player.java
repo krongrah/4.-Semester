@@ -13,9 +13,9 @@ import sprites.Sprites;
  * @author andreasmolgaard-andersen
  */
 public class Player extends Entity {
-    
+
     public Player() {
 
     }
-    
+
 }

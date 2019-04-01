@@ -24,7 +24,7 @@ public class PositionPart implements EntityPart {
      * Constructor for PositionPart
      *
      * @param x Is the x value of the PositionPart
-     * @param y Is the y value of the Positionpart
+     * @param y Is the y value of the PositionPart
      */
     public PositionPart(float x, float y) {
         this.x = x;
@@ -70,11 +70,11 @@ public class PositionPart implements EntityPart {
     public void setDirection(Directions dir) {
         this.direction = dir;
     }
-    
+
     public Directions getDirection() {
         return direction;
     }
-    
+
     /**
      * Processes the position part eg. updates the position
      *
@@ -83,7 +83,6 @@ public class PositionPart implements EntityPart {
      */
     @Override
     public void process(GameData gameData, Entity entity) {
-        
-        
+
     }
 }
