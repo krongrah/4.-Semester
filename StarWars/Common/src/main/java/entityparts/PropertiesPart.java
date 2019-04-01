@@ -15,14 +15,13 @@ public class PropertiesPart implements EntityPart {
     private float height;
     private float width;
     private CollisionTypes colType;
+    private boolean obstacle;
 
-    public PropertiesPart(float width,float height) {
+    public PropertiesPart(float height, float width, CollisionTypes colType, boolean obstacle) {
         this.height = height;
         this.width = width;
-    }
-
-    public void setCollisionType(CollisionTypes colType) {
         this.colType = colType;
+        this.obstacle = obstacle;
     }
 
     public CollisionTypes getCollisionType() {
@@ -40,6 +39,10 @@ public class PropertiesPart implements EntityPart {
     @Override
     public void process(GameData gameData, Entity entity) {
 
+    }
+
+    public boolean isObstacle() {
+        return obstacle;
     }
 
 }

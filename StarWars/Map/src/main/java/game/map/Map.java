@@ -44,32 +44,28 @@ public class Map {
     }
 
     public void loadNewMap(String name) {
-        //Map.class.getResource("/Tatooine/" + name + ".tmx").getPath();
         currentMap = mapLoader.load(Map.class.getResource("/maps/Tatooine/" + name + ".tmx").getPath());
-//        currentMap = mapLoader.load(name + ".tmx");
-        for (MapObject obj : currentMap.getLayers().get("Object Layer 1").getObjects()) {
-
-            if (obj instanceof RectangleMapObject) {
-                RectangleMapObject recObj = (RectangleMapObject) obj;
-                if (recObj.getName().equals("Ground")) {
-                    //Ground object
-                    Entity ground = new Entity();
-                    ground.add(new PositionPart(recObj.getRectangle().x, recObj.getRectangle().y));
-                    PropertiesPart prop = new PropertiesPart(recObj.getRectangle().width, recObj.getRectangle().height, true);
-                    prop.setObstacle(true);
-                    prop.setCollisionType(CollisionTypes.SOLIDOBJECT);
-                    ground.add(prop);
-                    world.addEntity(ground);
-
-                }
-                if (recObj.getName().equals("SpawnPoint")) {
-                    //Player Spawn:
-
-                }
-                if (recObj.getName().equals("EnemySpawn")) {
-                    //Spawn enemy here:
-                }
-            }
-        }
+//        for (MapObject obj : currentMap.getLayers().get("Object Layer 1").getObjects()) {
+//
+//            if (obj instanceof RectangleMapObject) {
+//                RectangleMapObject recObj = (RectangleMapObject) obj;
+//                if (recObj.getName().equals("Ground")) {
+//                    //Ground object
+//                    Entity ground = new Entity();
+//                    ground.add(new PositionPart(recObj.getRectangle().x+recObj.getRectangle().width/2, recObj.getRectangle().y+recObj.getRectangle().height/2));
+//                    PropertiesPart prop = new PropertiesPart(recObj.getRectangle().width/2, recObj.getRectangle().height/2, CollisionTypes.SOLIDOBJECT,true);
+//                    ground.add(prop);
+//                    world.addEntity(ground);
+//
+//                }
+//                if (recObj.getName().equals("SpawnPoint")) {
+//                    //Player Spawn:
+//
+//                }
+//                if (recObj.getName().equals("EnemySpawn")) {
+//                    //Spawn enemy here:
+//                }
+//            }
+//        }
     }
 }

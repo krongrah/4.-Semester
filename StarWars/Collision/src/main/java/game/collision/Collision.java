@@ -41,25 +41,23 @@ public class Collision implements IPostProcessor {
                 for (Entity target : world.getEntities()) {
                     PositionPart tarPos = target.getPart(PositionPart.class);
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
-                    if (object != target && tarProp.isSolid()) {
+                    if (object != target && tarProp.getCollisionType() == CollisionTypes.SOLIDOBJECT && objProp.getCollisionType() == CollisionTypes.SOLIDOBJECT) {
 
                         //System.out.println("X-Distance, Right: " + dxR + " Left: " + dxL);
-                        if (objPos.getX() <= tarPos.getX()) {
+                        if (objPos.getX() < tarPos.getX()) {
                             //Check for right side collision exclusively                        
-                            float dxR = Math.abs((tarPos.getX() - objPos.getX()) + ((tarProp.getWidth() / 2) - (objProp.getWidth() / 2)));
-
-                            if (dxR < objProp.getWidth()) {
+                            float dxR = (tarPos.getX() - objPos.getX()) - (tarProp.getWidth() / 2 + objProp.getWidth() / 2);
+                            if (dxR < 0) {
                                 //Collision detected:
                                 collide(object, target, Directions.RIGHT);
                             }
                         }
-                        if (objPos.getX() >= tarPos.getX()) {
-                            float dxL = Math.abs((objPos.getX() - tarPos.getX()) - ((objProp.getWidth() / 2) + tarProp.getWidth() / 2));
-
+                        if (objPos.getX() > tarPos.getX()) {
+                            float dxL = (objPos.getX() - tarPos.getX()) - (objProp.getWidth() / 2 + tarProp.getWidth() / 2);
                             //Check for left side collision exclusively
-                            if (dxL <= objProp.getWidth()) {
+                            if (dxL < 0) {
                                 //Collision detected:
-                                collide(object, target, Directions.LEFT);
+                                //collide(object, target, Directions.LEFT);
                             }
                         }
 
@@ -71,15 +69,17 @@ public class Collision implements IPostProcessor {
 
     private void collide(Entity object, Entity target, Directions direction) {
         PropertiesPart targetProp = target.getPart(PropertiesPart.class);
-        PositionPart objectPos=object.getPart(PositionPart.class);
+        PositionPart objectPos = object.getPart(PositionPart.class);
+        PropertiesPart objectProp = object.getPart(PropertiesPart.class);
+        PositionPart targetPos = target.getPart(PositionPart.class);
 
         if (targetProp.getCollisionType() == SOLIDOBJECT) {
             switch (direction) {
                 case LEFT:
-                    
+                    objectPos.setX(targetPos.getX() + targetProp.getWidth() / 2 + objectProp.getWidth() / 2);
                     break;
-
                 case RIGHT:
+                    objectPos.setX(targetPos.getX() - targetProp.getWidth() / 2 - objectProp.getWidth() / 2);
 
                     break;
 

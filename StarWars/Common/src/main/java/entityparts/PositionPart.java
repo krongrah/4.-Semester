@@ -66,16 +66,6 @@ public class PositionPart implements EntityPart {
         this.y = newY;
     }
 
-    /**
-     * Sets both the x and y value of the position part
-     *
-     * @param newX Is the x value to be set
-     * @param newY Is the y value to be set
-     */
-    public void setPosition(float newX, float newY) {
-        this.x = newX;
-        this.y = newY;
-    }
 
     public void setDirection(Directions dir) {
         this.direction = dir;

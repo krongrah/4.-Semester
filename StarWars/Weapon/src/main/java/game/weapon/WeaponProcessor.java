@@ -14,6 +14,7 @@ import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
 import entityparts.WeaponPart;
+import enums.CollisionTypes;
 import enums.Directions;
 import org.openide.util.lookup.ServiceProvider;
 import services.IProcessor;
@@ -59,7 +60,7 @@ public class WeaponProcessor implements IProcessor {
             b.add(pp);
             b.add(mp);
             b.add(new LifePart(1));
-            b.add(new PropertiesPart(5, 3, true));
+            b.add(new PropertiesPart(5, 3, CollisionTypes.SOLIDOBJECT,false));
             b.add(new AnimationPart("bullet", 0, getPath()));
             world.addEntity(b);
             

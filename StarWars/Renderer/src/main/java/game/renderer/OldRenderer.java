@@ -64,9 +64,9 @@ public class OldRenderer {
         camera.update();
         for (Entity entity : world.getEntities()) {
             PropertiesPart prop = entity.getPart(PropertiesPart.class);
-            if (!prop.isObstacle()) {
+            //if (!prop.isObstacle()) {
                 //draw(entity);
-            }
+            //}
         }
     }
 
