@@ -33,7 +33,7 @@ public class PlayerPlugin implements IPluginService {
     public void start(GameData gameData, World world) {
         player = new Player();
 
-        player.add(new PropertiesPart(32, 32, CollisionTypes.SOLIDOBJECT,false));
+        player.add(new PropertiesPart(22, 32, CollisionTypes.SOLIDOBJECT,false));
         player.add(new LifePart(3));
         player.add(new PositionPart(22*32, (39*32)+16));
         player.add(new MovingPart(10, 175, 250));

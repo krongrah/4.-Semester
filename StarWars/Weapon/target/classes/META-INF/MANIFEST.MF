@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 OpenIDE-Module-Localizing-Bundle: game/weapon/Bundle.properties
 OpenIDE-Module-Specification-Version: 1.0
 OpenIDE-Module-Implementation-Version: 1.0-20190401
-OpenIDE-Module-Build-Version: 201904011208
+OpenIDE-Module-Build-Version: 201904011607
 OpenIDE-Module: game.Weapon
 OpenIDE-Module-Public-Packages: game.weapon.*
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1

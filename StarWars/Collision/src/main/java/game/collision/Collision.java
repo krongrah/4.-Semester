@@ -8,6 +8,7 @@ package game.collision;
 import common.Entity;
 import data.GameData;
 import data.World;
+import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
 import enums.CollisionTypes;
@@ -72,8 +73,9 @@ public class Collision implements IPostProcessor {
         PositionPart objectPos = object.getPart(PositionPart.class);
         PropertiesPart objectProp = object.getPart(PropertiesPart.class);
         PositionPart targetPos = target.getPart(PositionPart.class);
+        MovingPart objectMov=object.getPart(MovingPart.class);
 
-        if (targetProp.getCollisionType() == SOLIDOBJECT) {
+        if (targetProp.getCollisionType() == SOLIDOBJECT&&objectMov.isLeft()) {
             switch (direction) {
                 case LEFT:
                     objectPos.setX(targetPos.getX() + targetProp.getWidth() / 2 + objectProp.getWidth() / 2);
