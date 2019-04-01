@@ -78,6 +78,7 @@ public class Collision implements IPostProcessor {
         MovingPart targetMov = object.getPart(MovingPart.class);
         if (targetProp.getCollisionType() == SOLIDOBJECT && objectMov.isMoving()) {
             if (targetMov.isMoving()) {
+                //if both entities are moving
                 System.out.println("double");
                 System.out.println(objectPos.getX()+", "+targetPos.getX());
                 float distance = (float) Math.abs(targetPos.getX() - objectPos.getX()) - targetProp.getWidth() / 2 - objectProp.getWidth() / 2;
@@ -94,6 +95,7 @@ public class Collision implements IPostProcessor {
                 }
 
             } else {
+                //if only the object is moving
                 System.out.println("single");
                 switch (direction) {
                     case LEFT:
