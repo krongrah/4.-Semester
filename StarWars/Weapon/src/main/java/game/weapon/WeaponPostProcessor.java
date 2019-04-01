@@ -29,6 +29,12 @@ public class WeaponPostProcessor implements IPostProcessor {
             if(lp.isHit()){
                 world.removeEntity(bullet);
             }
+            Bullet b=(Bullet)bullet;
+            b.lowerDuration(gameData.getDelta());
+            if (b.isExpired()) {
+                 world.removeEntity(bullet);
+            }
+            
         }
     }
 

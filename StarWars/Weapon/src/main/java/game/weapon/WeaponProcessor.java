@@ -14,6 +14,7 @@ import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
 import entityparts.WeaponPart;
+import enums.Directions;
 import org.openide.util.lookup.ServiceProvider;
 import services.IProcessor;
 
@@ -38,8 +39,6 @@ public class WeaponProcessor implements IProcessor {
         //processes bullets
         for (Entity bullet : world.getEntities(Bullet.class)) {
             MovingPart mp = bullet.getPart(MovingPart.class);
-            mp.setRight(true);
-            mp.setLeft(false);
             mp.process(gameData, bullet);
         }
     }
@@ -55,13 +54,22 @@ public class WeaponProcessor implements IProcessor {
         if (weapon.getCooldown() <= 0 && weapon.isAttacking()) {
             weapon.setCooldown(3);
             Bullet b = new Bullet();
-            b.add(new PositionPart(pos.getX() + prop.getWidth() / 2, pos.getY()));
-            b.add(new MovingPart(0, 1000, 50));
+            MovingPart mp = new MovingPart(0, 1000, 50);
+            PositionPart pp = new PositionPart(pos.getX() + prop.getWidth() / 2, pos.getY());
+            b.add(pp);
+            b.add(mp);
             b.add(new LifePart(1));
             b.add(new PropertiesPart(5, 3, true));
             b.add(new AnimationPart("bullet", 0, getPath()));
-
             world.addEntity(b);
+            
+            if (pos.getDirection().equals(Directions.RIGHT)) {
+                mp.setRight(true);
+            } else {
+                mp.setLeft(true);
+                pp.setX(pos.getX() - prop.getWidth());
+            }
+            
         }
 
     }

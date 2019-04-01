@@ -39,7 +39,7 @@ public class MapDrawBoard {
 
     public void render(GameData gameData, Matrix4 projectionMatrix) {
         for (MapObject object : Map.getInstance(world).getMap().getLayers().get(1).getObjects()) {
-            System.out.println(object.getName());
+            //System.out.println(object.getName());
         }
         renderer.setView(projectionMatrix,
                 gameData.getFocusX() - gameData.getDisplayWidth() / 2,
