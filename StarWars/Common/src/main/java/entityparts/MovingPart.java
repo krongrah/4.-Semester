@@ -71,6 +71,10 @@ public class MovingPart implements EntityPart {
         return moving;
     }
 
+    public boolean isAccelerating() {
+        return left ^ right;
+    }
+
     /**
      * Processes the MovingPart by updating the PositionPart and accelleration
      *
@@ -111,31 +115,30 @@ public class MovingPart implements EntityPart {
         // set position
         x += dx * dt * 10;
 
-        if (x > lastPos) {
-            //Going Right:
+        if (isAccelerating()) {
+            if (left) {
+                positionPart.setDirection(Directions.LEFT);
+            }else{
             positionPart.setDirection(Directions.RIGHT);
-        }
-        if (x < lastPos) {
-            //Going left
-            positionPart.setDirection(Directions.LEFT);
-
+            }
         }
 
         //option B
-//        if (x == lastPos) {
-//            moving=false;
-//        }else{
-//        moving=true;
-//        }
-        //option A 
-        if (left || right) {
-            moving = true;
-        } else {
+        if (x == lastPos) {
             moving = false;
+        } else {
+            moving = true;
+//        }
+            //option A 
+//        if (left || right) {
+//            moving = true;
+//        } else {
+//            moving = false;
+//        }
+
+            lastPos = x;
+
+            positionPart.setX(x);
         }
-
-        lastPos = x;
-
-        positionPart.setX(x);
     }
 }

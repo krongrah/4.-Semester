@@ -6,13 +6,13 @@
 package game.player;
 
 import common.Entity;
-import sprites.Sprites;
+import interfaces.Targetable;
 
 /**
  *
  * @author andreasmolgaard-andersen
  */
-public class Player extends Entity {
+public class Player extends Entity implements Targetable{
 
     public Player() {
 

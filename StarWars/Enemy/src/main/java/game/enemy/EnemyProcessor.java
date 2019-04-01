@@ -26,18 +26,14 @@ public class EnemyProcessor implements IProcessor {
     public void process(GameData gameData, World world) {
         
         
-        //for (Entity enemy : world.getEntities(Enemy.class)) {
+        for (Entity enemy : world.getEntities(Enemy.class)) {
             //PositionPart pos=enemy.getPart(PositionPart.class);
             
-//            //Gets the parts of the enemy
-//            MovingPart mp = enemy.getPart(MovingPart.class);
-//
-//            ////Implement method to move the player here////
-//            
-//            //Now processes the movement of the enemy
-//            //mp.process(gameData, enemy);
-//            
-        //}
+            MovingPart mp = enemy.getPart(MovingPart.class);
+
+            mp.process(gameData, enemy);
+            
+        }
         
         
     }

@@ -44,7 +44,7 @@ public class PlayerProcessor implements IProcessor {
 
             //Now processes the movement of the player based on the keys
             mp.process(gameData, player);
-            if (mp.isMoving()) {
+            if (mp.isAccelerating()) {
                 ap.changeAnimation("Lukewalking", 7);
             } else {
                 ap.changeAnimation("Lukeidle", 5);

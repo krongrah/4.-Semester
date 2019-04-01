@@ -14,6 +14,7 @@ import entityparts.PropertiesPart;
 import enums.CollisionTypes;
 import static enums.CollisionTypes.SOLIDOBJECT;
 import enums.Directions;
+import interfaces.Targetable;
 import org.openide.util.lookup.ServiceProvider;
 import services.IPostProcessor;
 
@@ -39,12 +40,11 @@ public class Collision implements IPostProcessor {
             PropertiesPart objProp = object.getPart(PropertiesPart.class);
 
             if (!objProp.isObstacle()) {
+                System.out.println(((MovingPart) (object.getPart(MovingPart.class))).isMoving());
                 for (Entity target : world.getEntities()) {
                     PositionPart tarPos = target.getPart(PositionPart.class);
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
-                    if (object != target && tarProp.getCollisionType() == CollisionTypes.SOLIDOBJECT && objProp.getCollisionType() == CollisionTypes.SOLIDOBJECT) {
-
-                        //System.out.println("X-Distance, Right: " + dxR + " Left: " + dxL);
+                    if (!object.equals(target) && tarProp.getCollisionType() == CollisionTypes.SOLIDOBJECT && objProp.getCollisionType() == CollisionTypes.SOLIDOBJECT) {
                         if (objPos.getX() < tarPos.getX()) {
                             //Check for right side collision exclusively                        
                             float dxR = (tarPos.getX() - objPos.getX()) - (tarProp.getWidth() / 2 + objProp.getWidth() / 2);
@@ -58,7 +58,7 @@ public class Collision implements IPostProcessor {
                             //Check for left side collision exclusively
                             if (dxL < 0) {
                                 //Collision detected:
-                                //collide(object, target, Directions.LEFT);
+                                collide(object, target, Directions.LEFT);
                             }
                         }
 
@@ -69,26 +69,42 @@ public class Collision implements IPostProcessor {
     }
 
     private void collide(Entity object, Entity target, Directions direction) {
+        System.out.println("collide");
         PropertiesPart targetProp = target.getPart(PropertiesPart.class);
         PositionPart objectPos = object.getPart(PositionPart.class);
         PropertiesPart objectProp = object.getPart(PropertiesPart.class);
         PositionPart targetPos = target.getPart(PositionPart.class);
-        MovingPart objectMov=object.getPart(MovingPart.class);
+        MovingPart objectMov = object.getPart(MovingPart.class);
+        MovingPart targetMov = object.getPart(MovingPart.class);
+        if (targetProp.getCollisionType() == SOLIDOBJECT && objectMov.isMoving()) {
+            if (targetMov.isMoving()) {
+                System.out.println("double");
+                System.out.println(objectPos.getX()+", "+targetPos.getX());
+                float distance = (float) Math.abs(targetPos.getX() - objectPos.getX()) - targetProp.getWidth() / 2 - objectProp.getWidth() / 2;
+                //both run into each other, how to avoid the right pushing the left?
+                switch (direction) {
+                    case RIGHT:
+                        objectPos.setX(objectPos.getX() - distance / 2);
+                        objectPos.setX(targetPos.getX() + distance / 2);
+                        break;
+                    case LEFT:
+                        objectPos.setX(objectPos.getX() + distance / 2);
+                        objectPos.setX(targetPos.getX() - distance / 2);
+                        break;
+                }
 
-        if (targetProp.getCollisionType() == SOLIDOBJECT&&objectMov.isLeft()) {
-            switch (direction) {
-                case LEFT:
-                    objectPos.setX(targetPos.getX() + targetProp.getWidth() / 2 + objectProp.getWidth() / 2);
-                    break;
-                case RIGHT:
-                    objectPos.setX(targetPos.getX() - targetProp.getWidth() / 2 - objectProp.getWidth() / 2);
-
-                    break;
-
+            } else {
+                System.out.println("single");
+                switch (direction) {
+                    case LEFT:
+                        objectPos.setX(targetPos.getX() + targetProp.getWidth() / 2 + objectProp.getWidth() / 2);
+                        break;
+                    case RIGHT:
+                        objectPos.setX(targetPos.getX() - targetProp.getWidth() / 2 - objectProp.getWidth() / 2);
+                        break;
+                }
             }
-
         }
-
     }
 
 }
