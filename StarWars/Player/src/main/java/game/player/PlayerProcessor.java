@@ -50,7 +50,6 @@ public class PlayerProcessor implements IProcessor {
             gameData.setFocusX(pp.getX());
             gameData.setFocusY(pp.getY());
 
-            ap.setFramesInCurrentAnimation(ap.getFramesInCurrentAnimation() + 1);
             ap.process(gameData, player);
             
         }

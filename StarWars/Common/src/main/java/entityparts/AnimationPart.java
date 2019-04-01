@@ -31,26 +31,14 @@ public class AnimationPart implements EntityPart {
         return SpriteSheetPath;
     }
 
-    public void setSpriteSheetPath(String SpriteSheetPath) {
-        this.SpriteSheetPath = SpriteSheetPath;
-    }
-
     public String getCurrentAnimation() {
         return currentAnimation;
-    }
-
-    public void setCurrentAnimation(String currentAnimation) {
-        this.currentAnimation = currentAnimation;
     }
 
     public int getFramesInCurrentAnimation() {
         return framesInCurrentAnimation;
     }
 
-    public void setFramesInCurrentAnimation(int framesInCurrentAnimation) {
-        this.framesInCurrentAnimation = framesInCurrentAnimation;
-    }
-    
     public void setState(PlayerStates state) {
         this.ps = state;
     }

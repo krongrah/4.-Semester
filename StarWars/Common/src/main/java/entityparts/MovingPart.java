@@ -9,7 +9,6 @@ import common.Entity;
 import data.GameData;
 import enums.CollisionTypes;
 import enums.Directions;
-import enums.PlayerStates;
 
 /**
  * Class is used for Entities to able In order to be able to move
@@ -28,8 +27,6 @@ public class MovingPart implements EntityPart {
     private float maxSpeed;
     private boolean left, right = false;
     private float lastPos;
-    private PlayerStates lastState;
-    private PlayerStates currentState;
 
     /**
      * Is the constructor of the MovingPart
@@ -122,16 +119,13 @@ public class MovingPart implements EntityPart {
         if (x > lastPos) {
             //Going Right:
             positionPart.setDirection(Directions.RIGHT);
-            ap.setState(PlayerStates.WALKING);
         }
         if (x < lastPos) {
             //Going left
             positionPart.setDirection(Directions.LEFT);
-            ap.setState(PlayerStates.WALKING);
             
         }
         if (x == lastPos) {
-            ap.setState(PlayerStates.IDLE);
         }
         
         lastPos = x;
