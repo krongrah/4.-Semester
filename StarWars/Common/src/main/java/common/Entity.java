@@ -23,6 +23,11 @@ public class Entity implements Serializable, ICollision {
     private final UUID ID = UUID.randomUUID();
     private CollisionTypes colType;
     private Directions collisionDirection;
+    private Map<Class, EntityPart> parts;
+
+    public Entity() {
+        parts = new ConcurrentHashMap<>();
+    }
 
     public void setCollisionDirection(Directions collisionDirection) {
         this.collisionDirection = collisionDirection;
@@ -30,12 +35,6 @@ public class Entity implements Serializable, ICollision {
 
     public Directions getCollisionDirection() {
         return collisionDirection;
-    }
-
-    private Map<Class, EntityPart> parts;
-
-    public Entity() {
-        parts = new ConcurrentHashMap<>();
     }
 
     public void add(EntityPart part) {
@@ -62,6 +61,10 @@ public class Entity implements Serializable, ICollision {
     @Override
     public void setCollision(CollisionTypes type) {
         this.colType = type;
+    }
+
+    public boolean hasPart(Class partClass) {
+        return parts.containsKey(partClass);
     }
 
 }

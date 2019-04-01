@@ -13,4 +13,14 @@ import common.Entity;
  */
 public class Bullet extends Entity {
     
+    private float duration=5;
+    
+    public void lowerDuration(float delta){
+    duration-=delta;
+    }
+    
+    public boolean isExpired(){
+    return duration<=0;
+    }
+
 }

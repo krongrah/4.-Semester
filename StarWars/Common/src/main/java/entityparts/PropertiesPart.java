@@ -13,15 +13,13 @@ public class PropertiesPart implements EntityPart {
 
     private float height;
     private float width;
-    private Sprites sprite;
     private boolean solid;
     private boolean obstacle;
     private CollisionTypes colType;
 
-    public PropertiesPart(float height, float width, Sprites sprite, boolean solid) {
+    public PropertiesPart(float width,float height, boolean solid) {
         this.height = height;
         this.width = width;
-        this.sprite = sprite;
         this.solid = solid;
     }
 
@@ -51,10 +49,6 @@ public class PropertiesPart implements EntityPart {
 
     public float getWidth() {
         return width;
-    }
-
-    public Sprites getSprite() {
-        return sprite;
     }
 
     @Override

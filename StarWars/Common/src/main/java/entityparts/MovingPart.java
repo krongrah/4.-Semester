@@ -9,6 +9,7 @@ import common.Entity;
 import data.GameData;
 import enums.CollisionTypes;
 import enums.Directions;
+import enums.PlayerStates;
 
 /**
  * Class is used for Entities to able In order to be able to move
@@ -27,6 +28,8 @@ public class MovingPart implements EntityPart {
     private float maxSpeed;
     private boolean left, right = false;
     private float lastPos;
+    private PlayerStates lastState;
+    private PlayerStates currentState;
 
     /**
      * Is the constructor of the MovingPart
@@ -76,6 +79,7 @@ public class MovingPart implements EntityPart {
     @Override
     public void process(GameData gameData, Entity entity) {
         PositionPart positionPart = entity.getPart(PositionPart.class);
+        AnimationPart ap = entity.getPart(AnimationPart.class);
         float x = positionPart.getX();
         float dt = gameData.getDelta();
 
@@ -104,25 +108,31 @@ public class MovingPart implements EntityPart {
         }
         // set position
         x += dx * dt * 10;
-//
-//        if (entity.getCollisionType() != CollisionTypes.SOLIDOBJECT) {
-//            //An attempt at correcting the players location according to collision 
-//            //(works with only one obstacle)
-//            PropertiesPart p = entity.getPart(PropertiesPart.class);
-//            x -= (x % p.getWidth());
-//        }
-//        if (x > lastPos) {
-//            //Going Right:
-//            setRight(true);
-//            setLeft(false);
-//        }
-//        if (x < lastPos) {
-//            //Going Left:
-//            setLeft(true);
-//            setRight(false);
-//        }
-//
-//        lastPos = x;
+
+        //An attempt at correcting the players location according to collision 
+        //(works with only one obstacle)
+        if (entity.getCollisionType() == CollisionTypes.SOLIDOBJECT) {
+            PropertiesPart p = entity.getPart(PropertiesPart.class);
+            x -= (x % p.getWidth());
+        }
+
+        if (x > lastPos) {
+            //Going Right:
+            positionPart.setDirection(Directions.RIGHT);
+            ap.setState(PlayerStates.WALKING);
+        }
+        if (x < lastPos) {
+            //Going left
+            positionPart.setDirection(Directions.LEFT);
+            ap.setState(PlayerStates.WALKING);
+
+        }
+        if (x == lastPos) {
+            ap.setState(PlayerStates.IDLE);
+        }
+
+        lastPos = x;
+
         entity.setCollision(CollisionTypes.NO_EFFECT);
         entity.setCollisionDirection(null);
         positionPart.setX(x);

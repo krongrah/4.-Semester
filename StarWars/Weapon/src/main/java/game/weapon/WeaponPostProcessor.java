@@ -19,7 +19,7 @@ import services.IPostProcessor;
 
 @ServiceProvider(service = IPostProcessor.class)
 
-public class BulletPostProcessor implements IPostProcessor {
+public class WeaponPostProcessor implements IPostProcessor {
 
     @Override
     public void process(GameData gameData, World world) {
@@ -29,6 +29,12 @@ public class BulletPostProcessor implements IPostProcessor {
             if(lp.isHit()){
                 world.removeEntity(bullet);
             }
+            Bullet b=(Bullet)bullet;
+            b.lowerDuration(gameData.getDelta());
+            if (b.isExpired()) {
+                 world.removeEntity(bullet);
+            }
+            
         }
     }
 

@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import common.Entity;
 import data.GameData;
 import data.World;
+import game.renderer.Renderer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,9 +23,8 @@ import org.openide.util.LookupListener;
 import org.openide.util.LookupEvent;
 import services.IProcessor;
 import services.IPluginService;
-import services.IRenderer;
-import game.renderer.Renderer;
 import services.IPostProcessor;
+import services.IRenderer;
 
 /**
  *
@@ -44,13 +44,14 @@ public class Game implements ApplicationListener {
     private List<IPostProcessor> postProcessors = new ArrayList<>();
     private List<IProcessor> entityProcessors = new ArrayList<>();
 //    private List<IPluginService> entityPlugins = new ArrayList<>();
-    private World world = new World();
+    private World world;
 
     @Override
     public void create() {
 
+        world = new World();
         renderer = new Renderer(world);
-        renderer.setBackgroudColor(125, 190, 225, 1);
+        renderer.setBackgroundColor(125, 190, 225, 1);
 
         gameData.setDisplayWidth(Gdx.graphics.getWidth() * 2);
         gameData.setDisplayHeight(Gdx.graphics.getHeight() * 2);
