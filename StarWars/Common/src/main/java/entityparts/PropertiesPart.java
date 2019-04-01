@@ -3,6 +3,7 @@ package entityparts;
 import common.Entity;
 import data.GameData;
 import enums.CollisionTypes;
+import enums.Directions;
 import sprites.Sprites;
 
 /**
@@ -13,14 +14,11 @@ public class PropertiesPart implements EntityPart {
 
     private float height;
     private float width;
-    private boolean solid;
-    private boolean obstacle;
     private CollisionTypes colType;
 
-    public PropertiesPart(float width,float height, boolean solid) {
+    public PropertiesPart(float width,float height) {
         this.height = height;
         this.width = width;
-        this.solid = solid;
     }
 
     public void setCollisionType(CollisionTypes colType) {
@@ -31,20 +29,8 @@ public class PropertiesPart implements EntityPart {
         return colType;
     }
 
-    public void setObstacle(boolean obstacle) {
-        this.obstacle = obstacle;
-    }
-
-    public boolean isObstacle() {
-        return obstacle;
-    }
-
     public float getHeight() {
         return height;
-    }
-
-    public boolean isSolid() {
-        return solid;
     }
 
     public float getWidth() {

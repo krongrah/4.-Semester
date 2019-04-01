@@ -20,12 +20,12 @@ public class PlayerPostProcessor implements IPostProcessor {
 
     @Override
     public void process(GameData gameData, World world) {
-        for (Entity player : world.getEntities(Player.class)) {
-            if (player.getCollisionType() == CollisionTypes.DAMAGE) {
-                //Take damage:
-                LifePart lp = player.getPart(LifePart.class);
-                lp.decreaseLife(1);
-            }
-        }
+//        for (Entity player : world.getEntities(Player.class)) {
+//            if (player.getCollisionType() == CollisionTypes.DAMAGE) {
+//                //Take damage:
+//                LifePart lp = player.getPart(LifePart.class);
+//                lp.decreaseLife(1);
+//            }
+//        }
     }
 }
