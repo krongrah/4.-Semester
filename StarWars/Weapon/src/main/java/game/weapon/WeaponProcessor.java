@@ -40,9 +40,7 @@ public class WeaponProcessor implements IProcessor {
         for (Entity bullet : world.getEntities(Bullet.class)) {
             MovingPart mp = bullet.getPart(MovingPart.class);
             mp.process(gameData, bullet);
-            System.out.println("bullet");
         }
-        System.out.println("");
     }
 
     private void attack(Entity entity, GameData gameData, World world) {
