@@ -30,13 +30,13 @@ public class EnemyPlugin implements IPluginService {
     @Override
     public void start(GameData gameData, World world) {
         enemy = new Enemy();
-        MovingPart mov=new MovingPart(10, 100, 100);
+        MovingPart mov=new MovingPart(10, 175, 250);
         enemy.add(new PropertiesPart(32, 32, CollisionTypes.SOLIDOBJECT,false));
         enemy.add(new LifePart(3));
         enemy.add(new PositionPart(25*32, (39*32)+16));
         enemy.add(mov);
         enemy.add(new AnimationPart("Lukeidle", 5, getPath()));
-        //mov.setRight(true);
+        //mov.setLeft(true);
         
         world.addEntity(enemy);
         
@@ -50,7 +50,7 @@ public class EnemyPlugin implements IPluginService {
         enemy.add(new PositionPart(10*32, (39*32)+16));
         enemy.add(mov);
         enemy.add(new AnimationPart("Lukeidle", 5, getPath()));
-        mov.setRight(true);
+        //mov.setRight(true);
         world.addEntity(enemy);
         
     }

@@ -79,18 +79,18 @@ public class Collision implements IPostProcessor {
         if (targetProp.getCollisionType() == SOLIDOBJECT && objectMov.isMoving()) {
             if (targetMov.isMoving()) {
                 //if both entities are moving
-                System.out.println("double");
-                System.out.println(objectPos.getX()+", "+targetPos.getX());
+                
+                //if the 
                 float distance = (float) Math.abs(targetPos.getX() - objectPos.getX()) - targetProp.getWidth() / 2 - objectProp.getWidth() / 2;
-                //both run into each other, how to avoid the right pushing the left?
+                
                 switch (direction) {
                     case RIGHT:
-                        objectPos.setX(objectPos.getX() - distance / 2);
-                        objectPos.setX(targetPos.getX() + distance / 2);
+                        targetPos.setX(targetPos.getX() - distance / 2);
+                        objectPos.setX(objectPos.getX() + distance / 2);
                         break;
                     case LEFT:
-                        objectPos.setX(objectPos.getX() + distance / 2);
-                        objectPos.setX(targetPos.getX() - distance / 2);
+                        targetPos.setX(targetPos.getX() + distance / 2);
+                        objectPos.setX(objectPos.getX() - distance / 2);
                         break;
                 }
 
