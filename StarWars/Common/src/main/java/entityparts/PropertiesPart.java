@@ -15,7 +15,7 @@ public class PropertiesPart implements EntityPart {
     private boolean solid;
     private boolean obstacle;
 
-    public PropertiesPart(float width,float height, boolean solid) {
+    public PropertiesPart(float width, float height, boolean solid) {
         this.height = height;
         this.width = width;
         this.solid = solid;

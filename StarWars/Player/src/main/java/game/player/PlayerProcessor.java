@@ -36,23 +36,25 @@ public class PlayerProcessor implements IProcessor {
             MovingPart mp = player.getPart(MovingPart.class);
             WeaponPart wp = player.getPart(WeaponPart.class);
             AnimationPart ap = player.getPart(AnimationPart.class);
-            
+
             //Sets whether the player is going left or right
             mp.setLeft(gameData.getKeys().isDown(A));
             mp.setRight(gameData.getKeys().isDown(D));
             wp.setAttacking(gameData.getKeys().isDown(SPACE));
-            
 
             //Now processes the movement of the player based on the keys
             mp.process(gameData, player);
+            if (mp.isMoving()) {
+                ap.changeAnimation("Lukewalking", 7);
+            } else {
+                ap.changeAnimation("Lukeidle", 5);
+            }
 
-            
             gameData.setFocusX(pp.getX());
             gameData.setFocusY(pp.getY());
 
-            ap.setFramesInCurrentAnimation(ap.getFramesInCurrentAnimation() + 1);
             ap.process(gameData, player);
-            
+
         }
 
     }
