@@ -3,7 +3,7 @@ size: 5, 3
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-bullet
+bullet0
   rotate: false
   xy: 0, 0
   size: 5, 3
