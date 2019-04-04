@@ -6,8 +6,6 @@
 package common;
 
 import entityparts.EntityPart;
-import enums.CollisionTypes;
-import enums.Directions;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.UUID;

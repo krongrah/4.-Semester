@@ -22,7 +22,7 @@ public class PlayerPostProcessor implements IPostProcessor {
     public void process(GameData gameData, World world) {
         for (Entity player : world.getEntities(Player.class)) {
             LifePart lp = player.getPart(LifePart.class);
-            if (player.getCollisionType() == CollisionTypes.DAMAGE) {
+            if (lp.isHit()) {
                 //Take damage:
                 lp.decreaseLife(1);
             }
