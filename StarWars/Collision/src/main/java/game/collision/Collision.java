@@ -40,7 +40,7 @@ public class Collision implements IPostProcessor {
             PropertiesPart objProp = object.getPart(PropertiesPart.class);
 
             if (!objProp.isObstacle()) {
-                System.out.println(((MovingPart) (object.getPart(MovingPart.class))).isMoving());
+                //System.out.println(((MovingPart) (object.getPart(MovingPart.class))).isMoving());
                 for (Entity target : world.getEntities()) {
                     PositionPart tarPos = target.getPart(PositionPart.class);
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
