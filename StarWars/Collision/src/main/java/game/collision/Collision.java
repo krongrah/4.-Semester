@@ -77,24 +77,24 @@ public class Collision implements IPostProcessor {
         MovingPart objectMov = object.getPart(MovingPart.class);
         MovingPart targetMov = object.getPart(MovingPart.class);
         if (targetProp.getCollisionType() == SOLIDOBJECT && objectMov.isMoving()) {
-            if (targetMov.isMoving()) {
-                //if both entities are moving
-                
-                //if the 
-                float distance = (float) Math.abs(targetPos.getX() - objectPos.getX()) - targetProp.getWidth() / 2 - objectProp.getWidth() / 2;
-                
-                switch (direction) {
-                    case RIGHT:
-                        targetPos.setX(targetPos.getX() - distance / 2);
-                        objectPos.setX(objectPos.getX() + distance / 2);
-                        break;
-                    case LEFT:
-                        targetPos.setX(targetPos.getX() + distance / 2);
-                        objectPos.setX(objectPos.getX() - distance / 2);
-                        break;
-                }
-
-            } else {
+//            if (targetMov.isMoving()) {
+//                //if both entities are moving
+//                
+//                //if the 
+//                float distance = (float) Math.abs(targetPos.getX() - objectPos.getX()) - targetProp.getWidth() / 2 - objectProp.getWidth() / 2;
+//                
+//                switch (direction) {
+//                    case RIGHT:
+//                        targetPos.setX(targetPos.getX() - distance / 2);
+//                        objectPos.setX(objectPos.getX() + distance / 2);
+//                        break;
+//                    case LEFT:
+//                        targetPos.setX(targetPos.getX() + distance / 2);
+//                        objectPos.setX(objectPos.getX() - distance / 2);
+//                        break;
+//                }
+//
+//            } else {
                 //if only the object is moving
                 System.out.println("single");
                 switch (direction) {
@@ -105,7 +105,7 @@ public class Collision implements IPostProcessor {
                         objectPos.setX(targetPos.getX() - targetProp.getWidth() / 2 - objectProp.getWidth() / 2);
                         break;
                 }
-            }
+            //}
         }
     }
 
