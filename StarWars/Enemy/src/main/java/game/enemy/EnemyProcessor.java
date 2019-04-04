@@ -9,6 +9,7 @@ import common.Entity;
 import data.GameData;
 import data.World;
 import entityparts.MovingPart;
+import entityparts.PositionPart;
 import org.openide.util.lookup.ServiceProvider;
 import services.IPluginService;
 import services.IProcessor;
@@ -26,13 +27,10 @@ public class EnemyProcessor implements IProcessor {
         
         
         for (Entity enemy : world.getEntities(Enemy.class)) {
-
-            //Gets the parts of the enemy
+            //PositionPart pos=enemy.getPart(PositionPart.class);
+            
             MovingPart mp = enemy.getPart(MovingPart.class);
 
-            ////Implement method to move the player here////
-            
-            //Now processes the movement of the enemy
             mp.process(gameData, enemy);
             
         }

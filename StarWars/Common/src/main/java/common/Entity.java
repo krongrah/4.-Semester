@@ -8,7 +8,6 @@ package common;
 import entityparts.EntityPart;
 import enums.CollisionTypes;
 import enums.Directions;
-import interfaces.ICollision;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.UUID;
@@ -18,23 +17,14 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author ahmadhamid
  */
-public class Entity implements Serializable, ICollision {
+public class Entity implements Serializable {
 
     private final UUID ID = UUID.randomUUID();
-    private CollisionTypes colType;
-    private Directions collisionDirection;
+    
     private Map<Class, EntityPart> parts;
 
     public Entity() {
         parts = new ConcurrentHashMap<>();
-    }
-
-    public void setCollisionDirection(Directions collisionDirection) {
-        this.collisionDirection = collisionDirection;
-    }
-
-    public Directions getCollisionDirection() {
-        return collisionDirection;
     }
 
     public void add(EntityPart part) {
@@ -51,16 +41,6 @@ public class Entity implements Serializable, ICollision {
 
     public String getID() {
         return ID.toString();
-    }
-
-    @Override
-    public CollisionTypes getCollisionType() {
-        return this.colType;
-    }
-
-    @Override
-    public void setCollision(CollisionTypes type) {
-        this.colType = type;
     }
 
     public boolean hasPart(Class partClass) {
