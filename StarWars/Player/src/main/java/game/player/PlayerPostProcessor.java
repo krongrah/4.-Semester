@@ -9,7 +9,6 @@ import common.Entity;
 import data.GameData;
 import data.World;
 import entityparts.LifePart;
-import enums.CollisionTypes;
 import services.IPostProcessor;
 
 /**
