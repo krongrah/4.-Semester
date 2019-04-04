@@ -2,8 +2,8 @@ Manifest-Version: 1.0
 OpenIDE-Module-Install: game/core/Installer.class
 OpenIDE-Module-Localizing-Bundle: game/core/Bundle.properties
 OpenIDE-Module-Specification-Version: 1.0
-OpenIDE-Module-Implementation-Version: 1.0-20190328
-OpenIDE-Module-Build-Version: 201903281721
+OpenIDE-Module-Implementation-Version: 1.0-20190401
+OpenIDE-Module-Build-Version: 201904011618
 OpenIDE-Module: game.Core
 OpenIDE-Module-Public-Packages: -
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
