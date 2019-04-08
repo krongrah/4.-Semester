@@ -8,12 +8,12 @@ package game.enemy;
 import common.Entity;
 import data.GameData;
 import data.World;
+import entityparts.AnimationPart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
 import enums.AITypes;
 import enums.Behaviours;
-import enums.Directions;
 import enums.Environments;
 import interfaces.Targetable;
 import org.openide.util.lookup.ServiceProvider;
@@ -27,7 +27,7 @@ import services.IProcessor;
  */
 public class EnemyProcessor implements IProcessor {
 
-    private int range = 5 * 32; //was 12
+    private int range = 2 * 32; //was 12
     private Environments targetDirection;
     private Behaviours action;
     private boolean lineOfSight;
@@ -35,14 +35,18 @@ public class EnemyProcessor implements IProcessor {
     @Override
     public void process(GameData gameData, World world) {
 
-        for (Entity enemy : world.getEntities(Enemy.class)) {
+        for (Entity en : world.getEntities(Enemy.class)) {
+            Enemy enemy = (Enemy) en;
             MovingPart mp = enemy.getPart(MovingPart.class);
+            AnimationPart ap = enemy.getPart(AnimationPart.class);
             analyze(world, (Enemy) enemy);
 
             if (targetDirection == Environments.LEFT) {
                 if (lineOfSight == true) {
                     //Attack
-                    System.out.println("Pew!");
+                    if (enemy.getAIType() == AITypes.SHOOTER) {
+                        System.out.println("Pew!");
+                    }
                 } else {
                     //Walk towards target
                     mp.setLeft(true);
@@ -52,11 +56,24 @@ public class EnemyProcessor implements IProcessor {
             if (targetDirection == Environments.RIGHT) {
                 if (lineOfSight == true) {
                     //Attack
-                    System.out.println("Pew!");
+                    if (enemy.getAIType() == AITypes.MELEE) {
+                        ap.changeAnimation("RaiderAttack", 5);
+                    }
+                    if (enemy.getAIType() == AITypes.SHOOTER) {
+                        ap.changeAnimation("TrooperShooting", 1);
+                        System.out.println("Pew!");
+                    }
                 } else {
                     //Walk towards target
                     mp.setLeft(false);
                     mp.setRight(true);
+                    if (enemy.getAIType() == AITypes.MELEE) {
+                        ap.changeAnimation("RaiderWalking", 5);
+                    }
+                    if (enemy.getAIType() == AITypes.SHOOTER) {
+                        ap.changeAnimation("TrooperWalking", 3);
+                    }
+
                 }
             }
 
@@ -99,7 +116,7 @@ public class EnemyProcessor implements IProcessor {
 
                 //Decide on an action:
                 if (Math.abs(dx) > range * 0.75) {
-                    lineOfSight = true;
+                    lineOfSight = false;
                     action = Behaviours.WALK;
                 } else if (Math.abs(dx) <= range * 0.75) {
                     lineOfSight = true;

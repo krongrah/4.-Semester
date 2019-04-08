@@ -6,13 +6,13 @@
 package game.enemy;
 
 import common.AISpawnPoint;
-import common.Entity;
 import data.GameData;
 import data.World;
 import entityparts.AnimationPart;
 import entityparts.LifePart;
 import entityparts.MovingPart;
-import enums.AITypes;
+import entityparts.PositionPart;
+import entityparts.PropertiesPart;
 import static enums.AITypes.MELEE;
 import static enums.AITypes.SHOOTER;
 import org.openide.util.lookup.ServiceProvider;
@@ -27,7 +27,7 @@ import services.IPluginService;
 public class EnemyPlugin implements IPluginService {
 
     private Enemy enemy;
-    private int shooterLife = 2;
+    private int shooterLife = 1;
     private int meleeLife = 1;
     private String enemyType;
 
@@ -35,7 +35,9 @@ public class EnemyPlugin implements IPluginService {
     public void start(GameData gameData, World world) {
         for (AISpawnPoint spawnPoint : world.getSpawnPoints()) {
             if (spawnPoint.getAIType() == SHOOTER) {
-                Entity enemy = spawnPoint.getEntity();
+                Enemy enemy = new Enemy();
+                enemy.add(spawnPoint.getEntity().getPart(PositionPart.class));
+                enemy.add(spawnPoint.getEntity().getPart(PropertiesPart.class));
                 enemy.add(new LifePart(shooterLife));
                 enemy.add(new MovingPart(10, 175, 250));
                 enemyType = "Trooper";
@@ -43,11 +45,13 @@ public class EnemyPlugin implements IPluginService {
                 world.addEntity(enemy);
             }
             if (spawnPoint.getAIType() == MELEE) {
-                Entity enemy = spawnPoint.getEntity();
+                Enemy enemy = new Enemy();
+                enemy.add(spawnPoint.getEntity().getPart(PositionPart.class));
+                enemy.add(spawnPoint.getEntity().getPart(PropertiesPart.class));
                 enemy.add(new LifePart(meleeLife));
                 enemy.add(new MovingPart(10, 175, 250));
                 enemyType = "Raider";
-                enemy.add(new AnimationPart("RaiderIdle", 7, getPath()));
+                enemy.add(new AnimationPart("RaiderIdle", 6, getPath()));
                 world.addEntity(enemy);
             }
         }

@@ -28,6 +28,7 @@ public class PlayerPostProcessor implements IPostProcessor {
             if (lp.isHit()) {
                 //Take damage:
                 lp.decreaseLife(1);
+                lp.setIsHit(false);
             }
             if (lp.getLife() <= 0) {
                 world.removeEntity(player);
