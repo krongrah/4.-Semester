@@ -50,8 +50,8 @@ public class PlayerPlugin implements IPluginService {
 
     @Override
     public String getPath() {
-        return "Users/Krongrah/Desktop/sprites/Luke.txt";
-        //return PlayerPlugin.class.getResource("/sprites/Luke.txt").getPath();
+        //return "Users/Krongrah/Desktop/sprites/Luke.txt";
+        return PlayerPlugin.class.getResource("/sprites/Luke.txt").getPath();
         //return "http://www.getmaktabah.com/us/Player-1.0-SNAPSHOT.nbm";
     }
 

@@ -157,6 +157,7 @@ public class Game implements ApplicationListener {
             for (IPluginService us : updated) {
                 // Newly installed modules
                 if (!gamePlugins.contains(us)) {
+                    renderer.loadTexture(us.getPath());
                     us.start(gameData, world);
                     gamePlugins.add(us);
                 }
