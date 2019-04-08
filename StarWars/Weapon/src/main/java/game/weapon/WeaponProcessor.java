@@ -53,7 +53,7 @@ public class WeaponProcessor implements IProcessor {
             weapon.setCooldown(weapon.getCooldown() - gameData.getDelta());
         }
         if (weapon.getCooldown() <= 0 && weapon.isAttacking()) {
-            weapon.setCooldown(3);
+            weapon.setCooldown(1);
             Bullet b = new Bullet();
             MovingPart mp = new MovingPart(0, 1000, 50);
             PositionPart pp = new PositionPart(pos.getX() + prop.getWidth() / 2, pos.getY());

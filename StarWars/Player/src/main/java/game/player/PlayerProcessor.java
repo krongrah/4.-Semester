@@ -49,6 +49,10 @@ public class PlayerProcessor implements IProcessor {
             } else {
                 ap.changeAnimation("Lukeidle", 1);
             }
+            if (wp.isAttacking()) {
+                ap.changeAnimation("Lukeshooting", 1);
+
+            }
 
             gameData.setFocusX(pp.getX());
             gameData.setFocusY(pp.getY());

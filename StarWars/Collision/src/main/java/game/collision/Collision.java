@@ -8,6 +8,7 @@ package game.collision;
 import common.Entity;
 import data.GameData;
 import data.World;
+import entityparts.LifePart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
@@ -44,23 +45,23 @@ public class Collision implements IPostProcessor {
                 for (Entity target : world.getEntities()) {
                     PositionPart tarPos = target.getPart(PositionPart.class);
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
-                    if (!object.equals(target) && tarProp.getCollisionType() == CollisionTypes.SOLIDOBJECT && objProp.getCollisionType() == CollisionTypes.SOLIDOBJECT) {
-                        if (objPos.getX() < tarPos.getX()) {
-                            //Check for right side collision exclusively                        
-                            float dxR = (tarPos.getX() - objPos.getX()) - (tarProp.getWidth() / 2 + objProp.getWidth() / 2);
-                            if (dxR < 0) {
-                                //Collision detected:
-                                collide(object, target, Directions.RIGHT);
-                            }
+                    //if (!object.equals(target) && tarProp.getCollisionType() == CollisionTypes.SOLIDOBJECT && objProp.getCollisionType() == CollisionTypes.SOLIDOBJECT) {
+                    if (objPos.getX() < tarPos.getX()) {
+                        //Check for right side collision exclusively                        
+                        float dxR = (tarPos.getX() - objPos.getX()) - (tarProp.getWidth() / 2 + objProp.getWidth() / 2);
+                        if (dxR < 0) {
+                            //Collision detected:
+                            collide(object, target, Directions.RIGHT);
                         }
-                        if (objPos.getX() > tarPos.getX()) {
-                            float dxL = (objPos.getX() - tarPos.getX()) - (objProp.getWidth() / 2 + tarProp.getWidth() / 2);
-                            //Check for left side collision exclusively
-                            if (dxL < 0) {
-                                //Collision detected:
-                                collide(object, target, Directions.LEFT);
-                            }
+                    }
+                    if (objPos.getX() > tarPos.getX()) {
+                        float dxL = (objPos.getX() - tarPos.getX()) - (objProp.getWidth() / 2 + tarProp.getWidth() / 2);
+                        //Check for left side collision exclusively
+                        if (dxL < 0) {
+                            //Collision detected:
+                            collide(object, target, Directions.LEFT);
                         }
+                        //}
 
                     }
                 }
@@ -76,6 +77,13 @@ public class Collision implements IPostProcessor {
         PositionPart targetPos = target.getPart(PositionPart.class);
         MovingPart objectMov = object.getPart(MovingPart.class);
         MovingPart targetMov = object.getPart(MovingPart.class);
+        LifePart objLife = object.getPart(LifePart.class);
+        LifePart tarLife = target.getPart(LifePart.class);
+        
+        
+        objLife.setIsHit(true);
+        tarLife.setIsHit(true);
+        
         if (targetProp.getCollisionType() == SOLIDOBJECT && objectMov.isMoving()) {
 //            if (targetMov.isMoving()) {
 //                //if both entities are moving
@@ -95,16 +103,16 @@ public class Collision implements IPostProcessor {
 //                }
 //
 //            } else {
-                //if only the object is moving
-                //System.out.println("single");
-                switch (direction) {
-                    case LEFT:
-                        objectPos.setX(targetPos.getX() + targetProp.getWidth() / 2 + objectProp.getWidth() / 2);
-                        break;
-                    case RIGHT:
-                        objectPos.setX(targetPos.getX() - targetProp.getWidth() / 2 - objectProp.getWidth() / 2);
-                        break;
-                }
+            //if only the object is moving
+            //System.out.println("single");
+            switch (direction) {
+                case LEFT:
+                    objectPos.setX(targetPos.getX() + targetProp.getWidth() / 2 + objectProp.getWidth() / 2);
+                    break;
+                case RIGHT:
+                    objectPos.setX(targetPos.getX() - targetProp.getWidth() / 2 - objectProp.getWidth() / 2);
+                    break;
+            }
             //}
         }
     }
