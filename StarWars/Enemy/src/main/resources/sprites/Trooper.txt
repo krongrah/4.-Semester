@@ -3,49 +3,49 @@ size: 192, 32
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Trooperidle1
+TrooperIdle0
   rotate: false
   xy: 0, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-TrooperShooting1
+TrooperShooting0
   rotate: false
   xy: 32, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-TrooperWalking1
+TrooperWalking0
   rotate: false
   xy: 64, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-TrooperWalking2
+TrooperWalking1
   rotate: false
   xy: 96, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-TrooperWalking13
+TrooperWalking2
   rotate: false
   xy: 128, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-TrooperWalking4
+TrooperWalking3
   rotate: false
   xy: 160, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-TrooperWalking1
+TrooperWalking4
   rotate: false
   xy: 192, 0
   size: 32, 32

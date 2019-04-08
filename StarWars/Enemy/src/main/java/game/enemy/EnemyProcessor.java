@@ -36,36 +36,32 @@ public class EnemyProcessor implements IProcessor {
     public void process(GameData gameData, World world) {
 
         for (Entity enemy : world.getEntities(Enemy.class)) {
-            if (enemy instanceof Enemy) {
-                MovingPart mp = enemy.getPart(MovingPart.class);
-                analyze(world, (Enemy) enemy);
+            MovingPart mp = enemy.getPart(MovingPart.class);
+            analyze(world, (Enemy) enemy);
 
-                if (targetDirection == Environments.LEFT) {
-                    if (lineOfSight == true) {
-                        //Attack
-                        System.out.println("Pew!");
-                    } else {
-                        //Walk towards target
-                        mp.setLeft(true);
-                        mp.setRight(false);
-                    }
+            if (targetDirection == Environments.LEFT) {
+                if (lineOfSight == true) {
+                    //Attack
+                    System.out.println("Pew!");
+                } else {
+                    //Walk towards target
+                    mp.setLeft(true);
+                    mp.setRight(false);
                 }
-                if (targetDirection == Environments.RIGHT) {
-                    if (lineOfSight == true) {
-                        //Attack
-                        System.out.println("Pew!");
-                    } else {
-                        //Walk towards target
-                        mp.setLeft(false);
-                        mp.setRight(true);
-                    }
+            }
+            if (targetDirection == Environments.RIGHT) {
+                if (lineOfSight == true) {
+                    //Attack
+                    System.out.println("Pew!");
+                } else {
+                    //Walk towards target
+                    mp.setLeft(false);
+                    mp.setRight(true);
                 }
-
-                mp.process(gameData, enemy);
             }
 
+            mp.process(gameData, enemy);
         }
-
     }
 
     private void analyze(World world, Enemy enemy) {

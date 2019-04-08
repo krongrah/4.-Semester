@@ -38,16 +38,19 @@ public class UnitDrawBoard {
             PropertiesPart prop = entity.getPart(PropertiesPart.class);
             if (!prop.isObstacle()) {
                 PositionPart pos = entity.getPart(PositionPart.class);
-                AnimationPart ani = entity.getPart(AnimationPart.class);
-                Sprite sprite = am.getSprite(ani.getCurrentAnimation(), ani.getSpriteSheetPath());
-                sprite.setPosition(pos.getX() - sprite.getWidth() / 2, pos.getY() - sprite.getHeight() / 2);
-                if (pos.getDirection() == Directions.LEFT) {
-                    sprite.flip(true, false);
-                    sprite.setX(sprite.getX()-sprite.getWidth()/2);
-                }
+                if (entity.hasPart(AnimationPart.class)) {
+                    AnimationPart ani = entity.getPart(AnimationPart.class);
+                    Sprite sprite = am.getSprite(ani.getCurrentAnimation(), ani.getSpriteSheetPath());
 
-                //sprite.scale(camera.zoom);
-                sprite.draw(batch);
+                    sprite.setPosition(pos.getX() - sprite.getWidth() / 2, pos.getY() - sprite.getHeight() / 2);
+                    if (pos.getDirection() == Directions.LEFT) {
+                        sprite.flip(true, false);
+                        sprite.setX(sprite.getX() - sprite.getWidth() / 2);
+                    }
+
+                    //sprite.scale(camera.zoom);
+                    sprite.draw(batch);
+                }
             }
 
         }

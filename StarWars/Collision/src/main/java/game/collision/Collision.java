@@ -69,7 +69,7 @@ public class Collision implements IPostProcessor {
     }
 
     private void collide(Entity object, Entity target, Directions direction) {
-        System.out.println("collide");
+        //System.out.println("collide");
         PropertiesPart targetProp = target.getPart(PropertiesPart.class);
         PositionPart objectPos = object.getPart(PositionPart.class);
         PropertiesPart objectProp = object.getPart(PropertiesPart.class);
@@ -96,7 +96,7 @@ public class Collision implements IPostProcessor {
 //
 //            } else {
                 //if only the object is moving
-                System.out.println("single");
+                //System.out.println("single");
                 switch (direction) {
                     case LEFT:
                         objectPos.setX(targetPos.getX() + targetProp.getWidth() / 2 + objectProp.getWidth() / 2);

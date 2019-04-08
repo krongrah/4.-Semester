@@ -3,21 +3,21 @@ size: 640, 32
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-RaiderAttack1
+RaiderAttack0
   rotate: false
   xy: 0, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderAttack2
+RaiderAttack1
   rotate: false
   xy: 32, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderAttack3
+RaiderAttack2
   rotate: false
   xy: 64, 0
   size: 32, 32
@@ -52,98 +52,98 @@ RaiderAttack6
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderIdle1
+RaiderIdle0
   rotate: false
   xy: 224, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderIdle2
+RaiderIdle1
   rotate: false
   xy: 256, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderIdle3
+RaiderIdle2
   rotate: false
   xy: 288, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderIdle4
+RaiderIdle3
   rotate: false
   xy: 320, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderIdle5
+RaiderIdle4
   rotate: false
   xy: 352, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderIdle6
+RaiderIdle5
   rotate: false
   xy: 384, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderIdle7
+RaiderIdle6
   rotate: false
   xy: 416, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderWalking1
+RaiderWalking0
   rotate: false
   xy: 448, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderWalking2
+RaiderWalking1
   rotate: false
   xy: 480, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderWalking3
+RaiderWalking2
   rotate: false
   xy: 512, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderWalking4
+RaiderWalking3
   rotate: false
   xy: 544, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderWalking5
+RaiderWalking4
   rotate: false
   xy: 576, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderWalking6
+RaiderWalking5
   rotate: false
   xy: 608, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-RaiderWalking7
+RaiderWalking6
   rotate: false
   xy: 640, 0
   size: 32, 32

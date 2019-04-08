@@ -55,7 +55,7 @@ public class Map {
                     //Ground object
                     Entity ground = new Entity();
                     ground.add(createPosPart(recObj));
-                    PropertiesPart prop = new PropertiesPart(recObj.getRectangle().width, recObj.getRectangle().height, CollisionTypes.SOLIDOBJECT, true);
+                    PropertiesPart prop = new PropertiesPart(recObj.getRectangle().width / 2, recObj.getRectangle().height / 2, CollisionTypes.SOLIDOBJECT, true);
                     ground.add(prop);
                     world.addEntity(ground);
 

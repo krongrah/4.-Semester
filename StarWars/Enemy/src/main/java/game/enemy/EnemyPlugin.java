@@ -39,7 +39,7 @@ public class EnemyPlugin implements IPluginService {
                 enemy.add(new LifePart(shooterLife));
                 enemy.add(new MovingPart(10, 175, 250));
                 enemyType = "Trooper";
-                enemy.add(new AnimationPart("TrooperIdle", 0, getPath()));
+                enemy.add(new AnimationPart("TrooperIdle", 1, getPath()));
                 world.addEntity(enemy);
             }
             if (spawnPoint.getAIType() == MELEE) {
@@ -47,7 +47,7 @@ public class EnemyPlugin implements IPluginService {
                 enemy.add(new LifePart(meleeLife));
                 enemy.add(new MovingPart(10, 175, 250));
                 enemyType = "Raider";
-                enemy.add(new AnimationPart("RaiderIdle", 6, getPath()));
+                enemy.add(new AnimationPart("RaiderIdle", 7, getPath()));
                 world.addEntity(enemy);
             }
         }
