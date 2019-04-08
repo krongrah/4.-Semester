@@ -262,3 +262,6 @@ StarWars/SilentUpdate/src/main/resources/org/netbeans/modules/autoupdate/silentu
 /StarWars/Weapon/target/
 *.MF
 *.nbm
+*.nbm
+*.xml
+*.properties
