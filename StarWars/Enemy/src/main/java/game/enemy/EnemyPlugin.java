@@ -31,9 +31,9 @@ public class EnemyPlugin implements IPluginService {
     public void start(GameData gameData, World world) {
         enemy = new Enemy();
         MovingPart mov=new MovingPart(10, 175, 250);
-        //enemy.add(new PropertiesPart(32, 32, CollisionTypes.SOLIDOBJECT,false));
+        enemy.add(new PropertiesPart(32, 32, CollisionTypes.SOLIDOBJECT,false));
         enemy.add(new LifePart(3));
-        enemy.add(new PositionPart(25*32, (39*32)+16));
+        enemy.add(new PositionPart(24*32, (39*32)+16));
         enemy.add(mov);
         enemy.add(new AnimationPart("Lukeidle", 5, getPath()));
         //mov.setLeft(true);
@@ -45,7 +45,7 @@ public class EnemyPlugin implements IPluginService {
         
         mov=new MovingPart(10, 100, 100);
         
-        //enemy.add(new PropertiesPart(32, 32, CollisionTypes.SOLIDOBJECT,false));
+        enemy.add(new PropertiesPart(32, 32, CollisionTypes.SOLIDOBJECT,false));
         enemy.add(new LifePart(3));
         enemy.add(new PositionPart(10*32, (39*32)+16));
         enemy.add(mov);
