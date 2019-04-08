@@ -266,3 +266,4 @@ StarWars/SilentUpdate/src/main/resources/org/netbeans/modules/autoupdate/silentu
 *.xml
 *.properties
 *.MF
+StarWars/Core/target/classes/META-INF/MANIFEST.MF
