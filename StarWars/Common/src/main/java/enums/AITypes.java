@@ -9,6 +9,6 @@ package enums;
  *
  * @author Sebas
  */
-public enum Behaviours {
-    SHOOT, MELEE, WALK, IDLE;
+public enum AITypes {
+    SHOOTER, MELEE, BOSS;
 }

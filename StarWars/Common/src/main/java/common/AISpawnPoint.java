@@ -3,27 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.enemy;
+package common;
 
 import enums.AITypes;
-import common.Entity;
 
 /**
  *
- * @author andreasmolgaard-andersen
+ * @author Sebas
  */
-public class Enemy extends Entity {
+public class AISpawnPoint {
 
     private AITypes AIType;
+    private Entity entity;
 
-    public Enemy() {
+    public AISpawnPoint(Entity entity, AITypes AIType) {
+        this.AIType = AIType;
+        this.entity = entity;
+    }
+
+    public Entity getEntity() {
+        return entity;
     }
 
     public AITypes getAIType() {
         return AIType;
     }
 
-    public void setAIType(AITypes AIType) {
-        this.AIType = AIType;
-    }
 }

@@ -5,6 +5,7 @@
  */
 package data;
 
+import common.AISpawnPoint;
 import common.Entity;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,6 +32,11 @@ public class World {
     private final Map<String, Entity> entityMap = new ConcurrentHashMap<>();
 
     /**
+     * A list of all enemy spawn points read from the map file
+     */
+    private final List<AISpawnPoint> enemySpawnPoints = new ArrayList();
+
+    /**
      * Adds the given Entity to the world
      *
      * @param entity Is the entity to be added
@@ -39,6 +45,14 @@ public class World {
     public String addEntity(Entity entity) {
         entityMap.put(entity.getID(), entity);
         return entity.getID();
+    }
+
+    /**
+     * Adds a specific enemy spawn point to the list of spawn points
+     * @param spawn 
+     */
+    public void addEnemySpawn(AISpawnPoint spawn) {
+        enemySpawnPoints.add(spawn);
     }
 
     /**
@@ -57,6 +71,10 @@ public class World {
      */
     public Collection<Entity> getEntities() {
         return entityMap.values();
+    }
+    
+    public List<AISpawnPoint> getSpawnPoints(){
+        return this.enemySpawnPoints;
     }
 
     /**

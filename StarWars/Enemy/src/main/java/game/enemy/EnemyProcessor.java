@@ -11,7 +11,9 @@ import data.World;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
+import enums.AITypes;
 import enums.Behaviours;
+import enums.Directions;
 import enums.Environments;
 import interfaces.Targetable;
 import org.openide.util.lookup.ServiceProvider;
@@ -34,35 +36,39 @@ public class EnemyProcessor implements IProcessor {
     public void process(GameData gameData, World world) {
 
         for (Entity enemy : world.getEntities(Enemy.class)) {
-            MovingPart mp = enemy.getPart(MovingPart.class);
+            if (enemy instanceof Enemy) {
+                MovingPart mp = enemy.getPart(MovingPart.class);
+                analyze(world, (Enemy) enemy);
 
-            //Analyze environment
-            switch (analyze(world, enemy)) {
-                case LEFT:
-                    //React
-                    mp.setLeft(true);
-                    mp.setRight(false);
-                    break;
-                case RIGHT:
-                    //React
-                    mp.setRight(true);
-                    mp.setLeft(false);
-                    break;
-                case LINEOFSIGHT:
-                    //React
-                    break;
-                case OUTOFSIGHT:
-                    //React
-                    break;
+                if (targetDirection == Environments.LEFT) {
+                    if (lineOfSight == true) {
+                        //Attack
+                        System.out.println("Pew!");
+                    } else {
+                        //Walk towards target
+                        mp.setLeft(true);
+                        mp.setRight(false);
+                    }
+                }
+                if (targetDirection == Environments.RIGHT) {
+                    if (lineOfSight == true) {
+                        //Attack
+                        System.out.println("Pew!");
+                    } else {
+                        //Walk towards target
+                        mp.setLeft(false);
+                        mp.setRight(true);
+                    }
+                }
+
+                mp.process(gameData, enemy);
             }
 
-            //PositionPart pos=enemy.getPart(PositionPart.class);
-            mp.process(gameData, enemy);
         }
 
     }
 
-    private Environments analyze(World world, Entity enemy) {
+    private void analyze(World world, Enemy enemy) {
         //Draw straight line between enemy and player
         //Meassure distance to ensure player is within radius
 
@@ -101,15 +107,18 @@ public class EnemyProcessor implements IProcessor {
                     action = Behaviours.WALK;
                 } else if (Math.abs(dx) <= range * 0.75) {
                     lineOfSight = true;
-                    action = Behaviours.SHOOT;
+                    if (enemy.getAIType() == AITypes.SHOOTER) {
+                        action = Behaviours.SHOOT;
+                    }
+                    if (enemy.getAIType() == AITypes.MELEE) {
+                        action = Behaviours.MELEE;
+                    }
                 } else {
                     action = Behaviours.IDLE;
                 }
 
             }
         }
-
-        return null;
     }
 
 }
