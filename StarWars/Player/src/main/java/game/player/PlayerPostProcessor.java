@@ -9,7 +9,11 @@ import common.Entity;
 import data.GameData;
 import data.World;
 import entityparts.LifePart;
+import org.openide.util.lookup.ServiceProvider;
 import services.IPostProcessor;
+
+@ServiceProvider(service = IPostProcessor.class)
+
 
 /**
  *
