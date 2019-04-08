@@ -265,3 +265,4 @@ StarWars/SilentUpdate/src/main/resources/org/netbeans/modules/autoupdate/silentu
 *.nbm
 *.xml
 *.properties
+*.MF
