@@ -34,6 +34,7 @@ public class UnitDrawBoard {
     public void draw(World world, GameData gameData, Matrix4 matrix) {
         batch.setProjectionMatrix(matrix);
         batch.begin();
+        System.out.println(world.getEntities().size());
         for (Entity entity : world.getEntities()) {
             PropertiesPart prop = entity.getPart(PropertiesPart.class);
             if (!prop.isObstacle()) {
