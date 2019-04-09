@@ -83,6 +83,7 @@ public class Collision implements IPostProcessor {
             if (objectProp.getCollisionType() == CollisionTypes.DAMAGE) {
                 objLife.setIsHit(true);
                 if (target.hasPart(LifePart.class)) {
+                    System.out.println("Target takes damage!");
                     LifePart tarLife = target.getPart(LifePart.class);
                     tarLife.setIsHit(true);
                 }

@@ -6,6 +6,7 @@
 package game.enemy;
 
 import common.AISpawnPoint;
+import common.Entity;
 import data.GameData;
 import data.World;
 import entityparts.AnimationPart;
@@ -26,7 +27,6 @@ import services.IPluginService;
  */
 public class EnemyPlugin implements IPluginService {
 
-    private Enemy enemy;
     private int shooterLife = 1;
     private int meleeLife = 4;
     private String enemyType;
@@ -39,7 +39,7 @@ public class EnemyPlugin implements IPluginService {
                 enemy.add(spawnPoint.getEntity().getPart(PositionPart.class));
                 enemy.add(spawnPoint.getEntity().getPart(PropertiesPart.class));
                 enemy.add(new LifePart(shooterLife));
-                enemy.add(new MovingPart(10, 175, 250));
+                enemy.add(new MovingPart(10, 100, 175));
                 enemyType = "Trooper";
                 enemy.add(new AnimationPart("TrooperIdle", 1, getPath()));
                 world.addEntity(enemy);
@@ -49,7 +49,7 @@ public class EnemyPlugin implements IPluginService {
                 enemy.add(spawnPoint.getEntity().getPart(PositionPart.class));
                 enemy.add(spawnPoint.getEntity().getPart(PropertiesPart.class));
                 enemy.add(new LifePart(meleeLife));
-                enemy.add(new MovingPart(10, 175, 250));
+                enemy.add(new MovingPart(10, 100, 175));
                 enemyType = "Raider";
                 enemy.add(new AnimationPart("RaiderIdle", 6, getPath()));
                 world.addEntity(enemy);
@@ -59,7 +59,9 @@ public class EnemyPlugin implements IPluginService {
 
     @Override
     public void stop(GameData gameData, World world) {
-        world.removeEntity(enemy);
+        for (Entity entity : world.getEntities(Enemy.class)) {
+            world.removeEntity(entity);
+        }
     }
 
     @Override

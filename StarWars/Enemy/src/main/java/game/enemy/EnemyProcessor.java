@@ -39,7 +39,7 @@ public class EnemyProcessor implements IProcessor {
             Enemy enemy = (Enemy) en;
             MovingPart mp = enemy.getPart(MovingPart.class);
             AnimationPart ap = enemy.getPart(AnimationPart.class);
-            analyze(world, (Enemy) enemy);
+            analyze(world, enemy);
 
             if (targetDirection == Environments.LEFT) {
                 if (lineOfSight == true) {
@@ -53,14 +53,13 @@ public class EnemyProcessor implements IProcessor {
                     mp.setRight(false);
                 }
             }
+            
             if (targetDirection == Environments.RIGHT) {
                 if (lineOfSight == true) {
                     //Attack
                     if (enemy.getAIType() == AITypes.MELEE) {
-                        ap.changeAnimation("RaiderAttack", 5);
                     }
                     if (enemy.getAIType() == AITypes.SHOOTER) {
-                        ap.changeAnimation("TrooperShooting", 1);
                         System.out.println("Pew!");
                     }
                 } else {
@@ -68,16 +67,41 @@ public class EnemyProcessor implements IProcessor {
                     mp.setLeft(false);
                     mp.setRight(true);
                     if (enemy.getAIType() == AITypes.MELEE) {
-                        ap.changeAnimation("RaiderWalking", 5);
                     }
                     if (enemy.getAIType() == AITypes.SHOOTER) {
-                        ap.changeAnimation("TrooperWalking", 3);
                     }
-
                 }
             }
 
+            animate(enemy, mp, ap);
             mp.process(gameData, enemy);
+        }
+    }
+
+    private void animate(Enemy enemy, MovingPart mp, AnimationPart ap) {
+        if(enemy.hasPart(AnimationPart.class)){
+            System.out.println(ap.getCurrentAnimation());
+        }
+        if (mp.isAccelerating()) {
+            //Walk
+            if (enemy.getAIType() == AITypes.MELEE) {
+                ap.changeAnimation("RaiderWalking", 5);
+                System.out.println("Raider walking");
+            }
+            if (enemy.getAIType() == AITypes.SHOOTER) {
+                ap.changeAnimation("TrooperWalking", 3);
+                System.out.println("Trooper walking");
+            }
+        } else {
+            //idle
+            if (enemy.getAIType() == AITypes.MELEE) {
+                ap.changeAnimation("RaiderIdle", 5);
+                System.out.println("Raider idle");
+            }
+            if (enemy.getAIType() == AITypes.SHOOTER) {
+                ap.changeAnimation("TrooperIdle", 1);
+                System.out.println("Trooper idle");
+            }
         }
     }
 
@@ -99,13 +123,14 @@ public class EnemyProcessor implements IProcessor {
 
                 if (Math.abs(dx) > range) {
                     lineOfSight = false;
+                    action = Behaviours.IDLE;
                 } else {
                     if (dy < yGive) {
                         if (dx < 0) {
                             //Player is left
                             targetDirection = Environments.LEFT;
                         }
-                        if (dx > 0) {
+                        if (dx >= 0) {
                             //Player is right
                             targetDirection = Environments.RIGHT;
                         }
@@ -118,7 +143,7 @@ public class EnemyProcessor implements IProcessor {
                 if (Math.abs(dx) > range * 0.75) {
                     lineOfSight = false;
                     action = Behaviours.WALK;
-                } else if (Math.abs(dx) <= range * 0.75) {
+                } else if (Math.abs(dx) < range * 0.75) {
                     lineOfSight = true;
                     if (enemy.getAIType() == AITypes.SHOOTER) {
                         action = Behaviours.SHOOT;
