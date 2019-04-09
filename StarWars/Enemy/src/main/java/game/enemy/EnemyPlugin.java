@@ -35,23 +35,27 @@ public class EnemyPlugin implements IPluginService {
     public void start(GameData gameData, World world) {
         for (AISpawnPoint spawnPoint : world.getSpawnPoints()) {
             if (spawnPoint.getAIType() == SHOOTER) {
-                Enemy enemy = new Enemy();
-                enemy.add(spawnPoint.getEntity().getPart(PositionPart.class));
+                PositionPart enPos = spawnPoint.getEntity().getPart(PositionPart.class);
+                Enemy enemy = new Enemy(enPos.getX(), enPos.getY());
+                enemy.add(enPos);
                 enemy.add(spawnPoint.getEntity().getPart(PropertiesPart.class));
                 enemy.add(new LifePart(shooterLife));
                 enemy.add(new MovingPart(10, 100, 175));
                 enemyType = "Trooper";
                 enemy.add(new AnimationPart("TrooperIdle", 1, getPath()));
+                enemy.setAIType(SHOOTER);
                 world.addEntity(enemy);
             }
             if (spawnPoint.getAIType() == MELEE) {
-                Enemy enemy = new Enemy();
-                enemy.add(spawnPoint.getEntity().getPart(PositionPart.class));
+                PositionPart enPos = spawnPoint.getEntity().getPart(PositionPart.class);
+                Enemy enemy = new Enemy(enPos.getX(), enPos.getY());
+                enemy.add(enPos);
                 enemy.add(spawnPoint.getEntity().getPart(PropertiesPart.class));
                 enemy.add(new LifePart(meleeLife));
                 enemy.add(new MovingPart(10, 100, 175));
                 enemyType = "Raider";
                 enemy.add(new AnimationPart("RaiderIdle", 6, getPath()));
+                enemy.setAIType(MELEE);
                 world.addEntity(enemy);
             }
         }
