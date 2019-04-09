@@ -28,7 +28,7 @@ public class EnemyPlugin implements IPluginService {
 
     private Enemy enemy;
     private int shooterLife = 1;
-    private int meleeLife = 1;
+    private int meleeLife = 4;
     private String enemyType;
 
     @Override

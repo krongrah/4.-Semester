@@ -59,9 +59,6 @@
   <object id="9" name="SpawnPoint" type="Spawn" x="592.64" y="352" visible="0">
    <point/>
   </object>
-  <object id="10" name="EnemySpawn" type="Spawn" x="882.727" y="383.455" visible="0">
-   <point/>
-  </object>
   <object id="30" name="Ground" type="Dirt" x="448" y="320" width="32" height="32"/>
   <object id="31" name="Ground" type="Dirt" x="992" y="223.908" width="95.485" height="191.824"/>
   <object id="35" name="MeleeEnemySpawn" x="480" y="320" width="32" height="32"/>

@@ -27,7 +27,7 @@ import services.IProcessor;
  */
 public class EnemyProcessor implements IProcessor {
 
-    private int range = 2 * 32; //was 12
+    private int range = 3 * 32; //was 12
     private Environments targetDirection;
     private Behaviours action;
     private boolean lineOfSight;
