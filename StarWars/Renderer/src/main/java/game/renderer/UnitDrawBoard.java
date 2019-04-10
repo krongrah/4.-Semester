@@ -42,7 +42,7 @@ public class UnitDrawBoard {
                 if (entity.hasPart(AnimationPart.class)) {
                     AnimationPart ani = entity.getPart(AnimationPart.class);
                     Sprite sprite = am.getSprite(ani.getCurrentAnimation(), ani.getSpriteSheetPath());
-                    sprite.getTexture().setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
+                    sprite.getTexture().setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest); //This renders pixelart sharper than linear rendering
                     sprite.setPosition(pos.getX() - sprite.getWidth() / 2, pos.getY() - sprite.getHeight() / 2);
                     if (pos.getDirection() == Directions.LEFT) {
                         sprite.flip(true, false);

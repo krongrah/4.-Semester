@@ -45,10 +45,3 @@ TrooperWalking3
   orig: 32, 32
   offset: 0, 0
   index: -1
-TrooperWalking4
-  rotate: false
-  xy: 192, 0
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
