@@ -8,13 +8,14 @@ package game.collision;
 import common.Entity;
 import data.GameData;
 import data.World;
+import entityparts.AnimationPart;
 import entityparts.LifePart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
 import enums.CollisionTypes;
-import static enums.CollisionTypes.SOLIDOBJECT;
 import enums.Directions;
+import interfaces.Projectile;
 import org.openide.util.lookup.ServiceProvider;
 import services.IPostProcessor;
 
@@ -76,14 +77,16 @@ public class Collision implements IPostProcessor {
         PropertiesPart objectProp = object.getPart(PropertiesPart.class);
         PositionPart targetPos = target.getPart(PositionPart.class);
         MovingPart objectMov = object.getPart(MovingPart.class);
-        MovingPart targetMov = object.getPart(MovingPart.class);
         LifePart objLife = object.getPart(LifePart.class);
 
         if (objectMov.isMoving()) {
             if (objectProp.getCollisionType() == CollisionTypes.DAMAGE) {
-                objLife.setIsHit(true);
+                //System.out.println("Object x: " + objectPos.getX() + " Target x: " + targetPos.getX());
+                if(object instanceof Projectile){
+                    //It's a bullet
+                    objLife.setIsHit(true);
+                }
                 if (target.hasPart(LifePart.class)) {
-                    System.out.println("Target takes damage!");
                     LifePart tarLife = target.getPart(LifePart.class);
                     tarLife.setIsHit(true);
                 }
@@ -99,59 +102,3 @@ public class Collision implements IPostProcessor {
         }
     }
 }
-
-//    /**
-//     * Sets a specific collision for the object only in regards to the y-axis
-//     *
-//     * @param object : Any Entity that moves
-//     * @param target : Any obstacle
-//     */
-//    private void setYAxisCollision(Entity object, Entity target) {
-//        PropertiesPart tarProp = target.getPart(PropertiesPart.class);
-//        PositionPart objPos = object.getPart(PositionPart.class);
-//        PositionPart tarPos = target.getPart(PositionPart.class);
-//
-//        object.setCollision(CollisionTypes.SOLIDOBJECT);
-//        if (tarProp.isObstacle()) {
-//            //Entity has bumped into obstacle on the y-axis:
-//            if (tarPos.getY() < objPos.getY()) {
-//                //Roof collision:
-//                object.setCollisionDirection(Directions.UP);
-//            } else {
-//                //Floor collision:
-//                object.setCollisionDirection(Directions.DOWN);
-//            }
-//
-//        }
-//    }
-//
-//    /**
-//     * Sets a specific collision for the object only in regards to the x-axis
-//     *
-//     * @param object : Any Entity that moves
-//     * @param target : Any obstacle
-//     */
-//    private void setXAxisCollision(Entity object, Entity target) {
-//        PropertiesPart tarProp = target.getPart(PropertiesPart.class);
-//        PositionPart objPos = object.getPart(PositionPart.class);
-//        PositionPart tarPos = target.getPart(PositionPart.class);
-//
-//        object.setCollision(CollisionTypes.SOLIDOBJECT);
-//        if (tarProp.isObstacle()) {
-//            //Entity has bumped into obstacle on the x-axis:
-//            if (tarPos.getX() < objPos.getX()) {
-//                //Right collision:
-//                object.setCollisionDirection(Directions.RIGHT);
-//            } else {
-//                //Left collision:
-//                object.setCollisionDirection(Directions.LEFT);
-//            }
-//        }
-//    }
-//
-//    private void resetEntityCollision(Entity object) {
-//        System.out.println("Resetting Collision");
-//        object.setCollision(CollisionTypes.NO_EFFECT);
-//        object.setCollisionDirection(null);
-//    }
-//}

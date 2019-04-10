@@ -80,6 +80,12 @@ public class EnemyProcessor implements IProcessor {
         }
     }
 
+    /**
+     * Ensures that the enemy will move back to its spawnpoint used when the
+     * player no longer is in sight.
+     *
+     * @param enemy
+     */
     private void moveToOrigin(Enemy enemy) {
         PositionPart enPos = enemy.getPart(PositionPart.class);
         MovingPart mp = enemy.getPart(MovingPart.class);
@@ -102,6 +108,13 @@ public class EnemyProcessor implements IProcessor {
         }
     }
 
+    /**
+     * Ensures proper animation of the enemy based on its spritesheet
+     *
+     * @param enemy
+     * @param mp
+     * @param ap
+     */
     private void animate(Enemy enemy, MovingPart mp, AnimationPart ap) {
         if (mp.isAccelerating()) {
             //Walk
@@ -122,6 +135,61 @@ public class EnemyProcessor implements IProcessor {
         }
     }
 
+    /**
+     * Ensures that the straight line distance from the enemy to the player is
+     * unobstructed by obstacles
+     *
+     * @param world
+     * @param enemy
+     * @return
+     */
+    private boolean unobstructed(World world, Enemy enemy, float dx) {
+        PositionPart enemyPos = enemy.getPart(PositionPart.class);
+        for (Entity entity : world.getEntities()) {
+            if (!(entity instanceof Targetable)) {
+
+                PositionPart entPos = entity.getPart(PositionPart.class);
+                PropertiesPart entProp = entity.getPart(PropertiesPart.class);
+
+                if (entProp.isObstacle() && entPos.getY() == enemyPos.getY()) {
+                    //On the same plain
+                    //System.out.println("Entity x: " + entPos.getX() + " Enemy x: " + enemyPos.getX() + " dx: " + dx);
+
+                    //The first obstacle left or right will mean that the enemy does not have an unobstructed view
+                    if (dx > 0) {
+                        targetDirection = Environments.RIGHT;
+
+                        //System.out.println("Player right");
+                        //check for the first obstacle with a lower x value than the enemy
+                        if (entPos.getX() > enemyPos.getX()) {
+                            //Entity is within the range that has to bee checked
+                            return false;
+                        }
+                    }
+
+                    if (dx < 0) {
+                        targetDirection = Environments.LEFT;
+
+                        //System.out.println("Player left");
+                        //Same but higher x values.
+                        if (entPos.getX() < enemyPos.getX()) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Analyzes the environment around the enemy to find the location of the
+     * player, and the distance from the enemy to the player. This is used to
+     * determin actions, walking, attacking, idle..
+     *
+     * @param world
+     * @param enemy
+     */
     private void analyze(World world, Enemy enemy) {
         //Draw straight line between enemy and player
         //Meassure distance to ensure player is within radius
@@ -137,44 +205,29 @@ public class EnemyProcessor implements IProcessor {
                 float dx = plPos.getX() - enPos.getX();
                 float dy = plPos.getY() - enPos.getY();
                 float yGive = enProp.getHeight() / 2;
+                if (dy < yGive) {
+                    //Decide on an action:
+                    if (Math.abs(dx) > range) {
+                        lineOfSight = false;
+                        action = Behaviours.WALK;
+                    }
+                    if (Math.abs(dx) < range) {
+                        lineOfSight = unobstructed(world, enemy, dx);
 
-                if (Math.abs(dx) > range) {
-                    lineOfSight = false;
-                    action = Behaviours.IDLE;
-                } else {
-                    if (dy < yGive) {
-                        if (dx < 0) {
-                            //Player is left
-                            targetDirection = Environments.LEFT;
-                        }
-                        if (dx >= 0) {
-                            //Player is right
-                            targetDirection = Environments.RIGHT;
+                        if (lineOfSight) {
+                            if (enemy.getAIType() == AITypes.SHOOTER) {
+                                action = Behaviours.SHOOT;
+                            }
+                            if (enemy.getAIType() == AITypes.MELEE) {
+                                action = Behaviours.MELEE;
+                            }
                         }
                     } else {
-                        lineOfSight = false;
+                        action = Behaviours.IDLE;
                     }
-                }
-
-                //Decide on an action:
-                if (Math.abs(dx) > range * 0.75) {
-                    lineOfSight = false;
-                    action = Behaviours.WALK;
-                }
-                if (Math.abs(dx) < range * 0.75) {
-                    lineOfSight = true;
-                    if (enemy.getAIType() == AITypes.SHOOTER) {
-                        action = Behaviours.SHOOT;
-                    }
-                    if (enemy.getAIType() == AITypes.MELEE) {
-                        action = Behaviours.MELEE;
-                    }
-                } else {
-                    action = Behaviours.IDLE;
                 }
 
             }
         }
     }
-
 }
