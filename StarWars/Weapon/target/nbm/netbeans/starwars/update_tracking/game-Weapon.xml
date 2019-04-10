@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="game.Weapon">
-    <module_version install_time="1554900534658" last="true" origin="installer" specification_version="1.0">
+    <module_version install_time="1554902809254" last="true" origin="installer" specification_version="1.0">
         <file crc="3285511707" name="config/Modules/game-Weapon.xml"/>
-        <file crc="860703512" name="modules/game-Weapon.jar"/>
+        <file crc="3545902016" name="modules/game-Weapon.jar"/>
     </module_version>
 </module>
