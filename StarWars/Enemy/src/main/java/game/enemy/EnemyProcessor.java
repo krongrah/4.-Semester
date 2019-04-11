@@ -12,10 +12,13 @@ import entityparts.AnimationPart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
+import entityparts.WeaponPart;
 import enums.AITypes;
 import enums.Behaviours;
+import enums.Directions;
 import enums.Environments;
 import interfaces.Targetable;
+import java.util.Random;
 import org.openide.util.lookup.ServiceProvider;
 import services.IProcessor;
 
@@ -27,7 +30,7 @@ import services.IProcessor;
  */
 public class EnemyProcessor implements IProcessor {
 
-    private int range = 5 * 32; //was 12
+    private int range = 3 * 32; //was 12
     private Environments targetDirection;
     private Behaviours action;
     private boolean lineOfSight;
@@ -39,13 +42,21 @@ public class EnemyProcessor implements IProcessor {
             Enemy enemy = (Enemy) en;
             MovingPart mp = enemy.getPart(MovingPart.class);
             AnimationPart ap = enemy.getPart(AnimationPart.class);
+            PositionPart enPos = enemy.getPart(PositionPart.class);
             analyze(world, enemy);
 
             if (targetDirection == Environments.LEFT) {
                 if (lineOfSight == true) {
                     //Attack
                     if (enemy.getAIType() == AITypes.SHOOTER) {
-                        System.out.println("Pew!");
+                        WeaponPart wp = enemy.getPart(WeaponPart.class);
+
+                        Random rand = new Random();
+                        int random = rand.nextInt(10);
+                        if (random >= 7) {
+                            wp.setAttacking(true);
+                            enPos.setDirection(Directions.LEFT);
+                        }
                     }
                     if (enemy.getAIType() == AITypes.MELEE) {
                         //Walk towards target
@@ -55,6 +66,10 @@ public class EnemyProcessor implements IProcessor {
                 }
                 if (lineOfSight != true) {
                     moveToOrigin(enemy);
+                    if (enemy.hasPart(WeaponPart.class)) {
+                        WeaponPart wp = enemy.getPart(WeaponPart.class);
+                        wp.setAttacking(false);
+                    }
                 }
             }
 
@@ -66,11 +81,17 @@ public class EnemyProcessor implements IProcessor {
                         mp.setRight(true);
                     }
                     if (enemy.getAIType() == AITypes.SHOOTER) {
-                        System.out.println("Pew!");
+                        WeaponPart wp = enemy.getPart(WeaponPart.class);
+                        wp.setAttacking(true);
+                        enPos.setDirection(Directions.RIGHT);
                     }
                 }
                 if (lineOfSight != true) {
                     moveToOrigin(enemy);
+                    if (enemy.hasPart(WeaponPart.class)) {
+                        WeaponPart wp = enemy.getPart(WeaponPart.class);
+                        wp.setAttacking(false);
+                    }
                 }
             }
 
@@ -89,7 +110,7 @@ public class EnemyProcessor implements IProcessor {
     private void moveToOrigin(Enemy enemy) {
         PositionPart enPos = enemy.getPart(PositionPart.class);
         MovingPart mp = enemy.getPart(MovingPart.class);
-        PropertiesPart enProp = enemy.getPart(PropertiesPart.class);
+        //PropertiesPart enProp = enemy.getPart(PropertiesPart.class);
 
         if (enPos.getX() - enemy.getOriginX() > 2) {
             //Move left
@@ -152,28 +173,30 @@ public class EnemyProcessor implements IProcessor {
                 PropertiesPart entProp = entity.getPart(PropertiesPart.class);
 
                 if (entProp.isObstacle() && entPos.getY() == enemyPos.getY()) {
-                    //On the same plain
-                    //System.out.println("Entity x: " + entPos.getX() + " Enemy x: " + enemyPos.getX() + " dx: " + dx);
+                    if (Math.abs(dx) <= range) {
+                        //On the same plain
+                        //System.out.println("Entity x: " + entPos.getX() + " Enemy x: " + enemyPos.getX() + " dx: " + dx);
 
-                    //The first obstacle left or right will mean that the enemy does not have an unobstructed view
-                    if (dx > 0) {
-                        targetDirection = Environments.RIGHT;
+                        //The first obstacle left or right will mean that the enemy does not have an unobstructed view
+                        if (dx > 0) {
+                            targetDirection = Environments.RIGHT;
 
-                        //System.out.println("Player right");
-                        //check for the first obstacle with a lower x value than the enemy
-                        if (entPos.getX() > enemyPos.getX()) {
-                            //Entity is within the range that has to bee checked
-                            return false;
+                            //System.out.println("Player right");
+                            //check for the first obstacle with a lower x value than the enemy
+                            if (entPos.getX() > enemyPos.getX()) {
+                                //Entity is within the range that has to bee checked
+                                return false;
+                            }
                         }
-                    }
 
-                    if (dx < 0) {
-                        targetDirection = Environments.LEFT;
+                        if (dx < 0) {
+                            targetDirection = Environments.LEFT;
 
-                        //System.out.println("Player left");
-                        //Same but higher x values.
-                        if (entPos.getX() < enemyPos.getX()) {
-                            return false;
+                            //System.out.println("Player left");
+                            //Same but higher x values.
+                            if (entPos.getX() > enemyPos.getX()) {
+                                return false;
+                            }
                         }
                     }
                 }

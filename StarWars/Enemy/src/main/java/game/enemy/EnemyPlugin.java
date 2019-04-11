@@ -14,6 +14,7 @@ import entityparts.LifePart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
+import entityparts.WeaponPart;
 import static enums.AITypes.MELEE;
 import static enums.AITypes.SHOOTER;
 import org.openide.util.lookup.ServiceProvider;
@@ -41,8 +42,8 @@ public class EnemyPlugin implements IPluginService {
                 enemy.add(spawnPoint.getEntity().getPart(PropertiesPart.class));
                 enemy.add(new LifePart(shooterLife));
                 enemy.add(new MovingPart(10, 100, 175));
-                enemyType = "Trooper";
                 enemy.add(new AnimationPart("TrooperIdle", 1, getPath()));
+                enemy.add(new WeaponPart());
                 enemy.setAIType(SHOOTER);
                 world.addEntity(enemy);
             }
@@ -53,7 +54,6 @@ public class EnemyPlugin implements IPluginService {
                 enemy.add(spawnPoint.getEntity().getPart(PropertiesPart.class));
                 enemy.add(new LifePart(meleeLife));
                 enemy.add(new MovingPart(10, 100, 175));
-                enemyType = "Raider";
                 enemy.add(new AnimationPart("RaiderIdle", 6, getPath()));
                 enemy.setAIType(MELEE);
                 world.addEntity(enemy);
@@ -70,7 +70,7 @@ public class EnemyPlugin implements IPluginService {
 
     @Override
     public String getPath() {
-        return EnemyPlugin.class.getResource("/sprites/" + enemyType + ".txt").getPath();
+        return EnemyPlugin.class.getResource("/sprites/" + "Enemies" + ".txt").getPath();
     }
 
 }
