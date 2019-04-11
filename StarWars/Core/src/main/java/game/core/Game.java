@@ -30,7 +30,7 @@ import services.IRenderer;
  *
  * @author ahmadhamid
  */
-public class Game implements ApplicationListener {
+public final class Game implements ApplicationListener {
 
     private static OrthographicCamera cam;
     private ShapeRenderer sr;
