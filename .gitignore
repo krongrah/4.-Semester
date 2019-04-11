@@ -260,3 +260,4 @@ $RECYCLE.BIN/
 StarWars/SilentUpdate/src/main/resources/org/netbeans/modules/autoupdate/silentupdate/resources/Bundle.properties
 /StarWars/Collision/target/
 /StarWars/Weapon/target/
+/StarWars/sound/target/

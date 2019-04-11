@@ -74,6 +74,7 @@
         <module>LibGDX</module>
         <module>Collision</module>
         <module>Weapon</module>
+        <module>sound</module>
     </modules>
 
     <properties>
