@@ -49,14 +49,12 @@ public class PlayState extends GameState {
     public PlayState(GameStateManager gameStateManager) {
         
         super(gameStateManager);
-        System.out.println("Setting new playstate");
     }
     
     @Override
     public void init(GameData gameData, World world) {
         this.gameData = gameData;
         this.world = world;
-        System.out.println("Now initing");
         renderer = new Renderer(world);
         renderer.setBackgroundColor(125, 190, 225, 1);
 
@@ -98,7 +96,6 @@ public class PlayState extends GameState {
 
     @Override
     public void update() {
-        System.out.println("Updating");
         // Update
         for (IProcessor entityProcessorService : getEntityProcessingServices()) {
             entityProcessorService.process(gameData, world);
@@ -111,7 +108,6 @@ public class PlayState extends GameState {
 
     @Override
     public void draw() {
-        System.out.println("Drawing");
         for (Entity entity : world.getEntities()) {
 
         }
