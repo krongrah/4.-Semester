@@ -47,23 +47,25 @@ public class Collision implements IPostProcessor {
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
 
                     if (!object.equals(target)) {
-                        if (objPos.getX() < tarPos.getX()) {
-                            //Check for right side collision exclusively                        
-                            float dxR = (tarPos.getX() - objPos.getX()) - (tarProp.getWidth() / 2 + objProp.getWidth() / 2);
-                            if (dxR < 0) {
-                                //Collision detected:
-                                collide(object, target, Directions.RIGHT);
+                        if (objPos.getY() == tarPos.getY()) {
+                            if (objPos.getX() < tarPos.getX()) {
+                                //Check for right side collision exclusively                        
+                                float dxR = (tarPos.getX() - objPos.getX()) - (tarProp.getWidth() / 2 + objProp.getWidth() / 2);
+                                if (dxR < 0) {
+                                    //Collision detected:
+                                    collide(object, target, Directions.RIGHT);
+                                }
                             }
-                        }
-                        if (objPos.getX() > tarPos.getX()) {
-                            float dxL = (objPos.getX() - tarPos.getX()) - (objProp.getWidth() / 2 + tarProp.getWidth() / 2);
-                            //Check for left side collision exclusively
-                            if (dxL < 0) {
-                                //Collision detected:
-                                collide(object, target, Directions.LEFT);
+                            if (objPos.getX() > tarPos.getX()) {
+                                float dxL = (objPos.getX() - tarPos.getX()) - (objProp.getWidth() / 2 + tarProp.getWidth() / 2);
+                                //Check for left side collision exclusively
+                                if (dxL < 0) {
+                                    //Collision detected:
+                                    collide(object, target, Directions.LEFT);
+                                }
                             }
-                        }
 
+                        }
                     }
                 }
             }
@@ -82,7 +84,7 @@ public class Collision implements IPostProcessor {
         if (objectMov.isMoving()) {
             if (objectProp.getCollisionType() == CollisionTypes.DAMAGE) {
                 //System.out.println("Object x: " + objectPos.getX() + " Target x: " + targetPos.getX());
-                if(object instanceof Projectile){
+                if (object instanceof Projectile) {
                     //It's a bullet
                     objLife.setIsHit(true);
                 }
