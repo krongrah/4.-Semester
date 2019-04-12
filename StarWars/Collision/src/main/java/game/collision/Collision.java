@@ -8,7 +8,6 @@ package game.collision;
 import common.Entity;
 import data.GameData;
 import data.World;
-import entityparts.AnimationPart;
 import entityparts.LifePart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
@@ -47,10 +46,10 @@ public class Collision implements IPostProcessor {
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
 
                     if (!object.equals(target)) {
-                        if (objPos.getY() == tarPos.getY()) {
+                        if (objPos.getY() >= (tarPos.getY() - (tarProp.getHeight() / 2)) && objPos.getY() <= (tarPos.getY() + (tarProp.getHeight() / 2))) {
                             if (objPos.getX() < tarPos.getX()) {
-                                //Check for right side collision exclusively                        
-                                float dxR = (tarPos.getX() - objPos.getX()) - (tarProp.getWidth() / 2 + objProp.getWidth() / 2);
+                                //Check for right side collision exclusively
+                                float dxR = (tarPos.getX() - objPos.getX()) - (tarProp.getWidth() / 2 - objProp.getWidth() / 2);
                                 if (dxR < 0) {
                                     //Collision detected:
                                     collide(object, target, Directions.RIGHT);
@@ -64,7 +63,6 @@ public class Collision implements IPostProcessor {
                                     collide(object, target, Directions.LEFT);
                                 }
                             }
-
                         }
                     }
                 }

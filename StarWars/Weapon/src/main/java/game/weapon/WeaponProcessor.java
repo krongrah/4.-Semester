@@ -57,7 +57,7 @@ public class WeaponProcessor implements IProcessor {
             Bullet b = new Bullet();
             MovingPart mp = new MovingPart(0, 1000, 50);
 
-            PositionPart pp = new PositionPart(pos.getX() + prop.getWidth() / 2, pos.getY());
+            PositionPart pp = new PositionPart(pos.getX() + prop.getWidth(), pos.getY());
             b.add(pp);
             b.add(mp);
             b.add(new LifePart(1));
