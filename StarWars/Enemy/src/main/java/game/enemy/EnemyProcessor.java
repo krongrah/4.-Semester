@@ -30,7 +30,7 @@ import services.IProcessor;
  */
 public class EnemyProcessor implements IProcessor {
 
-    private int range = 3 * 32; //was 12
+    private int range = 4 * 32; //was 12
     private Environments targetDirection;
     private Behaviours action;
     private boolean lineOfSight;
@@ -175,14 +175,14 @@ public class EnemyProcessor implements IProcessor {
                 if (entProp.isObstacle() && enemyPos.getY() == entPos.getY()) {
                     if (Math.abs(dx) <= range) {
                         //On the same plain
-                        System.out.println("Entity x: " + entPos.getX() + " Enemy x: " + enemyPos.getX() + " dx: " + dx);
-                        System.out.println("Entity y: " + entPos.getY() + " Enemy y: " + enemyPos.getY());
+                        //System.out.println("Entity x: " + entPos.getX() + " Enemy x: " + enemyPos.getX() + " dx: " + dx);
+                        //System.out.println("Entity y: " + entPos.getY() + " Enemy y: " + enemyPos.getY());
 
                         //The first obstacle left or right will mean that the enemy does not have an unobstructed view
                         if (dx > 0) {
                             targetDirection = Environments.RIGHT;
 
-                            System.out.println("Player right");
+                            //System.out.println("Player right");
                             //check for the first obstacle with a lower x value than the enemy
                             if (entPos.getX() > enemyPos.getX() && entPos.getX() <= (enemyPos.getX() + range) && enemyPos.getY() == entPos.getY()) {
                                 //Entity is within the range that has to bee checked
@@ -193,7 +193,7 @@ public class EnemyProcessor implements IProcessor {
                         if (dx < 0) {
                             targetDirection = Environments.LEFT;
 
-                            System.out.println("Player left");
+                            //System.out.println("Player left");
                             //Same but higher x values.
                             if (entPos.getX() < enemyPos.getX()  && entPos.getX() >= (enemyPos.getX() + range) && enemyPos.getY() == entPos.getY()) {
                                 return false;

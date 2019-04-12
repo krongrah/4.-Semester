@@ -47,19 +47,20 @@ public class Collision implements IPostProcessor {
 
                     if (!object.equals(target)) {
                         if (objPos.getY() >= (tarPos.getY() - (tarProp.getHeight() / 2)) && objPos.getY() <= (tarPos.getY() + (tarProp.getHeight() / 2))) {
+                            //System.out.println(((objProp.getWidth() / 2) - objPos.getX()) - ((tarProp.getWidth() / 2) + tarPos.getX()));
                             if (objPos.getX() < tarPos.getX()) {
                                 //Check for right side collision exclusively
-                                float dxR = (tarPos.getX() - objPos.getX()) - (tarProp.getWidth() / 2 - objProp.getWidth() / 2);
-                                if (dxR < 0) {
+                                //float dxR = (tarPos.getX() - objPos.getX()) - (tarProp.getWidth() / 2 - objProp.getWidth() / 2);
+                                //if (dxR < 0) {
+                                if ((tarPos.getX() - (tarProp.getWidth() / 2)) - ((objProp.getWidth() / 2) + objPos.getX()) <= 1) {
                                     //Collision detected:
                                     collide(object, target, Directions.RIGHT);
                                 }
                             }
                             if (objPos.getX() > tarPos.getX()) {
-                                float dxL = (objPos.getX() - tarPos.getX()) - (objProp.getWidth() / 2 + tarProp.getWidth() / 2);
+                                //float dxL = (objPos.getX() - tarPos.getX()) - (objProp.getWidth() / 2 + tarProp.getWidth() / 2);
                                 //Check for left side collision exclusively
-                                if (dxL < 0) {
-                                    //Collision detected:
+                                if ((objPos.getX() - (objProp.getWidth() / 2)) - ((tarProp.getWidth() / 2) + tarPos.getX()) <= 1) {
                                     collide(object, target, Directions.LEFT);
                                 }
                             }
