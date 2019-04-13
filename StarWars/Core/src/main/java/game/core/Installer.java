@@ -26,6 +26,7 @@ public class Installer extends ModuleInstall {
         cfg.useGL30 = false;
         cfg.resizable = true;
         cfg.fullscreen = false;
+        cfg.vSyncEnabled = false;
         cfg.x = 1;
         cfg.y = 1;
 

@@ -33,15 +33,14 @@ public class Renderer implements IRenderer {
 
     @Override
     public void render(World world, GameData gameData) {
-        //Long time=System.currentTimeMillis();
         Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a); //Gets the RGBA values of the backgound Color
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.graphics.setVSync(false);
 
         cam.update(gameData);
         map.render(gameData, cam.getProjectionMatrix());
         board.draw(world, gameData, cam.getProjectionMatrix());
-        //System.out.println("renderer: "+(System.currentTimeMillis()-time));
     }
 
     @Override

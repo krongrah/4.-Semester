@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="game.Core">
-    <module_version install_time="1554978769371" last="true" origin="installer" specification_version="1.0">
+    <module_version install_time="1555160708122" last="true" origin="installer" specification_version="1.0">
         <file crc="2887566081" name="config/Modules/game-Core.xml"/>
-        <file crc="3738985807" name="modules/game-Core.jar"/>
+        <file crc="3624685186" name="modules/game-Core.jar"/>
+        <file crc="3322944812" name="update_tracking/game-Core.xml"/>
     </module_version>
 </module>
