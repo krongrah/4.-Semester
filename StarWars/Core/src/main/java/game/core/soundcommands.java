@@ -13,9 +13,8 @@ import java.util.HashMap;
  *
  * @author Naik
  */
-public class soundcommands {
-    
-    	private static HashMap<String, Sound> sounds;
+public class soundCommands {
+    private static HashMap<String, Sound> sounds;
 	
 	static {
 		sounds = new HashMap<String, Sound>();

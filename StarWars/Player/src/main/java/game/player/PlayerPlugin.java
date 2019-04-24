@@ -13,8 +13,10 @@ import entityparts.LifePart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
+import entityparts.SoundPart;
 import entityparts.WeaponPart;
 import enums.CollisionTypes;
+import java.io.File;
 import org.openide.util.lookup.ServiceProvider;
 import services.IPluginService;
 import sprites.Sprites;
@@ -39,6 +41,7 @@ public class PlayerPlugin implements IPluginService {
         player.add(new MovingPart(10, 175, 250));
         player.add(new WeaponPart());
         player.add(new AnimationPart("Lukeidle", 5, getPath()));
+        //player.add(new SoundPart(new File(PlayerPlugin.class.getResource("/sounds/Shot.mp3").getFile())));
 
         world.addEntity(player);
     }

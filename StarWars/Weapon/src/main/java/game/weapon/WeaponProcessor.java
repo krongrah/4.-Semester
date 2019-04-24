@@ -13,9 +13,11 @@ import entityparts.LifePart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
+import entityparts.SoundPart;
 import entityparts.WeaponPart;
 import enums.CollisionTypes;
 import enums.Directions;
+import java.io.File;
 import org.openide.util.lookup.ServiceProvider;
 import services.IProcessor;
 
@@ -35,12 +37,6 @@ public class WeaponProcessor implements IProcessor {
             if (entity.hasPart(WeaponPart.class)) {
                 attack(entity, gameData, world);
             }
-        }
-
-        //processes bullets
-        for (Entity bullet : world.getEntities(Bullet.class)) {
-            MovingPart mp = bullet.getPart(MovingPart.class);
-            mp.process(gameData, bullet);
         }
     }
 
@@ -62,6 +58,9 @@ public class WeaponProcessor implements IProcessor {
             b.add(new LifePart(1));
             b.add(new PropertiesPart(5, 3, CollisionTypes.SOLIDOBJECT,false));
             b.add(new AnimationPart("bullet", 0, getPath()));
+            b.add(new SoundPart(new File(WeaponPlugin.class.getResource("/sounds/shot.mp3").getFile())));
+            
+            playSound(b);
             world.addEntity(b);
             
             if (pos.getDirection().equals(Directions.RIGHT)) {
@@ -73,6 +72,13 @@ public class WeaponProcessor implements IProcessor {
             
         }
 
+    }
+    
+    public void playSound(Entity entity){
+        SoundPart sp = entity.getPart(SoundPart.class);
+        if(sp !=null){
+        sp.startPlaying();
+     }
     }
 
     private String getPath() {

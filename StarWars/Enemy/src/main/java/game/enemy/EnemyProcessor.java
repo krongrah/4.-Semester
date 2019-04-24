@@ -25,17 +25,11 @@ public class EnemyProcessor implements IProcessor {
     @Override
     public void process(GameData gameData, World world) {
         
-        
-        for (Entity enemy : world.getEntities(Enemy.class)) {
-            //PositionPart pos=enemy.getPart(PositionPart.class);
-            
-            MovingPart mp = enemy.getPart(MovingPart.class);
-
-            mp.process(gameData, enemy);
+ 
             
         }
         
         
     }
     
-}
+

@@ -34,10 +34,9 @@
             <version>${netbeans.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.badlogicgames.gdx</groupId>
-            <artifactId>gdx</artifactId>
-            <version>1.9.6</version>
-            <type>jar</type>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Common</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <properties>

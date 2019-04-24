@@ -14,6 +14,7 @@ import static data.GameKeys.SPACE;
 import entityparts.AnimationPart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
+import entityparts.SoundPart;
 import entityparts.WeaponPart;
 import org.openide.util.lookup.ServiceProvider;
 import services.IProcessor;
@@ -36,14 +37,17 @@ public class PlayerProcessor implements IProcessor {
             MovingPart mp = player.getPart(MovingPart.class);
             WeaponPart wp = player.getPart(WeaponPart.class);
             AnimationPart ap = player.getPart(AnimationPart.class);
+            
 
             //Sets whether the player is going left or right
             mp.setLeft(gameData.getKeys().isDown(A));
             mp.setRight(gameData.getKeys().isDown(D));
             wp.setAttacking(gameData.getKeys().isDown(SPACE));
 
+
+            
+
             //Now processes the movement of the player based on the keys
-            mp.process(gameData, player);
             if (mp.isAccelerating()) {
                 ap.changeAnimation("Lukewalking", 7);
             } else {
@@ -52,8 +56,6 @@ public class PlayerProcessor implements IProcessor {
 
             gameData.setFocusX(pp.getX());
             gameData.setFocusY(pp.getY());
-
-            ap.process(gameData, player);
 
         }
 

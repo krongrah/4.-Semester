@@ -6,8 +6,10 @@
 package data;
 
 import common.Entity;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -29,6 +31,8 @@ public class World {
      * the Entities by giving an ID
      */
     private final Map<String, Entity> entityMap = new ConcurrentHashMap<>();
+    
+    private LinkedList<File> soundList = new LinkedList<>();
 
     /**
      * Adds the given Entity to the world
@@ -76,6 +80,18 @@ public class World {
             }
         }
         return r;
+    }
+
+    public void addSound(File sound) {
+        soundList.add(sound);
+    }
+    
+    public void clearSoundList(){
+        soundList = new LinkedList<>();
+    }
+    
+    public LinkedList<File> getSoundList(){
+        return soundList;
     }
 
 }

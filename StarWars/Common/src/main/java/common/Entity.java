@@ -9,6 +9,7 @@ import entityparts.EntityPart;
 import enums.CollisionTypes;
 import enums.Directions;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -45,6 +46,10 @@ public class Entity implements Serializable {
 
     public boolean hasPart(Class partClass) {
         return parts.containsKey(partClass);
+    }
+
+    public Collection<EntityPart> getAllParts() {
+        return parts.values();
     }
 
 }

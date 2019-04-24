@@ -13,9 +13,12 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import common.Entity;
 import data.GameData;
 import data.World;
+import entityparts.EntityPart;
 import game.renderer.Renderer;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.openide.util.Lookup;
@@ -45,6 +48,8 @@ public class Game implements ApplicationListener {
     private List<IProcessor> entityProcessors = new ArrayList<>();
 //    private List<IPluginService> entityPlugins = new ArrayList<>();
     private World world;
+    
+    private HashMap<File, String> soundMap = new HashMap();
 
     @Override
     public void create() {
@@ -113,6 +118,28 @@ public class Game implements ApplicationListener {
             entityProcessorService.process(gameData, world);
         }
         
+        for ( File soundFile : world.getSoundList()){
+            if(soundMap.containsKey(soundFile)){
+                soundCommands.play(soundMap.get(soundFile));
+                
+            }else{
+                soundMap.put(soundFile, soundFile.getName());
+                soundCommands.load(soundFile.getPath(), soundFile.getName());
+                soundCommands.play(soundMap.get(soundFile));
+            }
+        }
+        world.clearSoundList();
+        
+        // Calls entityparts process. This should always be before post processing
+        for (Entity ent : world.getEntities()){
+            for (EntityPart ep : ent.getAllParts()){
+                ep.process(gameData, ent);
+            }
+                    
+        }
+                
+        
+        
         for (IPostProcessor postProcessor : postProcessors) {
             postProcessor.process(gameData, world);
         }
@@ -142,12 +169,14 @@ public class Game implements ApplicationListener {
 
     private Collection<? extends IProcessor> getEntityProcessingServices() {
         return lookup.lookupAll(IProcessor.class);
-//        return SPILocator.locateAll(IProcessor.class);
+        //return SPILocator.locateAll(IProcessor.class);
     }
 
-//    private Collection<? extends IPostProcessor> getEntityPostProcessingServices() {
+    private Collection<? extends IPostProcessor> getEntityPostProcessingServices() {
+        return lookup.lookupAll(IPostProcessor.class);
+        
 //        return SPILocator.locateAll(IPostProcessor.class);
-//    }
+    }
     private final LookupListener lookupListener = new LookupListener() {
         @Override
         public void resultChanged(LookupEvent le) {
