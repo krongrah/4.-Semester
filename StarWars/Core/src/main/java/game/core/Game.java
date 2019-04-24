@@ -143,6 +143,8 @@ public class Game implements ApplicationListener {
         for (IPostProcessor postProcessor : postProcessors) {
             postProcessor.process(gameData, world);
         }
+        
+        world.performDeletion();
     }
 
     private void draw() {

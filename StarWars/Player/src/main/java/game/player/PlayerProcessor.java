@@ -14,8 +14,10 @@ import static data.GameKeys.SPACE;
 import entityparts.AnimationPart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
+import entityparts.SelfDestructPart;
 import entityparts.SoundPart;
 import entityparts.WeaponPart;
+import java.io.File;
 import org.openide.util.lookup.ServiceProvider;
 import services.IProcessor;
 
@@ -41,7 +43,27 @@ public class PlayerProcessor implements IProcessor {
 
             //Sets whether the player is going left or right
             mp.setLeft(gameData.getKeys().isDown(A));
+            
+            //Adding sounds through entities
+            if(gameData.getKeys().isDown(A)){
+                Entity explosion = new Entity();
+                explosion.add(new SelfDestructPart(0));
+                SoundPart sp = new SoundPart(new File(PlayerPlugin.class.getResource("/sounds/explosion.mp3").getFile()));
+                explosion.add(sp);
+                sp.startPlaying();
+                world.addEntity(explosion);
+                
+            }
+                
+            
             mp.setRight(gameData.getKeys().isDown(D));
+            //adding sounds through world
+            if(gameData.getKeys().isDown(D)){
+                world.addSound(new File(PlayerPlugin.class.getResource("/sounds/jump.mp3").getFile()));
+
+                
+            }
+            
             wp.setAttacking(gameData.getKeys().isDown(SPACE));
 
 

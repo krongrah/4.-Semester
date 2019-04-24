@@ -39,11 +39,12 @@ public class Collision implements IPostProcessor {
             PositionPart objPos = object.getPart(PositionPart.class);
             PropertiesPart objProp = object.getPart(PropertiesPart.class);
 
-            if (!objProp.isObstacle()) {
+            if (objProp!= null && !objProp.isObstacle()) {
                 //System.out.println(((MovingPart) (object.getPart(MovingPart.class))).isMoving());
                 for (Entity target : world.getEntities()) {
                     PositionPart tarPos = target.getPart(PositionPart.class);
                     PropertiesPart tarProp = target.getPart(PropertiesPart.class);
+                    if (tarProp == null) continue;
                     if (!object.equals(target) && tarProp.getCollisionType() == CollisionTypes.SOLIDOBJECT && objProp.getCollisionType() == CollisionTypes.SOLIDOBJECT) {
                         if (objPos.getX() < tarPos.getX()) {
                             //Check for right side collision exclusively                        

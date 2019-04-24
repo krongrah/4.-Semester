@@ -36,7 +36,7 @@ public class UnitDrawBoard {
         batch.begin();
         for (Entity entity : world.getEntities()) {
             PropertiesPart prop = entity.getPart(PropertiesPart.class);
-            if (!prop.isObstacle()) {
+            if (prop!=null && !prop.isObstacle()) {
                 PositionPart pos = entity.getPart(PositionPart.class);
                 AnimationPart ani = entity.getPart(AnimationPart.class);
                 Sprite sprite = am.getSprite(ani.getCurrentAnimation(), ani.getSpriteSheetPath());

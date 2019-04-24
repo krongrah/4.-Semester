@@ -9,6 +9,7 @@ import common.Entity;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,8 @@ public class World {
      */
     private final Map<String, Entity> entityMap = new ConcurrentHashMap<>();
     
+    private HashSet<Entity> deletionSet = new HashSet<>();
+    
     private LinkedList<File> soundList = new LinkedList<>();
 
     /**
@@ -46,12 +49,20 @@ public class World {
     }
 
     /**
-     * Removes the given Entity from the world
-     *
+     * Adds the entity to the list that removes it from the world later
+     * To avoid concurrent access issues.
      * @param entity Is the entity to be removed
      */
     public void removeEntity(Entity entity) {
-        entityMap.remove(entity.getID());
+        deletionSet.add(entity);
+        
+    }
+    //The actual deletion
+    public void performDeletion(){
+        for (Entity e : deletionSet){
+            entityMap.remove(e.getID());
+        }
+        deletionSet.clear();
     }
 
     /**
