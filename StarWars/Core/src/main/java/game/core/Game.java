@@ -43,7 +43,7 @@ public class Game implements ApplicationListener {
 
         draw();
         
-        gameStateManager.handleInput();
+        handleInput();
 
 //        gameData.getKeys().update();
 //        renderer.render(world, gameData);
@@ -58,6 +58,10 @@ public class Game implements ApplicationListener {
         gameStateManager.draw();
     }
 
+    private void handleInput() {
+        gameStateManager.handleInput();
+    }
+    
     @Override
     public void resize(int width, int height) {
     }

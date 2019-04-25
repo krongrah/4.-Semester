@@ -15,13 +15,20 @@ import game.core.GameStateManager;
  */
 public class MenuState extends GameState {
 
+    private GameData gameData;
+    private World world;
+    
     public MenuState(GameStateManager gameStateManager) {
         super(gameStateManager);
     }
     
     @Override
     public void init(GameData gameData, World world) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.gameData = gameData;
+        this.world = world;
+        
+        
+        
     }
 
     @Override
