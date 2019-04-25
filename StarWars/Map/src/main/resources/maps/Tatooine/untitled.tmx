@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" backgroundcolor="#7dbeff" nextlayerid="3" nextobjectid="51">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" backgroundcolor="#7dbeff" nextlayerid="3" nextobjectid="53">
  <tileset firstgid="1" source="tatooine_tileset.tsx"/>
  <layer id="1" name="Tile Layer 1" width="50" height="50">
   <data encoding="csv">
@@ -64,5 +64,7 @@
   <object id="38" name="MeleeEnemySpawn" x="384" y="320" width="32" height="32"/>
   <object id="49" name="Ground" type="Dirt" x="736" y="191.25" width="128" height="128"/>
   <object id="50" name="Ground" type="Dirt" x="384" y="224" width="96" height="32"/>
+  <object id="51" name="MeleeEnemySpawn" x="480" y="320" width="32" height="32"/>
+  <object id="52" name="ShooterEnemySpawn" x="928" y="320" width="32" height="32"/>
  </objectgroup>
 </map>
