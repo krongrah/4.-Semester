@@ -117,7 +117,7 @@ public class Game implements ApplicationListener {
         for (IProcessor entityProcessorService : getEntityProcessingServices()) {
             entityProcessorService.process(gameData, world);
         }
-        
+        //Goes through the list of sound files and plays them
         for ( File soundFile : world.getSoundList()){
             if(soundMap.containsKey(soundFile)){
                 soundCommands.play(soundMap.get(soundFile));

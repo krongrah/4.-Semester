@@ -14,7 +14,7 @@ import org.openide.util.lookup.ServiceProvider;
 
 @ServiceProvider(service = IPostProcessor.class)
 /**
- *
+ *With the help of selfDestrctPart it removes an entity.
  * @author Naik
  */
 public class Exterminator implements IPostProcessor {
