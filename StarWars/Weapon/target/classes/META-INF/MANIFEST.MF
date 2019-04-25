@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 OpenIDE-Module-Localizing-Bundle: game/weapon/Bundle.properties
 OpenIDE-Module-Specification-Version: 1.0
-OpenIDE-Module-Implementation-Version: 1.0-20190411
-OpenIDE-Module-Build-Version: 201904111125
+OpenIDE-Module-Implementation-Version: 1.0-20190413
+OpenIDE-Module-Build-Version: 201904131305
 OpenIDE-Module: game.Weapon
 OpenIDE-Module-Public-Packages: game.weapon.*
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
@@ -12,4 +12,3 @@ OpenIDE-Module-Short-Description: <undefined>
 OpenIDE-Module-Long-Description: <undefined>
 OpenIDE-Module-Module-Dependencies: org.netbeans.api.annotations.commo
  n/1 > 1.27.1, game.Common > 1.0
-

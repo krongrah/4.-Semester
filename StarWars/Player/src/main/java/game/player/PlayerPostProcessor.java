@@ -14,20 +14,26 @@ import services.IPostProcessor;
 
 @ServiceProvider(service = IPostProcessor.class)
 
-
 /**
  *
  * @author Sebas
  */
 public class PlayerPostProcessor implements IPostProcessor {
-    
+
+    private long immunityTime = 1000;
+    private long lastHit = 0;
+
     @Override
     public void process(GameData gameData, World world) {
         for (Entity player : world.getEntities(Player.class)) {
             LifePart lp = player.getPart(LifePart.class);
             if (lp.isHit()) {
                 //Take damage:
-                lp.decreaseLife(1);
+                if (System.currentTimeMillis() >= (lastHit + immunityTime)) {
+                    lp.decreaseLife(1);
+                    lp.setIsHit(false);
+                    lastHit = System.currentTimeMillis();
+                }
             }
             if (lp.getLife() <= 0) {
                 world.removeEntity(player);

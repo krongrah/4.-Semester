@@ -78,7 +78,7 @@ public class Map {
                     Entity enemy = new Entity();
                     enemy.add(createPosPart(recObj));
                     enemy.add(new PropertiesPart(recObj.getRectangle().width, recObj.getRectangle().height, CollisionTypes.DAMAGE, false));
-                    AISpawnPoint point = new AISpawnPoint(enemy, AITypes.SHOOTER);
+                    AISpawnPoint point = new AISpawnPoint(enemy, AITypes.MELEE);
                     world.addEnemySpawn(point);
                 }
             }
