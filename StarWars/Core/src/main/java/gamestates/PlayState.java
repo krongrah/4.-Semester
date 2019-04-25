@@ -121,7 +121,6 @@ public class PlayState extends GameState {
 
     @Override
     public void handleInput() {
-        System.out.println("Handle input");
         gameData.getKeys().update();
     }
 
