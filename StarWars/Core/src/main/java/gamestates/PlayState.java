@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import common.Entity;
 import data.GameData;
 import data.World;
+import enums.State;
 import game.core.GameInputProcessor;
 import game.core.GameStateManager;
 import game.renderer.Renderer;
@@ -116,7 +117,7 @@ public class PlayState extends GameState {
     }
     
     private void render() {
-        renderer.render(world, gameData);
+        renderer.render(world, gameData, State.PLAYSTATE);
     }
 
     @Override
@@ -126,7 +127,7 @@ public class PlayState extends GameState {
 
     @Override
     public void dispose() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
     private final LookupListener lookupListener = new LookupListener() {

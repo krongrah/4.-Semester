@@ -8,8 +8,11 @@ package game.renderer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import data.GameData;
 import data.World;
+import enums.State;
 import services.IRenderer;
 
 /**
@@ -32,15 +35,29 @@ public class Renderer implements IRenderer {
     }
 
     @Override
-    public void render(World world, GameData gameData) {
-        Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a); //Gets the RGBA values of the backgound Color
-        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Gdx.graphics.setVSync(false);
+    public void render(World world, GameData gameData, State state) {
 
-        cam.update(gameData);
-        map.render(gameData, cam.getProjectionMatrix());
-        board.draw(world, gameData, cam.getProjectionMatrix());
+        if (state == State.PLAYSTATE) {
+           
+            Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a); //Gets the RGBA values of the backgound Color
+            Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            Gdx.graphics.setVSync(false);
+
+            cam.update(gameData);
+            map.render(gameData, cam.getProjectionMatrix());
+            board.draw(world, gameData, cam.getProjectionMatrix());
+            
+        } else if (state == State.SPLASHSTATE) {
+            
+            cam.update(gameData);
+            SplashScreenDrawer ssd = new SplashScreenDrawer("SplashScreen", 13);
+            ssd.drawSplashScreen(world, gameData, cam.getProjectionMatrix());
+           
+            
+            
+        }
+
     }
 
     @Override

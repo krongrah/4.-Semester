@@ -10,7 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import data.GameData;
 import data.World;
-import gamestates.State;
+import enums.State;
 
 /**
  * @author Andreas Bøgh Mølgaard-Andersen
@@ -22,12 +22,12 @@ public class Game implements ApplicationListener {
 
     private final GameData gameData = new GameData();
 //    private List<IPluginService> entityPlugins = new ArrayList<>();
-    private World world = new World();
+    private final World world = new World();
 
     @Override
     public void create() {
         gameStateManager = new GameStateManager(gameData, world);
-        gameStateManager.setState(State.PLAYSTATE); 
+        gameStateManager.setState(State.SPLASHSTATE); 
     }
 
     @Override

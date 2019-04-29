@@ -7,10 +7,11 @@ package game.core;
 
 import data.GameData;
 import data.World;
+import enums.State;
 import gamestates.GameState;
 import gamestates.MenuState;
 import gamestates.PlayState;
-import gamestates.State;
+import gamestates.SplashState;
 
 /**
  *
@@ -28,6 +29,10 @@ public class GameStateManager {
         this.world = world;
     }
     
+    public GameState getState() {
+        return this.gameState;
+    }
+    
     public void setState(State gameState) {
         
         switch (gameState) {
@@ -39,10 +44,10 @@ public class GameStateManager {
                 this.gameState = new MenuState(this);
                 this.init();
                 break;
-//            case: gameState.SPLASHSTATE:
-//                this.gameState = new SplastState(this);
-//                break;
-
+            case SPLASHSTATE:
+                this.gameState = new SplashState(this);
+                this.init();
+                break;
         }
         
     }
