@@ -99,7 +99,7 @@ public class PlayState extends GameState {
     @Override
     public void update() {
         if (gameData.getKeys().isDown(ESCAPE)) {
-            this.gameStateManager.setState(State.PLAYSTATE);
+            this.gameStateManager.setState(State.SPLASHSTATE);
         }
         // Update
         for (IProcessor entityProcessorService : getEntityProcessingServices()) {
