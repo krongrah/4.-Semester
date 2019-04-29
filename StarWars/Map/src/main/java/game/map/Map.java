@@ -54,38 +54,30 @@ public class Map {
                 if (recObj.getName().equals("Ground")) {
                     //Ground object
                     Entity ground = new Entity();
-                    ground.add(createPosPart(recObj));
+                    PositionPart pos = new PositionPart(recObj.getRectangle().x + recObj.getRectangle().width / 2, recObj.getRectangle().y + recObj.getRectangle().height / 2);
                     PropertiesPart prop = new PropertiesPart(recObj.getRectangle().width / 2, recObj.getRectangle().height / 2, CollisionTypes.SOLIDOBJECT, true);
                     ground.add(prop);
+                    ground.add(pos);
                     world.addEntity(ground);
-
-                }
-                if (recObj.getName().equals("SpawnPoint")) {
-                    //Player Spawn:
 
                 }
                 if (recObj.getName().equals("ShooterEnemySpawn")) {
                     //Spawn enemy here:
-                    Entity enemy = new Entity();
-                    enemy.add(createPosPart(recObj));
-                    enemy.add(new PropertiesPart(recObj.getRectangle().width, recObj.getRectangle().height, CollisionTypes.SOLIDOBJECT, false));
-                    AISpawnPoint point = new AISpawnPoint(enemy, AITypes.SHOOTER);
+                    
+                    PropertiesPart prop = new PropertiesPart(recObj.getRectangle().width, recObj.getRectangle().height, CollisionTypes.SOLIDOBJECT, false);
+                    PositionPart pos = new PositionPart(recObj.getRectangle().x + recObj.getRectangle().width / 2, recObj.getRectangle().y + recObj.getRectangle().height / 2);
+                    AISpawnPoint point = new AISpawnPoint(pos, prop, AITypes.SHOOTER);
                     world.addEnemySpawn(point);
 
                 }
                 if (recObj.getName().equals("MeleeEnemySpawn")) {
                     //Spawn enemy here:
-                    Entity enemy = new Entity();
-                    enemy.add(createPosPart(recObj));
-                    enemy.add(new PropertiesPart(recObj.getRectangle().width, recObj.getRectangle().height, CollisionTypes.DAMAGE, false));
-                    AISpawnPoint point = new AISpawnPoint(enemy, AITypes.MELEE);
+                    PropertiesPart prop = new PropertiesPart(recObj.getRectangle().width, recObj.getRectangle().height, CollisionTypes.SOLIDOBJECT, false);
+                    PositionPart pos = new PositionPart(recObj.getRectangle().x + recObj.getRectangle().width / 2, recObj.getRectangle().y + recObj.getRectangle().height / 2);
+                    AISpawnPoint point = new AISpawnPoint(pos, prop, AITypes.MELEE);
                     world.addEnemySpawn(point);
                 }
             }
         }
-    }
-
-    private PositionPart createPosPart(RectangleMapObject recObj) {
-        return new PositionPart(recObj.getRectangle().x + recObj.getRectangle().width / 2, recObj.getRectangle().y + recObj.getRectangle().height / 2);
     }
 }
