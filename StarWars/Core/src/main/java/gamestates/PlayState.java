@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import common.Entity;
 import data.GameData;
+import static data.GameKeys.ESCAPE;
 import data.World;
 import enums.State;
 import game.core.GameInputProcessor;
@@ -97,6 +98,9 @@ public class PlayState extends GameState {
 
     @Override
     public void update() {
+        if (gameData.getKeys().isDown(ESCAPE)) {
+            this.gameStateManager.setState(State.PLAYSTATE);
+        }
         // Update
         for (IProcessor entityProcessorService : getEntityProcessingServices()) {
             entityProcessorService.process(gameData, world);

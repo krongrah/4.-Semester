@@ -37,9 +37,11 @@ public final class SplashScreenDrawer {
         batch.setProjectionMatrix(matrix);
         batch.begin();
 
+        
         Sprite sprite = am.getSprite(ap.getCurrentAnimation(), getPath());
         sprite.getTexture().setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest); //This renders pixelart sharper than linear rendering
-        sprite.setPosition(0 - gameData.getDisplayWidth() / 2, 0 - gameData.getDisplayHeight() / 2);
+        sprite.scale(-0.5f);
+        sprite.setPosition(-360, -203);
 
         sprite.draw(batch);
         batch.end();

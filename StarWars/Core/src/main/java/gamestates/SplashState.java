@@ -9,7 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import data.GameData;
-import static data.GameKeys.SPACE;
+import static data.GameKeys.ENTER;
 import data.World;
 import enums.State;
 import game.core.GameInputProcessor;
@@ -53,7 +53,7 @@ public class SplashState extends PlayState {
 
     @Override
     public void update() {
-        if (gameData.getKeys().isDown(SPACE)) {
+        if (gameData.getKeys().isDown(ENTER)) {
             this.gameStateManager.setState(State.PLAYSTATE);
         }
         
