@@ -36,10 +36,10 @@ public class EnemyPlugin implements IPluginService {
     public void start(GameData gameData, World world) {
         for (AISpawnPoint spawnPoint : world.getSpawnPoints()) {
             if (spawnPoint.getAIType() == SHOOTER) {
-                PositionPart enPos = spawnPoint.getEntity().getPart(PositionPart.class);
+                PositionPart enPos = spawnPoint.getPos();
                 Enemy enemy = new Enemy(enPos.getX(), enPos.getY());
                 enemy.add(enPos);
-                enemy.add(spawnPoint.getEntity().getPart(PropertiesPart.class));
+                enemy.add(spawnPoint.getProp());
                 enemy.add(new LifePart(shooterLife));
                 enemy.add(new MovingPart(10, 100, 175));
                 enemy.add(new AnimationPart("TrooperIdle", 1, getPath()));
@@ -48,10 +48,10 @@ public class EnemyPlugin implements IPluginService {
                 world.addEntity(enemy);
             }
             if (spawnPoint.getAIType() == MELEE) {
-                PositionPart enPos = spawnPoint.getEntity().getPart(PositionPart.class);
+                PositionPart enPos = spawnPoint.getPos();
                 Enemy enemy = new Enemy(enPos.getX(), enPos.getY());
                 enemy.add(enPos);
-                enemy.add(spawnPoint.getEntity().getPart(PropertiesPart.class));
+                enemy.add(spawnPoint.getProp());
                 enemy.add(new LifePart(meleeLife));
                 enemy.add(new MovingPart(10, 100, 175));
                 enemy.add(new AnimationPart("RaiderIdle", 6, getPath()));

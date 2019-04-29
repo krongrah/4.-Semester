@@ -1,96 +1,82 @@
 SplashScreen.png
-size: 200, 1469
+size: 7920, 407
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 SplashScreen0
   rotate: false
   xy: 0, 0
-  size: 200, 113
-  orig: 200, 113
+  size: 720, 407
+  orig: 720, 407
   offset: 0, 0
   index: -1
 SplashScreen1
   rotate: false
-  xy: 0, 113
-  size: 200, 113
-  orig: 200, 113
+  xy: 720, 0
+  size: 720, 407
+  orig: 720, 407
   offset: 0, 0
   index: -1
 SplashScreen2
   rotate: false
-  xy: 0, 226
-  size: 200, 113
-  orig: 200, 113
+  xy: 1440, 0
+  size: 720, 407
+  orig: 720, 407
   offset: 0, 0
   index: -1
 SplashScreen3
   rotate: false
-  xy: 0, 339
-  size: 200, 113
-  orig: 200, 113
+  xy: 2160, 0
+  size: 720, 407
+  orig: 720, 407
   offset: 0, 0
   index: -1
 SplashScreen4
   rotate: false
-  xy: 0, 452
-  size: 200, 113
-  orig: 200, 113
+  xy: 2880, 0
+  size: 720, 407
+  orig: 720, 407
   offset: 0, 0
   index: -1
 SplashScreen5
   rotate: false
-  xy: 0, 565
-  size: 200, 113
-  orig: 200, 113
+  xy: 3600, 0
+  size: 720, 407
+  orig: 720, 407
   offset: 0, 0
   index: -1
 SplashScreen6
   rotate: false
-  xy: 0, 678
-  size: 200, 113
-  orig: 200, 113
+  xy: 4320, 0
+  size: 720, 407
+  orig: 720, 407
   offset: 0, 0
   index: -1
 SplashScreen7
   rotate: false
-  xy: 0, 791
-  size: 200, 113
-  orig: 200, 113
+  xy: 5040, 0
+  size: 720, 407
+  orig: 720, 407
   offset: 0, 0
   index: -1
 SplashScreen8
   rotate: false
-  xy: 0, 904
-  size: 200, 113
-  orig: 200, 113
+  xy: 5760, 0
+  size: 720, 407
+  orig: 720, 407
   offset: 0, 0
   index: -1
 SplashScreen9
   rotate: false
-  xy: 0, 1017
-  size: 200, 113
-  orig: 200, 113
+  xy: 6480, 0
+  size: 720, 407
+  orig: 720, 407
   offset: 0, 0
   index: -1
 SplashScreen10
   rotate: false
-  xy: 0, 1130
-  size: 200, 113
-  orig: 200, 113
-  offset: 0, 0
-  index: -1
-SplashScreen11
-  rotate: false
-  xy: 0, 1243
-  size: 200, 113
-  orig: 200, 113
-  offset: 0, 0
-  index: -1
-SplashScreen12
-  rotate: false
-  xy: 0, 1356
-  size: 200, 113
-  orig: 200, 113
+  xy: 7200, 0
+  size: 720, 407
+  orig: 720, 407
   offset: 0, 0
   index: -1

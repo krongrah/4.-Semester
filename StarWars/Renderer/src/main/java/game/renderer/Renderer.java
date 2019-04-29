@@ -25,12 +25,14 @@ public class Renderer implements IRenderer {
     private Camera cam;
     private MapDrawBoard map;
     private Color backgroundColor;
+    SplashScreenDrawer ssd;
 
     public Renderer(World world) {
         board = new UnitDrawBoard();
         cam = new Camera();
         map = new MapDrawBoard(world);
         Gdx.graphics.setVSync(true);
+        ssd = new SplashScreenDrawer("SplashScreen", 11);
 
     }
 
@@ -51,7 +53,7 @@ public class Renderer implements IRenderer {
         } else if (state == State.SPLASHSTATE) {
             
             cam.update(gameData);
-            SplashScreenDrawer ssd = new SplashScreenDrawer("SplashScreen", 13);
+            
             ssd.drawSplashScreen(world, gameData, cam.getProjectionMatrix());
            
             
