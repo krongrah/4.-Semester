@@ -6,6 +6,9 @@
 package assetmanagement;
 
 import com.badlogic.gdx.files.FileHandle;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -38,16 +41,40 @@ public class JarFileHandleStream extends FileHandle {
     public InputStream read() {
         InputStream input = null;
         try {
+
+
+//            while(jar.entries().hasMoreElements()){
+//                System.out.println(jar.entries().nextElement());
+//            }
+//            System.out.println("");
+            
             input = jar.getInputStream(jar.getEntry(jarDir));
         } catch (IOException ex) {
             Logger.getLogger(JarFileHandleStream.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return input;
+        try {
+            //return input;
+            return new FileInputStream(new File(jar.getEntry(jarDir).toString()));
+        } catch (FileNotFoundException ex) {
+        }
+        return null;
     }
 
+    
+    
     @Override
     public OutputStream write(boolean overwrite) {
         return super.write(overwrite);
     }
+
+//    public InputStream read() {
+//        InputStream input = null;
+//        try {
+//            input = jar.getInputStream(jar.getEntry(jarDir));
+//        } catch (IOException ex) {
+//            Logger.getLogger(JarFileHandleStream.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return FileInputStream(new File());
+//    }
 
 }
