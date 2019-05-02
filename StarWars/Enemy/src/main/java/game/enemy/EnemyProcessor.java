@@ -140,15 +140,15 @@ public class EnemyProcessor implements IProcessor {
         if (mp.isAccelerating()) {
             //Walk
             if (enemy.getAIType() == AITypes.MELEE) {
-                ap.changeAnimation("RaiderWalking", 5);
+                ap.changeAnimation("RaiderWalking", 7);
             }
             if (enemy.getAIType() == AITypes.SHOOTER) {
-                ap.changeAnimation("TrooperWalking", 3);
+                ap.changeAnimation("TrooperWalking", 4);
             }
         } else {
             //idle
             if (enemy.getAIType() == AITypes.MELEE) {
-                ap.changeAnimation("RaiderIdle", 5);
+                ap.changeAnimation("RaiderIdle", 7);
             }
             if (enemy.getAIType() == AITypes.SHOOTER) {
                 ap.changeAnimation("TrooperIdle", 1);

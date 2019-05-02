@@ -15,8 +15,11 @@ import entityparts.PositionPart;
 import entityparts.PropertiesPart;
 import entityparts.WeaponPart;
 import enums.CollisionTypes;
+import java.util.ArrayList;
+import java.util.List;
 import org.openide.util.lookup.ServiceProvider;
 import services.IPluginService;
+import sprites.Animation;
 
 @ServiceProvider(service = IPluginService.class)
 
@@ -37,7 +40,7 @@ public class PlayerPlugin implements IPluginService {
         player.add(new PositionPart(19*32, (39*32)+16));
         player.add(new MovingPart(10, 175, 250));
         player.add(new WeaponPart());
-        player.add(new AnimationPart("Lukeidle", 1, getPath()));
+        player.add(new AnimationPart("Luke", 1, PlayerPlugin.class.getResource("/sprites/").getPath()));
 
         world.addEntity(player);
     }
@@ -48,8 +51,10 @@ public class PlayerPlugin implements IPluginService {
     }
 
     @Override
-    public String getPath() {
-        return PlayerPlugin.class.getResource("/sprites/Luke.txt").getPath();
+    public List<Animation> getAnimation() {
+        List<Animation> list = new ArrayList();
+        list.add(new Animation(PlayerPlugin.class.getResource("/sprites/").getPath(), "Luke", 1));
+        return list;
     }
 
 }

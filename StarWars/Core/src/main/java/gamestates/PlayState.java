@@ -85,7 +85,7 @@ public class PlayState extends GameState {
         for (IPluginService iGamePlugin : result.allInstances()) {
             iGamePlugin.start(gameData, world);
             gamePlugins.add(iGamePlugin);
-            renderer.loadTexture(iGamePlugin.getPath());
+            renderer.loadTexture(iGamePlugin.getAnimation());
         }
 
         postProcessorResults = lookup.lookupResult(IPostProcessor.class);

@@ -17,6 +17,8 @@ import entityparts.AnimationPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
 import enums.Directions;
+import java.util.List;
+import sprites.Animation;
 
 /**
  *
@@ -58,8 +60,8 @@ public class UnitDrawBoard {
         batch.end();
     }
 
-    public void Load(String path) {
-        am.Load(path);
+    void Load(List<Animation> animation) {
+        am.Load(animation);
     }
 
 }

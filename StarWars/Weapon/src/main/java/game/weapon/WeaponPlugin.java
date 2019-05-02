@@ -7,8 +7,11 @@ package game.weapon;
 
 import data.GameData;
 import data.World;
+import java.util.ArrayList;
+import java.util.List;
 import org.openide.util.lookup.ServiceProvider;
 import services.IPluginService;
+import sprites.Animation;
 
 /**
  *
@@ -28,8 +31,10 @@ public class WeaponPlugin implements IPluginService {
     }
 
     @Override
-    public String getPath() {
-        return WeaponPlugin.class.getResource("/sprites/bullet.txt").getPath();
+    public List<Animation> getAnimation() {
+        List<Animation> list = new ArrayList();
+        list.add(new Animation(WeaponPlugin.class.getResource("/sprites/").getPath(), "bullet", 0));
+        return list;
     }
 
 }

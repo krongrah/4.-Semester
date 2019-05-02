@@ -62,7 +62,7 @@ public class WeaponProcessor implements IProcessor {
             b.add(mp);
             b.add(new LifePart(1));
             b.add(new PropertiesPart(5, 3, CollisionTypes.DAMAGE, false));
-            b.add(new AnimationPart("bullet", 0, getPath()));
+            b.add(new AnimationPart("bullet", 0, WeaponPlugin.class.getResource("/sprites/").getPath()));
             world.addEntity(b);
 
             if (pos.getDirection().equals(Directions.RIGHT)) {
@@ -74,10 +74,6 @@ public class WeaponProcessor implements IProcessor {
 
         }
 
-    }
-
-    private String getPath() {
-        return WeaponPlugin.class.getResource("/sprites/bullet.txt").getPath();
     }
 
 }

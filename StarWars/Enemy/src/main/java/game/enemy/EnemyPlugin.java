@@ -13,12 +13,14 @@ import entityparts.AnimationPart;
 import entityparts.LifePart;
 import entityparts.MovingPart;
 import entityparts.PositionPart;
-import entityparts.PropertiesPart;
 import entityparts.WeaponPart;
 import static enums.AITypes.MELEE;
 import static enums.AITypes.SHOOTER;
+import java.util.ArrayList;
+import java.util.List;
 import org.openide.util.lookup.ServiceProvider;
 import services.IPluginService;
+import sprites.Animation;
 
 @ServiceProvider(service = IPluginService.class)
 
@@ -42,7 +44,7 @@ public class EnemyPlugin implements IPluginService {
                 enemy.add(spawnPoint.getProp());
                 enemy.add(new LifePart(shooterLife));
                 enemy.add(new MovingPart(10, 100, 175));
-                enemy.add(new AnimationPart("TrooperIdle", 1, getPath()));
+                enemy.add(new AnimationPart("TrooperIdle", 1, EnemyPlugin.class.getResource("/sprites/").getPath()));
                 enemy.add(new WeaponPart());
                 enemy.setAIType(SHOOTER);
                 world.addEntity(enemy);
@@ -54,7 +56,7 @@ public class EnemyPlugin implements IPluginService {
                 enemy.add(spawnPoint.getProp());
                 enemy.add(new LifePart(meleeLife));
                 enemy.add(new MovingPart(10, 100, 175));
-                enemy.add(new AnimationPart("RaiderIdle", 6, getPath()));
+                enemy.add(new AnimationPart("RaiderIdle", 6, EnemyPlugin.class.getResource("/sprites/").getPath()));
                 enemy.setAIType(MELEE);
                 world.addEntity(enemy);
             }
@@ -69,8 +71,13 @@ public class EnemyPlugin implements IPluginService {
     }
 
     @Override
-    public String getPath() {
-        return EnemyPlugin.class.getResource("/sprites/" + "Enemies" + ".txt").getPath();
+    public List<Animation> getAnimation() {
+        List<Animation> list = new ArrayList();
+        list.add(new Animation(EnemyPlugin.class.getResource("/sprites/").getPath(), "RaiderAttack", 6));
+        list.add(new Animation(EnemyPlugin.class.getResource("/sprites/").getPath(), "RaiderIdle", 7));
+        list.add(new Animation(EnemyPlugin.class.getResource("/sprites/").getPath(), "RaiderWalking", 7));
+        return list;
+
     }
 
 }

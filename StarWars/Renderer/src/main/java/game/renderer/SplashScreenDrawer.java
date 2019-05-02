@@ -14,6 +14,9 @@ import com.badlogic.gdx.math.Matrix4;
 import data.GameData;
 import data.World;
 import entityparts.AnimationPart;
+import java.util.ArrayList;
+import java.util.List;
+import sprites.Animation;
 
 /**
  *
@@ -49,11 +52,14 @@ public final class SplashScreenDrawer {
     }
 
     private String getPath() {
-        return SplashScreenDrawer.class.getResource("/sprites/SplashScreen.txt").getPath();
+        return SplashScreenDrawer.class.getResource("/sprites/").getPath();
     }
 
     private void Load() {
-        am.Load(getPath());
+         List<Animation> list = new ArrayList();
+        list.add(new Animation(SplashScreenDrawer.class.getResource("/sprites/").getPath(), "SplashScreen", 7));
+        
+        am.Load(list);
     }
 
     private void process(GameData gameData) {

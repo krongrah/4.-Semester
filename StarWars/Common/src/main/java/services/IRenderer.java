@@ -8,6 +8,8 @@ package services;
 import data.GameData;
 import data.World;
 import enums.State;
+import java.util.List;
+import sprites.Animation;
 
 /**
  *
@@ -19,5 +21,5 @@ public interface IRenderer {
 
     public void setBackgroundColor(float r, float g, float b, float a);
 
-    public void loadTexture(String path);
+    public void loadTexture(List<Animation> animation);
 }

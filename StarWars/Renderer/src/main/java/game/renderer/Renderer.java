@@ -13,7 +13,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import data.GameData;
 import data.World;
 import enums.State;
+import java.util.List;
 import services.IRenderer;
+import sprites.Animation;
 
 /**
  *
@@ -32,7 +34,7 @@ public class Renderer implements IRenderer {
         cam = new Camera();
         map = new MapDrawBoard(world);
         Gdx.graphics.setVSync(true);
-        ssd = new SplashScreenDrawer("SplashScreen", 11);
+        ssd = new SplashScreenDrawer("SplashScreen", 8);
 
     }
 
@@ -68,8 +70,8 @@ public class Renderer implements IRenderer {
     }
 
     @Override
-    public void loadTexture(String path) {
-        board.Load(path);
+    public void loadTexture(List<Animation> animation) {
+        board.Load(animation);
     }
 
 }

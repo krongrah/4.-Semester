@@ -7,6 +7,8 @@ package services;
 
 import data.GameData;
 import data.World;
+import java.util.List;
+import sprites.Animation;
 
 /**
  * Interface used to facilitate the starting and stopping of entities that
@@ -37,6 +39,6 @@ public interface IPluginService {
      */
     void stop(GameData gameData, World world);
 
-    String getPath();
+    List<Animation> getAnimation();
 
 }
