@@ -7,8 +7,14 @@ package game.weapon;
 
 import data.GameData;
 import data.World;
+import entityparts.AnimationPart;
+import entityparts.LifePart;
+import entityparts.MovingPart;
+import entityparts.PositionPart;
+import entityparts.PropertiesPart;
 import org.openide.util.lookup.ServiceProvider;
 import services.IPluginService;
+import sprites.Sprites;
 
 /**
  *

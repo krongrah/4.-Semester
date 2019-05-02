@@ -9,10 +9,8 @@ import common.Entity;
 import data.GameData;
 import data.World;
 import entityparts.LifePart;
-import org.openide.util.lookup.ServiceProvider;
+import enums.CollisionTypes;
 import services.IPostProcessor;
-
-@ServiceProvider(service = IPostProcessor.class)
 
 /**
  *
@@ -20,23 +18,14 @@ import services.IPostProcessor;
  */
 public class PlayerPostProcessor implements IPostProcessor {
 
-    private long lastHit = 0;
-
     @Override
     public void process(GameData gameData, World world) {
-        for (Entity player : world.getEntities(Player.class)) {
-            LifePart lp = player.getPart(LifePart.class);
-            if (lp.isHit()) {
-                //Take damage:
-                if (System.currentTimeMillis() >= (lastHit + lp.getImmunityTime())) {
-                    lp.decreaseLife(1);
-                    lp.setIsHit(false);
-                    lastHit = System.currentTimeMillis();
-                }
-            }
-            if (lp.getLife() <= 0) {
-                world.removeEntity(player);
-            }
-        }
+//        for (Entity player : world.getEntities(Player.class)) {
+//            if (player.getCollisionType() == CollisionTypes.DAMAGE) {
+//                //Take damage:
+//                LifePart lp = player.getPart(LifePart.class);
+//                lp.decreaseLife(1);
+//            }
+//        }
     }
 }

@@ -53,25 +53,24 @@ public class WeaponProcessor implements IProcessor {
             weapon.setCooldown(weapon.getCooldown() - gameData.getDelta());
         }
         if (weapon.getCooldown() <= 0 && weapon.isAttacking()) {
-            weapon.setCooldown(0.500f);
+            weapon.setCooldown(3);
             Bullet b = new Bullet();
             MovingPart mp = new MovingPart(0, 1000, 50);
-
-            PositionPart pp = new PositionPart(pos.getX() + prop.getWidth(), pos.getY());
+            PositionPart pp = new PositionPart(pos.getX() + prop.getWidth() / 2, pos.getY());
             b.add(pp);
             b.add(mp);
             b.add(new LifePart(1));
-            b.add(new PropertiesPart(5, 3, CollisionTypes.DAMAGE, false));
+            b.add(new PropertiesPart(5, 3, CollisionTypes.SOLIDOBJECT,false));
             b.add(new AnimationPart("bullet", 0, getPath()));
             world.addEntity(b);
-
+            
             if (pos.getDirection().equals(Directions.RIGHT)) {
                 mp.setRight(true);
             } else {
                 mp.setLeft(true);
                 pp.setX(pos.getX() - prop.getWidth());
             }
-
+            
         }
 
     }
