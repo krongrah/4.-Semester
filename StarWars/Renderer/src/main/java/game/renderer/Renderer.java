@@ -8,8 +8,11 @@ package game.renderer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import data.GameData;
 import data.World;
+import enums.State;
 import services.IRenderer;
 
 /**
@@ -22,26 +25,41 @@ public class Renderer implements IRenderer {
     private Camera cam;
     private MapDrawBoard map;
     private Color backgroundColor;
+    SplashScreenDrawer ssd;
 
     public Renderer(World world) {
         board = new UnitDrawBoard();
         cam = new Camera();
         map = new MapDrawBoard(world);
         Gdx.graphics.setVSync(true);
+        ssd = new SplashScreenDrawer("SplashScreen", 11);
 
     }
 
     @Override
-    public void render(World world, GameData gameData) {
-        //Long time=System.currentTimeMillis();
-        Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a); //Gets the RGBA values of the backgound Color
-        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    public void render(World world, GameData gameData, State state) {
 
-        cam.update(gameData);
-        map.render(gameData, cam.getProjectionMatrix());
-        board.draw(world, gameData, cam.getProjectionMatrix());
-        //System.out.println("renderer: "+(System.currentTimeMillis()-time));
+        if (state == State.PLAYSTATE) {
+           
+            Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a); //Gets the RGBA values of the backgound Color
+            Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            Gdx.graphics.setVSync(false);
+
+            cam.update(gameData);
+            map.render(gameData, cam.getProjectionMatrix());
+            board.draw(world, gameData, cam.getProjectionMatrix());
+            
+        } else if (state == State.SPLASHSTATE) {
+            
+            cam.update(gameData);
+            
+            ssd.drawSplashScreen(world, gameData, cam.getProjectionMatrix());
+           
+            
+            
+        }
+
     }
 
     @Override
