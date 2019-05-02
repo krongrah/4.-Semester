@@ -9,10 +9,12 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import common.AISpawnPoint;
 import common.Entity;
 import data.World;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
+import enums.AITypes;
 import enums.CollisionTypes;
 
 /**
@@ -45,27 +47,37 @@ public class Map {
 
     public void loadNewMap(String name) {
         currentMap = mapLoader.load(Map.class.getResource("/maps/Tatooine/" + name + ".tmx").getPath());
-//        for (MapObject obj : currentMap.getLayers().get("Object Layer 1").getObjects()) {
-//
-//            if (obj instanceof RectangleMapObject) {
-//                RectangleMapObject recObj = (RectangleMapObject) obj;
-//                if (recObj.getName().equals("Ground")) {
-//                    //Ground object
-//                    Entity ground = new Entity();
-//                    ground.add(new PositionPart(recObj.getRectangle().x+recObj.getRectangle().width/2, recObj.getRectangle().y+recObj.getRectangle().height/2));
-//                    PropertiesPart prop = new PropertiesPart(recObj.getRectangle().width/2, recObj.getRectangle().height/2, CollisionTypes.SOLIDOBJECT,true);
-//                    ground.add(prop);
-//                    world.addEntity(ground);
-//
-//                }
-//                if (recObj.getName().equals("SpawnPoint")) {
-//                    //Player Spawn:
-//
-//                }
-//                if (recObj.getName().equals("EnemySpawn")) {
-//                    //Spawn enemy here:
-//                }
-//            }
-//        }
+        for (MapObject obj : currentMap.getLayers().get("Object Layer 1").getObjects()) {
+
+            if (obj instanceof RectangleMapObject) {
+                RectangleMapObject recObj = (RectangleMapObject) obj;
+                if (recObj.getName().equals("Ground")) {
+                    //Ground object
+                    Entity ground = new Entity();
+                    PositionPart pos = new PositionPart(recObj.getRectangle().x + recObj.getRectangle().width / 2, recObj.getRectangle().y + recObj.getRectangle().height / 2);
+                    PropertiesPart prop = new PropertiesPart(recObj.getRectangle().width / 2, recObj.getRectangle().height / 2, CollisionTypes.SOLIDOBJECT, true);
+                    ground.add(prop);
+                    ground.add(pos);
+                    world.addEntity(ground);
+
+                }
+                if (recObj.getName().equals("ShooterEnemySpawn")) {
+                    //Spawn enemy here:
+                    
+                    PropertiesPart prop = new PropertiesPart(recObj.getRectangle().width, recObj.getRectangle().height, CollisionTypes.SOLIDOBJECT, false);
+                    PositionPart pos = new PositionPart(recObj.getRectangle().x + recObj.getRectangle().width / 2, recObj.getRectangle().y + recObj.getRectangle().height / 2);
+                    AISpawnPoint point = new AISpawnPoint(pos, prop, AITypes.SHOOTER);
+                    world.addEnemySpawn(point);
+
+                }
+                if (recObj.getName().equals("MeleeEnemySpawn")) {
+                    //Spawn enemy here:
+                    PropertiesPart prop = new PropertiesPart(recObj.getRectangle().width, recObj.getRectangle().height, CollisionTypes.SOLIDOBJECT, false);
+                    PositionPart pos = new PositionPart(recObj.getRectangle().x + recObj.getRectangle().width / 2, recObj.getRectangle().y + recObj.getRectangle().height / 2);
+                    AISpawnPoint point = new AISpawnPoint(pos, prop, AITypes.MELEE);
+                    world.addEnemySpawn(point);
+                }
+            }
+        }
     }
 }

@@ -17,7 +17,7 @@ public class AnimationPart implements EntityPart {
     private String SpriteSheetPath;
     private String currentAnimation;
     private int framesInCurrentAnimation;
-    private int currentFrame;
+    private int currentFrame = 0;
     private float timeInAnimation = 0;
     private final float durationOfEachAnimation = 0.2f;
 
@@ -32,8 +32,8 @@ public class AnimationPart implements EntityPart {
         if (!currentAnimation.equals(this.currentAnimation)) {
             this.currentAnimation = currentAnimation;
             this.framesInCurrentAnimation = framesInCurrentAnimation;
-            currentFrame = 0;
             timeInAnimation = 0;
+            currentFrame = 0;
         }
     }
 
