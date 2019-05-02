@@ -5,8 +5,6 @@
  */
 package common;
 
-import entityparts.PositionPart;
-import entityparts.PropertiesPart;
 import enums.AITypes;
 
 /**
@@ -16,21 +14,15 @@ import enums.AITypes;
 public class AISpawnPoint {
 
     private AITypes AIType;
-    private PositionPart pos;
-    private PropertiesPart prop;
+    private Entity entity;
 
-    public AISpawnPoint(PositionPart pos, PropertiesPart prop, AITypes aiTypes) {
-        this.pos = pos;
-        this.prop = prop;
-        this.AIType = aiTypes;
+    public AISpawnPoint(Entity entity, AITypes AIType) {
+        this.AIType = AIType;
+        this.entity = entity;
     }
 
-    public PositionPart getPos() {
-        return pos;
-    }
-
-    public PropertiesPart getProp() {
-        return prop;
+    public Entity getEntity() {
+        return entity;
     }
 
     public AITypes getAIType() {

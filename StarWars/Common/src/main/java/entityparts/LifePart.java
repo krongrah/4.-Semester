@@ -22,7 +22,6 @@ public class LifePart implements EntityPart {
 
     private int life;
     private boolean isHit = false;
-    private float immunityTime = 1000;
 
     /**
      * Is the constructor for the LifePart
@@ -40,24 +39,6 @@ public class LifePart implements EntityPart {
      */
     public int getLife() {
         return life;
-    }
-
-    /**
-     * Sets the time in which the entity is immune from further attacks.
-     *
-     * @return
-     */
-    public void setImmunityTime(float immunityTime) {
-        this.immunityTime = immunityTime;
-    }
-
-    /**
-     * Gets the time in which the entity is immune from further attacks.
-     *
-     * @return
-     */
-    public float getImmunityTime() {
-        return immunityTime;
     }
 
     /**
