@@ -20,6 +20,7 @@ import services.IPostProcessor;
  */
 public class PlayerPostProcessor implements IPostProcessor {
 
+    private long immunityTime = 1000;
     private long lastHit = 0;
 
     @Override
@@ -28,7 +29,7 @@ public class PlayerPostProcessor implements IPostProcessor {
             LifePart lp = player.getPart(LifePart.class);
             if (lp.isHit()) {
                 //Take damage:
-                if (System.currentTimeMillis() >= (lastHit + lp.getImmunityTime())) {
+                if (System.currentTimeMillis() >= (lastHit + immunityTime)) {
                     lp.decreaseLife(1);
                     lp.setIsHit(false);
                     lastHit = System.currentTimeMillis();
