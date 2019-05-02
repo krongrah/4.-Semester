@@ -7,7 +7,6 @@ package services;
 
 import data.GameData;
 import data.World;
-import enums.State;
 
 /**
  *
@@ -15,7 +14,7 @@ import enums.State;
  */
 public interface IRenderer {
 
-    public void render(World world, GameData gameData, State state);
+    public void render(World world, GameData gameData);
 
     public void setBackgroundColor(float r, float g, float b, float a);
 

@@ -6,7 +6,6 @@
 package game.renderer;
 
 import assetmanagement.AssetManagerClass;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
@@ -39,19 +38,16 @@ public class UnitDrawBoard {
             PropertiesPart prop = entity.getPart(PropertiesPart.class);
             if (!prop.isObstacle()) {
                 PositionPart pos = entity.getPart(PositionPart.class);
-                if (entity.hasPart(AnimationPart.class)) {
-                    AnimationPart ani = entity.getPart(AnimationPart.class);
-                    Sprite sprite = am.getSprite(ani.getCurrentAnimation(), ani.getSpriteSheetPath());
-                    sprite.getTexture().setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest); //This renders pixelart sharper than linear rendering
-                    sprite.setPosition(pos.getX() - sprite.getWidth() / 2, pos.getY() - sprite.getHeight() / 2);
-                    if (pos.getDirection() == Directions.LEFT) {
-                        sprite.flip(true, false);
-                        sprite.setX(sprite.getX() - sprite.getWidth() / 2);
-                    }
-
-                    //sprite.scale(camera.zoom);
-                    sprite.draw(batch);
+                AnimationPart ani = entity.getPart(AnimationPart.class);
+                Sprite sprite = am.getSprite(ani.getCurrentAnimation(), ani.getSpriteSheetPath());
+                sprite.setPosition(pos.getX() - sprite.getWidth() / 2, pos.getY() - sprite.getHeight() / 2);
+                if (pos.getDirection() == Directions.LEFT) {
+                    sprite.flip(true, false);
+                    sprite.setX(sprite.getX()-sprite.getWidth()/2);
                 }
+
+                //sprite.scale(camera.zoom);
+                sprite.draw(batch);
             }
 
         }
