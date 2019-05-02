@@ -40,7 +40,6 @@ public class Renderer implements IRenderer {
 
     @Override
     public void render(World world, GameData gameData, State state) {
-
         if (state == State.PLAYSTATE) {
            
             Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a); //Gets the RGBA values of the backgound Color

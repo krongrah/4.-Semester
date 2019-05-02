@@ -28,6 +28,7 @@ public class Game implements ApplicationListener {
     public void create() {
         gameStateManager = new GameStateManager(gameData, world);
         gameStateManager.setState(State.SPLASHSTATE); 
+        //gameStateManager.setState(State.PLAYSTATE); 
     }
 
     @Override

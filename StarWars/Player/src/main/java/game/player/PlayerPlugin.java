@@ -43,6 +43,7 @@ public class PlayerPlugin implements IPluginService {
         player.add(new AnimationPart("Luke", 1, PlayerPlugin.class.getResource("/sprites/").getPath()));
 
         world.addEntity(player);
+        System.out.println("starting");
     }
 
     @Override

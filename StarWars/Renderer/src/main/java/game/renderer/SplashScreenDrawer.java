@@ -39,7 +39,6 @@ public final class SplashScreenDrawer {
         this.process(gameData);
         batch.setProjectionMatrix(matrix);
         batch.begin();
-
         
         Sprite sprite = am.getSprite(ap.getCurrentAnimation(), getPath());
         sprite.getTexture().setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest); //This renders pixelart sharper than linear rendering

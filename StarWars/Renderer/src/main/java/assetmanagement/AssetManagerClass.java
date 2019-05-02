@@ -28,9 +28,9 @@ public class AssetManagerClass {
 //            am.finishLoadingAsset(path);
 //        }
 //    }
-
     public Sprite getSprite(String animation, String filePath) {
-        return new Sprite(am.get(filePath+animation+".png", Texture.class));
+        am.finishLoadingAsset(filePath + animation + ".png");
+        return new Sprite(am.get(filePath + animation + ".png", Texture.class));
     }
 
     public void Load(List<Animation> animationList) {
@@ -39,16 +39,14 @@ public class AssetManagerClass {
 
             for (int i = 0; i < animation.getNumberOfFrames(); i++) {
                 am.load(animation.getPath() + animation.getName() + i + ".png", Texture.class);
-
+                while (am.update()) {
+                    System.out.println("Asset loaded...");
+                }
             }
 
         }
 
-        while (am.update()) {
-            System.out.println("Asset loaded...");
-        }
         //am.finishLoadingAsset(path);
-
     }
 
 }
