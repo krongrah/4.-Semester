@@ -9,7 +9,7 @@ import data.GameData;
 import data.World;
 import enums.State;
 import java.util.List;
-import sprites.Animation;
+import Animation.Animation;
 
 /**
  *

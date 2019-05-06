@@ -8,7 +8,7 @@ package services;
 import data.GameData;
 import data.World;
 import java.util.List;
-import sprites.Animation;
+import Animation.Animation;
 
 /**
  * Interface used to facilitate the starting and stopping of entities that

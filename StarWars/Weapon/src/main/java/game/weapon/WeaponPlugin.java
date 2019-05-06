@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openide.util.lookup.ServiceProvider;
 import services.IPluginService;
-import sprites.Animation;
+import Animation.Animation;
 
 /**
  *

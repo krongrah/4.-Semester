@@ -18,7 +18,7 @@ import entityparts.PositionPart;
 import entityparts.PropertiesPart;
 import enums.Directions;
 import java.util.List;
-import sprites.Animation;
+import Animation.Animation;
 
 /**
  *

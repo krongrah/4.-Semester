@@ -23,7 +23,7 @@
                         <publicPackage>entityparts</publicPackage>
                         <publicPackage>interfaces</publicPackage>
                         <publicPackage>services</publicPackage>
-                        <publicPackage>sprites</publicPackage>
+                        <publicPackage>Animation</publicPackage>
                         <publicPackage>util</publicPackage>
                     </publicPackages>
                 </configuration>

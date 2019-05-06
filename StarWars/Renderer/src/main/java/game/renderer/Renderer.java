@@ -15,7 +15,7 @@ import data.World;
 import enums.State;
 import java.util.List;
 import services.IRenderer;
-import sprites.Animation;
+import Animation.Animation;
 
 /**
  *

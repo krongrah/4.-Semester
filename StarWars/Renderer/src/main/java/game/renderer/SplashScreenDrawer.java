@@ -16,7 +16,7 @@ import data.World;
 import entityparts.AnimationPart;
 import java.util.ArrayList;
 import java.util.List;
-import sprites.Animation;
+import Animation.Animation;
 
 /**
  *
