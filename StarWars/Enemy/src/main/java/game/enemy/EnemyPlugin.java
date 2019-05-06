@@ -76,6 +76,10 @@ public class EnemyPlugin implements IPluginService {
         list.add(new Animation(EnemyPlugin.class.getResource("/sprites/").getPath(), "RaiderAttack", 6));
         list.add(new Animation(EnemyPlugin.class.getResource("/sprites/").getPath(), "RaiderIdle", 7));
         list.add(new Animation(EnemyPlugin.class.getResource("/sprites/").getPath(), "RaiderWalking", 7));
+        list.add(new Animation(EnemyPlugin.class.getResource("/sprites/").getPath(), "TrooperIdle", 1));
+        list.add(new Animation(EnemyPlugin.class.getResource("/sprites/").getPath(), "TrooperShooting", 1));
+        list.add(new Animation(EnemyPlugin.class.getResource("/sprites/").getPath(), "TrooperWalking", 4));
+        
         return list;
 
     }

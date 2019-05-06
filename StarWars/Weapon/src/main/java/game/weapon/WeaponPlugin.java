@@ -33,7 +33,7 @@ public class WeaponPlugin implements IPluginService {
     @Override
     public List<Animation> getAnimation() {
         List<Animation> list = new ArrayList();
-        list.add(new Animation(WeaponPlugin.class.getResource("/sprites/").getPath(), "bullet", 0));
+        list.add(new Animation(WeaponPlugin.class.getResource("/sprites/").getPath(), "bullet", 1));
         return list;
     }
 

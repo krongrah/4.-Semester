@@ -113,10 +113,6 @@ public class PlayState extends GameState {
 
     @Override
     public void draw() {
-        for (Entity entity : world.getEntities()) {
-
-        }
-        
         this.render();
     }
     

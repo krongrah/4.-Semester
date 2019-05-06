@@ -27,13 +27,14 @@ public class Game implements ApplicationListener {
     @Override
     public void create() {
         gameStateManager = new GameStateManager(gameData, world);
-        gameStateManager.setState(State.PLAYSTATE); 
+        gameStateManager.setState(State.SPLASHSTATE); 
         //gameStateManager.setState(State.PLAYSTATE); 
+        System.out.println("create");
     }
 
     @Override
     public void render() {
-
+        System.out.println("render");
         // clear screen to black
         //Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
