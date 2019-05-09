@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.core;
+package game.sound;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -17,7 +17,7 @@ public class soundCommands {
     private static HashMap<String, Sound> sounds;
 	
 	static {
-		sounds = new HashMap<String, Sound>();
+		sounds = new HashMap<>();
 	}
 	
 	public static void load(String path, String name) {

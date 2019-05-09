@@ -9,7 +9,7 @@ import common.Entity;
 import data.GameData;
 
 /**
- *Use this in an entity to determie how many frames it should live
+ *Use this in an entity to determine how many frames it should live
  * @author Naik
  */
 public class SelfDestructPart implements EntityPart {
