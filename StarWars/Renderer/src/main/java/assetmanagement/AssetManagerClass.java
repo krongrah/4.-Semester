@@ -14,6 +14,10 @@ import Animation.Animation;
 public class AssetManagerClass {
 
     private AssetManager am;
+    
+    public void updateManager() {
+        am.update();
+    }
 
     public AssetManagerClass() {
         am = new AssetManager(new AssetJarFileResolver());
@@ -34,11 +38,12 @@ public class AssetManagerClass {
     }
 
     public void Load(List<Animation> animationList) {
-
+     
         for (Animation animation : animationList) {
 
             for (int i = 0; i < animation.getNumberOfFrames(); i++) {
-                am.load(animation.getPath() + animation.getName() + i + ".png", Texture.class);
+                am.load(animation.getPath(), Texture.class);
+//                am.load(animation.getPath() + animation.getName() + i + ".png", Texture.class);
                 while (am.update()) {
                     System.out.println("Asset loaded...");
                 }

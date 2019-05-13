@@ -28,7 +28,7 @@ public class PlayerProcessor implements IProcessor {
 
     @Override
     public void process(GameData gameData, World world) {
-        System.out.println("process");
+
         for (Entity player : world.getEntities(Player.class)) {
 
             //Gets the parts of the player

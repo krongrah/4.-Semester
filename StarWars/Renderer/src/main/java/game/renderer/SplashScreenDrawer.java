@@ -17,6 +17,8 @@ import entityparts.AnimationPart;
 import java.util.ArrayList;
 import java.util.List;
 import Animation.Animation;
+import java.io.IOException;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -51,12 +53,17 @@ public final class SplashScreenDrawer {
     }
 
     private String getPath() {
-        return SplashScreenDrawer.class.getResource("/sprites/").getPath();
+        return null;
+//        return SplashScreenDrawer.class.getResource("sprites/SplashScreen0.png").getPath();
     }
 
     private void Load() {
          List<Animation> list = new ArrayList();
-        list.add(new Animation(SplashScreenDrawer.class.getResource("/sprites/").getPath(), "SplashScreen", 7));
+        try {
+            list.add(new Animation(SplashScreenDrawer.class.getResource("sprites/SplashScreen0.png").getPath(), "SplashScreen", 7));
+        } catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        }
         
         am.Load(list);
     }

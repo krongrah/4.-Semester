@@ -29,7 +29,6 @@ public class WeaponProcessor implements IProcessor {
 
     @Override
     public void process(GameData gameData, World world) {
-
         //resolves all attacks
         for (Entity entity : world.getEntities()) {
             if (entity.hasPart(WeaponPart.class)) {
@@ -62,7 +61,9 @@ public class WeaponProcessor implements IProcessor {
             b.add(mp);
             b.add(new LifePart(1));
             b.add(new PropertiesPart(5, 3, CollisionTypes.DAMAGE, false));
-            b.add(new AnimationPart("bullet", 0, WeaponPlugin.class.getResource("/sprites/").getPath()));
+//            b.add(new AnimationPart("Luke", 1, "/Users/andreasmolgaard-andersen/Documents/GitHub/4.-Semester/StarWars/Player/target/classes/sprites/"));
+            ///Users/andreasmolgaard-andersen/Documents/GitHub/4.-Semester/StarWars/Player/target/classes/sprites/
+            b.add(new AnimationPart("bullet", 0, WeaponPlugin.class.getResource("sprites/bullet0.png").getPath().substring(5)));
             world.addEntity(b);
 
             if (pos.getDirection().equals(Directions.RIGHT)) {

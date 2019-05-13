@@ -34,7 +34,6 @@ public class Collision implements IPostProcessor {
      */
     @Override
     public void process(GameData gameData, World world) {
-
         for (Entity object : world.getEntities()) {
             PositionPart objPos = object.getPart(PositionPart.class);
             PropertiesPart objProp = object.getPart(PropertiesPart.class);

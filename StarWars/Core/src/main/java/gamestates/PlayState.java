@@ -33,7 +33,7 @@ import services.IRenderer;
  * @author andreasmolgaard-andersen
  */
 public class PlayState extends GameState {
-    
+
     private final Lookup lookup = Lookup.getDefault();
     private Lookup.Result<IPluginService> result;
     private Lookup.Result<IPostProcessor> postProcessorResults;
@@ -44,15 +44,15 @@ public class PlayState extends GameState {
     private static OrthographicCamera cam;
     private ShapeRenderer sr;
     private IRenderer renderer;
-    
+
     private GameData gameData;
     private World world;
-    
+
     public PlayState(GameStateManager gameStateManager) {
-        
+
         super(gameStateManager);
     }
-    
+
     @Override
     public void init(GameData gameData, World world) {
         this.gameData = gameData;
@@ -71,8 +71,7 @@ public class PlayState extends GameState {
 
         result = lookup.lookupResult(IPluginService.class);
         result.addLookupListener(lookupListener);
-        result.allItems();
-
+        gamePlugins.addAll(result.allInstances());
         Gdx.input.setInputProcessor(
                 new GameInputProcessor(gameData)
         );
@@ -82,9 +81,8 @@ public class PlayState extends GameState {
 //        entityPlugins.add(playerPlugin);
 //        entityProcessors.add(playerProcess);
         // Lookup all Game Plugins using ServiceLoader
-        for (IPluginService iGamePlugin : result.allInstances()) {
+        for (IPluginService iGamePlugin : gamePlugins) {
             iGamePlugin.start(gameData, world);
-            gamePlugins.add(iGamePlugin);
             renderer.loadTexture(iGamePlugin.getAnimation());
         }
 
@@ -105,8 +103,8 @@ public class PlayState extends GameState {
         for (IProcessor entityProcessorService : getEntityProcessingServices()) {
             entityProcessorService.process(gameData, world);
         }
-        
-        for (IPostProcessor postProcessor : postProcessors) {
+
+        for (IPostProcessor postProcessor : getPostEntityProcessingServices()) {
             postProcessor.process(gameData, world);
         }
     }
@@ -115,7 +113,7 @@ public class PlayState extends GameState {
     public void draw() {
         this.render();
     }
-    
+
     private void render() {
         renderer.render(world, gameData, State.PLAYSTATE);
     }
@@ -127,9 +125,9 @@ public class PlayState extends GameState {
 
     @Override
     public void dispose() {
-        
+
     }
-    
+
     private final LookupListener lookupListener = new LookupListener() {
         @Override
         public void resultChanged(LookupEvent le) {
@@ -139,7 +137,9 @@ public class PlayState extends GameState {
             for (IPluginService us : updated) {
                 // Newly installed modules
                 if (!gamePlugins.contains(us)) {
+//                    System.out.println("Loading texture: " + us.getAnimation().toString());
                     us.start(gameData, world);
+                    renderer.loadTexture(us.getAnimation());
                     gamePlugins.add(us);
                 }
             }
@@ -154,11 +154,16 @@ public class PlayState extends GameState {
         }
 
     };
-    
+
     private Collection<? extends IProcessor> getEntityProcessingServices() {
         return lookup.lookupAll(IProcessor.class);
 //        return SPILocator.locateAll(IProcessor.class);
     }
 
-    
+    private Collection<? extends IPostProcessor> getPostEntityProcessingServices() {
+
+        return lookup.lookupAll(IPostProcessor.class);
+
+    }
+
 }

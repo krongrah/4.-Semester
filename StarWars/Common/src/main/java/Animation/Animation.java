@@ -5,6 +5,9 @@
  */
 package Animation;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  *
  * @author Krongrah
@@ -14,16 +17,27 @@ public class Animation {
     private String path;
     private String name;
     private int numberOfFrames;
+    
+    private String cannonicalPath;
 
-    public Animation(String path, String name, int numberOfFrames) {
+    public Animation(String path, String name, int numberOfFrames) throws IOException {
         this.path = path;
+        
+        path.substring(5);
         this.name = name;
         this.numberOfFrames = numberOfFrames;
+        
+        
+        this.cannonicalPath = new File(path).getCanonicalPath().replace("\\", "/");
+        
     }
 
     public String getPath() {
+//        return path;
         return path;
     }
+    
+    
 
     public String getName() {
         return name;

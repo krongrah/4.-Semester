@@ -20,6 +20,8 @@ import java.util.List;
 import org.openide.util.lookup.ServiceProvider;
 import services.IPluginService;
 import Animation.Animation;
+import java.io.IOException;
+import org.openide.util.Exceptions;
 
 @ServiceProvider(service = IPluginService.class)
 
@@ -28,6 +30,8 @@ import Animation.Animation;
  * @author andreasmolgaard-andersen
  */
 public class PlayerPlugin implements IPluginService {
+    
+    List<Animation> list = new ArrayList();
 
     private Entity player;
 
@@ -40,8 +44,18 @@ public class PlayerPlugin implements IPluginService {
         player.add(new PositionPart(19*32, (39*32)+16));
         player.add(new MovingPart(10, 175, 250));
         player.add(new WeaponPart());
-        player.add(new AnimationPart("Luke", 1, PlayerPlugin.class.getResource("/sprites/").getPath()));
+//        player.add(new AnimationPart("Luke", 1, PlayerPlugin.class.getResource("sprites/Luke0.png").getPath()));
 
+        try {
+            List<Animation> list = new ArrayList();
+            list.add(new Animation(PlayerPlugin.class.getResource("sprites/Luke0.png").getPath().substring(5), "Luke", 1));
+        } catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+        
+        player.add(new AnimationPart("Luke", 1, PlayerPlugin.class.getResource("sprites/Luke0.png").getPath().substring(5)));
+
+        
         world.addEntity(player);
         System.out.println("starting");
     }
@@ -53,9 +67,9 @@ public class PlayerPlugin implements IPluginService {
 
     @Override
     public List<Animation> getAnimation() {
-        List<Animation> list = new ArrayList();
-        list.add(new Animation(PlayerPlugin.class.getResource("/sprites/").getPath(), "Luke", 1));
-        return list;
+
+            return list;
+
     }
 
 }
