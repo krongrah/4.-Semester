@@ -60,8 +60,8 @@ public class UnitDrawBoard {
         batch.end();
     }
 
-    void Load(List<Animation> animation) {
-        am.Load(animation);
+    void load() {
+        am.load();
     }
 
 }

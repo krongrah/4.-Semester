@@ -36,6 +36,7 @@ public class Renderer implements IRenderer {
         map = new MapDrawBoard(world);
         Gdx.graphics.setVSync(true);
 //        ssd = new SplashScreenDrawer("SplashScreen", 8);
+        board.load();
 
     }
 
@@ -61,7 +62,6 @@ public class Renderer implements IRenderer {
                 cam.update(gameData);
 
 //                ssd.drawSplashScreen(world, gameData, cam.getProjectionMatrix());
-
             }
         }
 
@@ -79,7 +79,6 @@ public class Renderer implements IRenderer {
     @Override
     public void loadTexture(List<Animation> animation) {
         this.setIsLoading(true);
-        board.Load(animation);
         this.setIsLoading(false);
     }
 

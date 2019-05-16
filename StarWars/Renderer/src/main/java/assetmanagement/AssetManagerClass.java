@@ -24,7 +24,7 @@ public class AssetManagerClass {
 
     public AssetManagerClass() {
         am = new AssetManager(new AssetJarFileResolver());
-        filePath = AssetManagerClass.class.getResource("assetmanagement/").getPath();
+        filePath = AssetManagerClass.class.getResource("sprites/").getPath();
         System.out.println(filePath);
     }
 
@@ -42,19 +42,33 @@ public class AssetManagerClass {
         return new Sprite(am.get(filePath + animation + ".png", Texture.class));
     }
 
-    public void Load(List<Animation> animationList) {
+    public void load() {
 
-        for (Animation animation : animationList) {
-
-            for (int i = 0; i < animation.getNumberOfFrames(); i++) {
-                am.load(animation.getPath(), Texture.class);
-//                am.load(animation.getPath() + animation.getName() + i + ".png", Texture.class);
-                while (am.update()) {
-                    System.out.println("Asset loaded...");
-                }
-            }
-
+        File[] files=new File(filePath).listFiles();
+        for (File file : files) {
+            
+            am.load(file.getPath(), Texture.class);
+            
+            while (am.update()) {
+//                    System.out.println("Asset loaded...");
+//                }
         }
+            am.finishLoadingAsset(file.getPath());
+        }
+        
+        
+        
+//        for (Animation animation : animationList) {
+//
+//            for (int i = 0; i < animation.getNumberOfFrames(); i++) {
+//                am.load(animation.getPath(), Texture.class);
+////                am.load(animation.getPath() + animation.getName() + i + ".png", Texture.class);
+//                while (am.update()) {
+//                    System.out.println("Asset loaded...");
+//                }
+//            }
+//
+//        }
 
         //am.finishLoadingAsset(path);
     }

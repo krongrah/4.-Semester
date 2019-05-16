@@ -65,7 +65,7 @@ public final class SplashScreenDrawer {
             Exceptions.printStackTrace(ex);
         }
         
-        am.Load(list);
+        //am.Load(list);
     }
 
     private void process(GameData gameData) {
