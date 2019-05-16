@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import java.util.List;
 import Animation.Animation;
+import java.io.File;
 
 /**
  *
@@ -14,13 +15,17 @@ import Animation.Animation;
 public class AssetManagerClass {
 
     private AssetManager am;
-    
+    private String filePath;
+
     public void updateManager() {
         am.update();
+
     }
 
     public AssetManagerClass() {
         am = new AssetManager(new AssetJarFileResolver());
+        filePath = AssetManagerClass.class.getResource("assetmanagement/").getPath();
+        System.out.println(filePath);
     }
 
 //    public void Load(String path) {
@@ -32,13 +37,13 @@ public class AssetManagerClass {
 //            am.finishLoadingAsset(path);
 //        }
 //    }
-    public Sprite getSprite(String animation, String filePath) {
+    public Sprite getSprite(String animation, String fileBath) {
         am.finishLoadingAsset(filePath + animation + ".png");
         return new Sprite(am.get(filePath + animation + ".png", Texture.class));
     }
 
     public void Load(List<Animation> animationList) {
-     
+
         for (Animation animation : animationList) {
 
             for (int i = 0; i < animation.getNumberOfFrames(); i++) {

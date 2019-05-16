@@ -222,7 +222,9 @@ public class EnemyProcessor implements IProcessor {
         PropertiesPart enProp = enemy.getPart(PropertiesPart.class);
 
         for (Entity ent : world.getEntities()) {
+            int targets = 0;
             if (ent instanceof Targetable) {
+                targets++;
                 //Found player
                 PositionPart plPos = ent.getPart(PositionPart.class);
 
@@ -251,6 +253,9 @@ public class EnemyProcessor implements IProcessor {
                     }
                 }
 
+            }else if(targets == 0){
+                action = Behaviours.IDLE;
+                lineOfSight = false;
             }
         }
     }
