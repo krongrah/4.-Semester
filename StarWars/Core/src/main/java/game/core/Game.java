@@ -50,7 +50,7 @@ public class Game implements ApplicationListener {
 //    private List<IPluginService> entityPlugins = new ArrayList<>();
     private World world;
     
-    //private HashMap<File, String> soundMap = new HashMap();
+    private HashMap<File, String> soundMap = new HashMap();
 
     @Override
     public void create() {
@@ -118,7 +118,8 @@ public class Game implements ApplicationListener {
         for (IProcessor entityProcessorService : getEntityProcessingServices()) {
             entityProcessorService.process(gameData, world);
         }
-        //Goes through the list of sound files and plays them
+//        Goes through the list of sound files and plays them
+
 //        for ( File soundFile : world.getSoundList()){
 //            if(soundMap.containsKey(soundFile)){
 //                soundCommands.play(soundMap.get(soundFile));

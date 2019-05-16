@@ -48,7 +48,7 @@ public class PlayerProcessor implements IProcessor {
             if(gameData.getKeys().isDown(A)){
                 Entity explosion = new Entity();
                 explosion.add(new SelfDestructPart(0));
-                SoundPart sp = new SoundPart(new File(PlayerPlugin.class.getResource("/sounds/explosion.mp3").getFile()));
+                SoundPart sp = new SoundPart(new File(PlayerPlugin.class.getResource("sounds/explosion.mp3").getFile()));
                 explosion.add(sp);
                 sp.startPlaying();
                 world.addEntity(explosion);
@@ -59,7 +59,8 @@ public class PlayerProcessor implements IProcessor {
             mp.setRight(gameData.getKeys().isDown(D));
             //adding sounds through world
             if(gameData.getKeys().isDown(D)){
-                world.addSound(new File(PlayerPlugin.class.getResource("/sounds/jump.mp3").getFile()));
+                world.addSound(new File(PlayerPlugin.class.getResource("sounds/jump.mp3").getFile()));
+                System.out.println(new File(PlayerPlugin.class.getResource("sounds/jump.mp3").getFile()).getPath());
 
                 
             }

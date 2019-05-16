@@ -21,6 +21,7 @@ public class soundCommands {
 	}
 	
 	public static void load(String path, String name) {
+            if(Gdx.audio == null) System.out.println("HAAALP");
 		Sound sound = Gdx.audio.newSound(Gdx.files.internal(path));
 		sounds.put(name, sound);
 	}
