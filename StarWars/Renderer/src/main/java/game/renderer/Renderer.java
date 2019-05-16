@@ -77,7 +77,7 @@ public class Renderer implements IRenderer {
      * @param animation
      */
     @Override
-    public void loadTexture(List<Animation> animation) {
+    public void loadTexture() {
         this.setIsLoading(true);
         this.setIsLoading(false);
     }

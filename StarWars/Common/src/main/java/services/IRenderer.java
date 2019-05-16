@@ -21,5 +21,5 @@ public interface IRenderer {
 
     public void setBackgroundColor(float r, float g, float b, float a);
 
-    public void loadTexture(List<Animation> animation);
+    public void loadTexture();
 }
