@@ -25,8 +25,8 @@ public class GameData {
     private float delta;
     private int displayWidth;
     private int displayHeight;
-    private float focusX;
-    private float focusY;
+    private float focusX = 19 * 32;
+    private float focusY = (39 * 32) + 16;
     private final GameKeys keys = new GameKeys();
     private List<Event> events = new CopyOnWriteArrayList<>();
 

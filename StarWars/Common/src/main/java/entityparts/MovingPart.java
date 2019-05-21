@@ -118,8 +118,8 @@ public class MovingPart implements EntityPart {
         if (isAccelerating()) {
             if (left) {
                 positionPart.setDirection(Directions.LEFT);
-            }else{
-            positionPart.setDirection(Directions.RIGHT);
+            } else {
+                positionPart.setDirection(Directions.RIGHT);
             }
         }
 

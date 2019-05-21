@@ -61,11 +61,7 @@
             <artifactId>Common</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>Enemy</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Map</artifactId>
@@ -84,6 +80,14 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>LibGDX</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        
+        
+        
+<!--        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Enemy</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -106,6 +110,16 @@
             <artifactId>Player</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+            <artifactId>Player</artifactId>
+            <version>${project.version}</version>
+        </dependency>-->
+        
+        
+        
+        
+        
+
     </dependencies>
 
     <build>

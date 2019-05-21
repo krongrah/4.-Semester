@@ -5,6 +5,7 @@
  */
 package data;
 
+import common.AISpawnPoint;
 import common.Entity;
 import java.io.File;
 import java.util.ArrayList;
@@ -38,6 +39,11 @@ public class World {
     private LinkedList<File> soundList = new LinkedList<>();
 
     /**
+     * A list of all enemy spawn points read from the map file
+     */
+    private final List<AISpawnPoint> enemySpawnPoints = new ArrayList();
+
+    /**
      * Adds the given Entity to the world
      *
      * @param entity Is the entity to be added
@@ -51,6 +57,15 @@ public class World {
     /**
      * Adds the entity to the list that removes it from the world later
      * To avoid concurrent access issues.
+     * Adds a specific enemy spawn point to the list of spawn points
+     * @param spawn 
+     */
+    public void addEnemySpawn(AISpawnPoint spawn) {
+        enemySpawnPoints.add(spawn);
+    }
+
+    /**
+     * Removes the given Entity from the world
      * @param entity Is the entity to be removed
      */
     public void removeEntity(Entity entity) {
@@ -72,6 +87,10 @@ public class World {
      */
     public Collection<Entity> getEntities() {
         return entityMap.values();
+    }
+    
+    public List<AISpawnPoint> getSpawnPoints(){
+        return this.enemySpawnPoints;
     }
 
     /**

@@ -3,8 +3,6 @@ package entityparts;
 import common.Entity;
 import data.GameData;
 import enums.CollisionTypes;
-import enums.Directions;
-import sprites.Sprites;
 
 /**
  *

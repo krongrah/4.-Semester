@@ -7,14 +7,13 @@ package game.weapon;
 
 import data.GameData;
 import data.World;
-import entityparts.AnimationPart;
-import entityparts.LifePart;
-import entityparts.MovingPart;
-import entityparts.PositionPart;
-import entityparts.PropertiesPart;
+import java.util.ArrayList;
+import java.util.List;
 import org.openide.util.lookup.ServiceProvider;
 import services.IPluginService;
-import sprites.Sprites;
+import Animation.Animation;
+import java.io.IOException;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -24,8 +23,18 @@ import sprites.Sprites;
 
 public class WeaponPlugin implements IPluginService {
 
+    List<Animation> list = new ArrayList();
+    
     @Override
     public void start(GameData gameData, World world) {
+        
+        try {
+            list.add(new Animation(WeaponPlugin.class.getResource("sprites/bullet0.png").getPath().substring(5), "bullet", 1));
+        } catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+        
+        
     }
 
     @Override
@@ -34,8 +43,9 @@ public class WeaponPlugin implements IPluginService {
     }
 
     @Override
-    public String getPath() {
-        return WeaponPlugin.class.getResource("/sprites/bullet.txt").getPath();
+    public List<Animation> getAnimation() {
+        
+        return list;
     }
 
 }

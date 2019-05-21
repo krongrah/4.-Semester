@@ -16,7 +16,6 @@ import services.IPostProcessor;
  *
  * @author Sebas
  */
-
 @ServiceProvider(service = IPostProcessor.class)
 
 public class WeaponPostProcessor implements IPostProcessor {
@@ -26,15 +25,15 @@ public class WeaponPostProcessor implements IPostProcessor {
         for (Entity bullet : world.getEntities(Bullet.class)) {
             LifePart lp = bullet.getPart(LifePart.class);
 
-            if(lp.isHit()){
+            if (lp.isHit()) {
                 world.removeEntity(bullet);
             }
-            Bullet b=(Bullet)bullet;
+            Bullet b = (Bullet) bullet;
             b.lowerDuration(gameData.getDelta());
             if (b.isExpired()) {
-                 world.removeEntity(bullet);
+                world.removeEntity(bullet);
             }
-            
+
         }
     }
 

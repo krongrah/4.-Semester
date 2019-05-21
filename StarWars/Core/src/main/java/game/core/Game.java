@@ -8,8 +8,6 @@ package game.core;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import common.Entity;
 import data.GameData;
 import data.World;
@@ -29,75 +27,43 @@ import services.IProcessor;
 import services.IPluginService;
 import services.IPostProcessor;
 import services.IRenderer;
+import enums.State;
 
 /**
- *
+ * @author Andreas Bøgh Mølgaard-Andersen
  * @author ahmadhamid
  */
 public class Game implements ApplicationListener {
-
-    private static OrthographicCamera cam;
-    private ShapeRenderer sr;
-    private IRenderer renderer;
-
-    private final GameData gameData = new GameData();
+    
+    
+    
     private final Lookup lookup = Lookup.getDefault();
     private Lookup.Result<IPluginService> result;
     private Lookup.Result<IPostProcessor> postProcessorResults;
     private List<IPluginService> gamePlugins = new CopyOnWriteArrayList<>();
     private List<IPostProcessor> postProcessors = new ArrayList<>();
-    private List<IProcessor> entityProcessors = new ArrayList<>();
+private List<IProcessor> entityProcessors = new ArrayList<>();
+    
+    private GameStateManager gameStateManager;
+
+    private final GameData gameData = new GameData();
 //    private List<IPluginService> entityPlugins = new ArrayList<>();
-    private World world;
+
     
     private HashMap<File, String> soundMap = new HashMap();
+    private final World world = new World();
+
 
     @Override
     public void create() {
+        gameStateManager = new GameStateManager(gameData, world);
+//        gameStateManager.setState(State.SPLASHSTATE); 
+        gameStateManager.setState(State.PLAYSTATE); 
 
-        world = new World();
-        renderer = new Renderer(world);
-        renderer.setBackgroundColor(125, 190, 225, 1);
-
-        gameData.setDisplayWidth(Gdx.graphics.getWidth() * 2);
-        gameData.setDisplayHeight(Gdx.graphics.getHeight() * 2);
-
-        cam = new OrthographicCamera(gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        cam.translate(gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        cam.update();
-
-        sr = new ShapeRenderer();
-
-        result = lookup.lookupResult(IPluginService.class);
-        result.addLookupListener(lookupListener);
-        result.allItems();
-
-        Gdx.input.setInputProcessor(
-                new GameInputProcessor(gameData)
-        );
-
-//        IGamePluginService playerPlugin = new PlayerPlugin();
-//        IEntityProcessingService playerProcess = new PlayerControlSystem();
-//        entityPlugins.add(playerPlugin);
-//        entityProcessors.add(playerProcess);
-        // Lookup all Game Plugins using ServiceLoader
-        for (IPluginService iGamePlugin : result.allInstances()) {
-            iGamePlugin.start(gameData, world);
-            gamePlugins.add(iGamePlugin);
-            renderer.loadTexture(iGamePlugin.getPath());
-        }
-
-        postProcessorResults = lookup.lookupResult(IPostProcessor.class);
-        postProcessorResults.addLookupListener(lookupListener);
-        postProcessorResults.allItems();
-        for (IPostProcessor pp : postProcessorResults.allInstances()) {
-            postProcessors.add(pp);
-        }
     }
 
     @Override
     public void render() {
-
         // clear screen to black
         //Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -107,9 +73,11 @@ public class Game implements ApplicationListener {
         update();
 
         draw();
+        
+        handleInput();
 
-        gameData.getKeys().update();
-        renderer.render(world, gameData);
+//        gameData.getKeys().update();
+//        renderer.render(world, gameData);
 
     }
 
@@ -147,14 +115,17 @@ public class Game implements ApplicationListener {
         }
         
         world.performDeletion();
+        gameStateManager.update();
     }
 
     private void draw() {
-        for (Entity entity : world.getEntities()) {
-
-        }
+        gameStateManager.draw();
     }
 
+    private void handleInput() {
+        gameStateManager.handleInput();
+    }
+    
     @Override
     public void resize(int width, int height) {
     }
@@ -169,6 +140,7 @@ public class Game implements ApplicationListener {
 
     @Override
     public void dispose() {
+        gameStateManager.dispose();
     }
 
     private Collection<? extends IProcessor> getEntityProcessingServices() {

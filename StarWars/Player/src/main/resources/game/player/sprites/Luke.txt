@@ -1,0 +1,68 @@
+Luke.png
+size: 288, 32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Lukeidle0
+  rotate: false
+  xy: 0, 0
+  size: 26, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Lukeshooting0
+  rotate: false
+  xy: 32, 0
+  size: 26, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Lukewalking0
+  rotate: false
+  xy: 64, 0
+  size: 26, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Lukewalking1
+  rotate: false
+  xy: 94, 0
+  size: 26, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Lukewalking2
+  rotate: false
+  xy: 128, 0
+  size: 26, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Lukewalking3
+  rotate: false
+  xy: 160, 0
+  size: 26, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Lukewalking4
+  rotate: false
+  xy: 192, 0
+  size: 26, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Lukewalking5
+  rotate: false
+  xy: 224, 0
+  size: 26, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Lukewalking6
+  rotate: false
+  xy: 256, 0
+  size: 26, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

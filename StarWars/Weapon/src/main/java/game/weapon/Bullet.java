@@ -6,21 +6,22 @@
 package game.weapon;
 
 import common.Entity;
+import interfaces.Projectile;
 
 /**
  *
  * @author Sebas
  */
-public class Bullet extends Entity {
-    
-    private float duration=5;
-    
-    public void lowerDuration(float delta){
-    duration-=delta;
+public class Bullet extends Entity implements Projectile {
+
+    private float duration = 5;
+
+    public void lowerDuration(float delta) {
+        duration -= delta;
     }
-    
-    public boolean isExpired(){
-    return duration<=0;
+
+    public boolean isExpired() {
+        return duration <= 0;
     }
 
 }

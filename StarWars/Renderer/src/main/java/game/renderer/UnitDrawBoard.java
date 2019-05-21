@@ -6,6 +6,7 @@
 package game.renderer;
 
 import assetmanagement.AssetManagerClass;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
@@ -16,6 +17,8 @@ import entityparts.AnimationPart;
 import entityparts.PositionPart;
 import entityparts.PropertiesPart;
 import enums.Directions;
+import java.util.List;
+import Animation.Animation;
 
 /**
  *
@@ -38,24 +41,27 @@ public class UnitDrawBoard {
             PropertiesPart prop = entity.getPart(PropertiesPart.class);
             if (prop!=null && !prop.isObstacle()) {
                 PositionPart pos = entity.getPart(PositionPart.class);
-                AnimationPart ani = entity.getPart(AnimationPart.class);
-                Sprite sprite = am.getSprite(ani.getCurrentAnimation(), ani.getSpriteSheetPath());
-                sprite.setPosition(pos.getX() - sprite.getWidth() / 2, pos.getY() - sprite.getHeight() / 2);
-                if (pos.getDirection() == Directions.LEFT) {
-                    sprite.flip(true, false);
-                    sprite.setX(sprite.getX()-sprite.getWidth()/2);
-                }
+                if (entity.hasPart(AnimationPart.class)) {
+                    AnimationPart ani = entity.getPart(AnimationPart.class);
+                    Sprite sprite = am.getSprite(ani.getCurrentAnimation(), ani.getSpriteSheetPath());
+                    sprite.getTexture().setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest); //This renders pixelart sharper than linear rendering
+                    sprite.setPosition(pos.getX() - sprite.getWidth() / 2, pos.getY() - sprite.getHeight() / 2);
+                    if (pos.getDirection() == Directions.LEFT) {
+                        sprite.flip(true, false);
+                        sprite.setX(sprite.getX() - sprite.getWidth() / 2);
+                    }
 
-                //sprite.scale(camera.zoom);
-                sprite.draw(batch);
+                    //sprite.scale(camera.zoom);
+                    sprite.draw(batch);
+                }
             }
 
         }
         batch.end();
     }
 
-    public void Load(String path) {
-        am.Load(path);
+    void load() {
+        am.load();
     }
 
 }

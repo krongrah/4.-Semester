@@ -5,6 +5,7 @@
  */
 package game.enemy;
 
+import enums.AITypes;
 import common.Entity;
 
 /**
@@ -12,9 +13,28 @@ import common.Entity;
  * @author andreasmolgaard-andersen
  */
 public class Enemy extends Entity {
-    
-    public Enemy() {
+    private float originX;
+    private float originY;
+    private AITypes AIType;
 
+    public Enemy(float originX, float originY) {
+        this.originX = originX;
+        this.originY = originY;
     }
-    
+
+    public float getOriginX() {
+        return originX;
+    }
+
+    public float getOriginY() {
+        return originY;
+    }
+
+    public AITypes getAIType() {
+        return AIType;
+    }
+
+    public void setAIType(AITypes AIType) {
+        this.AIType = AIType;
+    }
 }

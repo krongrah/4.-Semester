@@ -1,8 +1,12 @@
 package assetmanagement;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import java.util.List;
+import Animation.Animation;
+import java.io.File;
 
 /**
  *
@@ -10,29 +14,63 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
  */
 public class AssetManagerClass {
 
-    //private String string;
     private AssetManager am;
-    //private String jarUrl = new File("").getAbsolutePath() + "/src/main/resources/sprites/Luke.png";
+    private String filePath;
+
+    public void updateManager() {
+        am.update();
+
+    }
 
     public AssetManagerClass() {
-        //am = new AssetManager();
         am = new AssetManager(new AssetJarFileResolver());
+        filePath = AssetManagerClass.class.getResource("sprites/").getPath();
+        System.out.println(filePath);
     }
 
-    public void Load(String path) {
-        if (!path.equals("")) {
-            //string = path;
+//    public void Load(String path) {
+//        if (!path.equals("")) {
+//            am.load(path, TextureAtlas.class);
+//            while (am.update()) {
+//                System.out.println("Asset loaded...");
+//            }
+//            am.finishLoadingAsset(path);
+//        }
+//    }
+    public Sprite getSprite(String animation, String fileBath) {
+        am.finishLoadingAsset(filePath + animation + ".png");
+        return new Sprite(am.get(filePath + animation + ".png", Texture.class));
+    }
 
-            am.load(path, TextureAtlas.class);
+    public void load() {
+
+        File[] files=new File(filePath).listFiles();
+        for (File file : files) {
+            
+            am.load(file.getPath(), Texture.class);
+            
             while (am.update()) {
-                System.out.println("Asset loaded...");
-            }
-            am.finishLoadingAsset(path);
+//                    System.out.println("Asset loaded...");
+//                }
         }
-    }
+            am.finishLoadingAsset(file.getPath());
+        }
+        
+        
+        
+//        for (Animation animation : animationList) {
+//
+//            for (int i = 0; i < animation.getNumberOfFrames(); i++) {
+//                am.load(animation.getPath(), Texture.class);
+////                am.load(animation.getPath() + animation.getName() + i + ".png", Texture.class);
+//                while (am.update()) {
+//                    System.out.println("Asset loaded...");
+//                }
+//            }
+//
+//        }
 
-    public Sprite getSprite(String animation, String filePath) {
-         return new Sprite(((TextureAtlas) (am.get(filePath, TextureAtlas.class))).findRegion(animation));
+        //am.finishLoadingAsset(path);
     }
 
 }
