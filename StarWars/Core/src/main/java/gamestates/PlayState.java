@@ -83,7 +83,7 @@ public class PlayState extends GameState {
         // Lookup all Game Plugins using ServiceLoader
         for (IPluginService iGamePlugin : gamePlugins) {
             iGamePlugin.start(gameData, world);
-            renderer.loadTexture(iGamePlugin.getAnimation());
+            renderer.loadTexture();
         }
 
         postProcessorResults = lookup.lookupResult(IPostProcessor.class);
@@ -139,7 +139,7 @@ public class PlayState extends GameState {
                 if (!gamePlugins.contains(us)) {
 //                    System.out.println("Loading texture: " + us.getAnimation().toString());
                     us.start(gameData, world);
-                    renderer.loadTexture(us.getAnimation());
+                    renderer.loadTexture();
                     gamePlugins.add(us);
                 }
             }
